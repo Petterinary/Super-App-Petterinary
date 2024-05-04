@@ -1,0 +1,20 @@
+ion-content.landing-page {
+  --ion-background-color: #ff9900;
+  --color: #000;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  img {
+    width: 250px;
+  }
+
+  h1 {
+    font-size: 50px;
+  }
+}
