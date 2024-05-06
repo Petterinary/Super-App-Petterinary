@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.showLandingPage = false;
-      this.router.navigate(['/home-page']);
+      this.router.navigate(['/home']);
     }, 5000);
   }
 }
