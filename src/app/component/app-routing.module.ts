@@ -1,11 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePageComponent } from './home-page/home-page.component';
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
-  { path: 'main-menu', component: HomePageComponent },
+  {
+    path: '',
+    redirectTo: 'home-page',
+    pathMatch: 'full',
+  },
+  {
+    path: 'home-page',
+    loadChildren: () =>
+      import('./home-page/home-page.module').then((m) => m.HomePagePageModule),
+  },
 ];
 
 @NgModule({
