@@ -9,6 +9,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./home/home.module').then((m) => m.HomePageModule),
   },
+  // {
+  //   path: 'global',
+  //   loadChildren: () =>
+  //     import('./global/global.module').then((m) => m.GlobalModule),
+  // },
 ];
 
 @NgModule({
