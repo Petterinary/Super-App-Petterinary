@@ -1,9 +1,9 @@
-<ion-app style="max-width: 1200px; margin: 0px auto">
-  <ion-menu contentId="content">
-    <ion-header>
-      <div class="header-container">
-        <img src="assets/logo/logo-1.png" />
-      </div>
-    </ion-header>
-  </ion-menu>
+<ion-app>
+  <ion-content class="landing-page" fullscreen>
+    <div *ngIf="showLandingPage" class="container">
+      <img src="assets\logo\logo-1.png" alt="Logo" />
+      <h1>Petterinary</h1>
+    </div>
+    <router-outlet *ngIf="!showLandingPage"></router-outlet>
+  </ion-content>
 </ion-app>
