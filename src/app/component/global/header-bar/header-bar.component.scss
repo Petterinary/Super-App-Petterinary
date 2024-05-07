@@ -5,6 +5,9 @@ ion-header {
   width: 100%;
   overflow: hidden;
   box-shadow: none;
+
+  position: sticky; /* Add this line */
+  top: 0; /* Add this line */
   ion-item {
     .head-cont {
       display: flex;

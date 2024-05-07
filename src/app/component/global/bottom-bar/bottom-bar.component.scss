@@ -1,4 +1,6 @@
 ion-footer {
+  position: sticky; /* Add this line */
+  bottom: 0; /* Add this line */
   background-color: #ff9900;
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
@@ -7,7 +9,7 @@ ion-footer {
   // border-top-left-radius: 100px;
   ion-item {
     --padding-start: 0;
-    --padding-end: 0;
+    --inner-padding-end: 0;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
     .bot-cont {
@@ -33,7 +35,7 @@ ion-footer {
         }
         .icon-desc {
           .logo-info {
-            font-size: 20px;
+            font-size: 15px;
             color: #fff;
           }
         }
@@ -53,7 +55,7 @@ ion-footer {
         }
         .icon-desc {
           .logo-info {
-            font-size: 20px;
+            font-size: 15px;
             color: #fff;
           }
         }
@@ -69,12 +71,12 @@ ion-footer {
 
           img {
             width: 35px;
-            margin-left: 5px;
+            margin-left: 3.5px;
           }
         }
         .icon-desc {
           .logo-info {
-            font-size: 20px;
+            font-size: 15px;
             color: #fff;
           }
         }
