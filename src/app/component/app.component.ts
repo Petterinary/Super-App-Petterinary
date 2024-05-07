@@ -15,6 +15,6 @@ export class AppComponent implements OnInit {
     setTimeout(() => {
       this.showLandingPage = false;
       this.router.navigate(['/home']);
-    }, 5000);
+    }, 5);
   }
 }

@@ -1,9 +1,12 @@
 <ion-app>
-  <ion-content class="landing-page" fullscreen>
-    <div *ngIf="showLandingPage" class="container">
-      <img src="assets\logo\logo-1.png" alt="Logo" />
-      <h1>Petterinary</h1>
+  <ion-content class="main" fullscreen>
+    <div *ngIf="showLandingPage" class="landing-page">
+      <div class="container">
+        <img src="assets\logo\logo-1.png" alt="Logo" />
+        <h1>Petterinary</h1>
+      </div>
     </div>
+    <div *ngIf="!showLandingPage"></div>
     <router-outlet *ngIf="!showLandingPage"></router-outlet>
   </ion-content>
 </ion-app>
