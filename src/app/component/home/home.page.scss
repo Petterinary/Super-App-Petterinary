@@ -2,3 +2,13 @@ ion-content.white-space {
   --ion-background-color: #fff;
   --color: #000;
 }
+
+.contents {
+  margin-top: 68px;
+  margin-bottom: 108px;
+  h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

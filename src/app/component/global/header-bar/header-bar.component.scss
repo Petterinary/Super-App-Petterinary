@@ -6,8 +6,8 @@ ion-header {
   overflow: hidden;
   box-shadow: none;
 
-  position: sticky; /* Add this line */
-  top: 0; /* Add this line */
+  position: fixed;
+  top: 0;
   ion-item {
     .head-cont {
       display: flex;
