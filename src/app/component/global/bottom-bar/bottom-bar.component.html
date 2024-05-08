@@ -1,32 +1,35 @@
 <ion-footer>
   <ion-item lines="none">
     <div class="bot-cont">
-      <div class="home-cont">
+      <button (click)="setActive(0)" class="home-cont">
+        <div *ngIf="isActive === 0" class="active"></div>
         <div class="menu-icon">
           <img src="../../../../assets/logo/bottom-bar/Icon Home.png" />
         </div>
         <div class="icon-desc">
           <label class="logo-info">Home</label>
         </div>
-      </div>
+      </button>
       <div class="gap"></div>
-      <div class="note-cont">
+      <button (click)="setActive(1)" class="note-cont">
+        <div *ngIf="isActive === 1" class="active"></div>
         <div class="menu-icon">
           <img src="../../../../assets/logo/bottom-bar/Icon Catatan.png" />
         </div>
         <div class="icon-desc">
           <label class="logo-info">Catatan</label>
         </div>
-      </div>
+      </button>
       <div class="gap"></div>
-      <div class="profile-cont">
+      <button (click)="setActive(2)" class="profile-cont">
+        <div *ngIf="isActive === 2" class="active"></div>
         <div class="menu-icon">
           <img src="../../../../assets/logo/bottom-bar/Icon Profil.png" />
         </div>
         <div class="icon-desc">
           <label class="logo-info">Profil</label>
         </div>
-      </div>
+      </button>
     </div>
   </ion-item>
 </ion-footer>

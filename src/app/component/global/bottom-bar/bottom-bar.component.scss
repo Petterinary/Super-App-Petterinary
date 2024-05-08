@@ -17,8 +17,13 @@ ion-footer {
       position: relative;
       width: 100%;
       margin: 20px;
+      margin-top: 0;
       align-items: end;
       justify-content: center;
+      button {
+        background-color: var(--ion-color-primary);
+        width: 60px;
+      }
       .home-cont {
         margin-right: 20px;
         margin-left: 20px;
@@ -31,6 +36,7 @@ ion-footer {
 
           img {
             width: 35px;
+            height: 35px;
           }
         }
         .icon-desc {
@@ -51,6 +57,7 @@ ion-footer {
 
           img {
             width: 35px;
+            height: 35px;
           }
         }
         .icon-desc {
@@ -71,6 +78,7 @@ ion-footer {
 
           img {
             width: 35px;
+            height: 35px;
             margin-left: 3.5px;
           }
         }
@@ -96,4 +104,11 @@ ion-footer {
       }
     }
   }
+}
+
+.active {
+  width: 100%;
+  height: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
 }
