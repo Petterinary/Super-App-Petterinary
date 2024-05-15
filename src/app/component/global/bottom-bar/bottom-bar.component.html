@@ -4,7 +4,14 @@
       <button (click)="setActive(0)" class="home-cont">
         <div *ngIf="isActive === 0" class="active"></div>
         <div class="menu-icon">
-          <img src="../../../../assets/logo/bottom-bar/Icon Home.png" />
+          <ng-container *ngIf="isActive === 0; else notSelected" class="active">
+            <img
+              src="../../../../assets/logo/bottom-bar/selected/Icon Home.png"
+            />
+          </ng-container>
+          <ng-template #notSelected>
+            <img src="../../../../assets/logo/bottom-bar/Icon Home.png" />
+          </ng-template>
         </div>
         <div class="icon-desc">
           <label class="logo-info">Home</label>
@@ -14,8 +21,19 @@
       <button (click)="setActive(1)" class="note-cont">
         <div *ngIf="isActive === 1" class="active"></div>
         <div class="menu-icon">
-          <img src="../../../../assets/logo/bottom-bar/Icon Catatan.png" />
+          <ng-container
+            *ngIf="isActive === 1; else notSelected1"
+            class="active"
+          >
+            <img
+              src="../../../../assets/logo/bottom-bar/selected/Icon Notes.png"
+            />
+          </ng-container>
+          <ng-template #notSelected1>
+            <img src="../../../../assets/logo/bottom-bar/Icon Catatan.png" />
+          </ng-template>
         </div>
+
         <div class="icon-desc">
           <label class="logo-info">Catatan</label>
         </div>
@@ -24,7 +42,17 @@
       <button (click)="setActive(2)" class="profile-cont">
         <div *ngIf="isActive === 2" class="active"></div>
         <div class="menu-icon">
-          <img src="../../../../assets/logo/bottom-bar/Icon Profil.png" />
+          <ng-container
+            *ngIf="isActive === 2; else notSelected2"
+            class="active"
+          >
+            <img
+              src="../../../../assets/logo/bottom-bar/selected/Icon Profil.png"
+            />
+          </ng-container>
+          <ng-template #notSelected2>
+            <img src="../../../../assets/logo/bottom-bar/Icon Profil.png" />
+          </ng-template>
         </div>
         <div class="icon-desc">
           <label class="logo-info">Profil</label>

@@ -2,18 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'app-landing-page',
+  templateUrl: './landing-page.component.html',
+  styleUrls: ['./landing-page.component.scss'],
 })
-export class AppComponent implements OnInit {
-  showLandingPage = true;
-
+export class LandingPageComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
     setTimeout(() => {
-      this.showLandingPage = false;
       this.router.navigate(['/home']);
     }, 3000);
   }

@@ -1,4 +1,4 @@
-<app-header-bar></app-header-bar>
+<!-- <app-header-bar></app-header-bar> -->
 <ion-content class="white-space" [fullscreen]="true">
   <div class="contents">
     <div class="search-container">
@@ -8,7 +8,7 @@
       <ng-container *ngIf="dataDokter">
         <ng-container *ngFor="let data of dataDokter">
           <ion-card>
-            <div class="item-container">
+            <div class="item-container" (click)="toServiceSelect(data.idVet)">
               <div class="docter-img">
                 <ng-container
                   *ngIf="data.jenisKelamin === 'Laki-laki'; else female"
@@ -35,4 +35,4 @@
     </div>
   </div>
 </ion-content>
-<app-bottom-bar></app-bottom-bar>
+<!-- <app-bottom-bar></app-bottom-bar> -->
