@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { ServiceSelectionPageRoutingModule } from './service-selection-routing.module';
 
 import { ServiceSelectionPage } from './service-selection.page';
+import { GlobalModule } from '../global/global.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    GlobalModule,
     IonicModule,
-    ServiceSelectionPageRoutingModule
+    ServiceSelectionPageRoutingModule,
   ],
-  declarations: [ServiceSelectionPage]
+  declarations: [ServiceSelectionPage],
 })
 export class ServiceSelectionPageModule {}
