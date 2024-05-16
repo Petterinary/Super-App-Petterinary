@@ -1,7 +1,14 @@
-<ion-content class="main" fullscreen>
-  <div class="container">
-    <div class="back-cont" (click)="back()">
-      <img src="assets\icon\back.png" alt="Back" />
+<ion-header mode="md">
+  <ion-item lines="none" mode="md" style="background: transparent">
+    <div class="head-cont">
+      <div class="logo-cont">
+        <img (click)="back()" src="assets\icon\back.png" alt="Back" />
+      </div>
+      <div class="title">
+        <h1>
+          <h1>{{ pageTitle }}</h1>
+        </h1>
+      </div>
     </div>
-  </div>
-</ion-content>
+  </ion-item>
+</ion-header>
