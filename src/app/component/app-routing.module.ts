@@ -26,7 +26,11 @@ const routes: Routes = [
     path: 'history',
     loadChildren: () =>
       import('./history/history.module').then((m) => m.HistoryPageModule),
+  },  {
+    path: 'form-user-visit',
+    loadChildren: () => import('./form-user-visit/form-user-visit.module').then( m => m.FormUserVisitPageModule)
   },
+
 
   // {
   //   path: 'global',
