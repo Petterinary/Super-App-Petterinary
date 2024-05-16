@@ -79,7 +79,7 @@ ion-footer {
           img {
             width: 35px;
             height: 35px;
-            margin-left: 3.5px;
+            margin-left: 5.5px;
           }
         }
         .icon-desc {
@@ -106,9 +106,19 @@ ion-footer {
   }
 }
 
-.active {
-  width: 100%;
+.active,
+.inactive {
   height: 10px;
   margin-bottom: 10px;
   background-color: #fff;
+  transition: transform 0.3s ease;
+  transform-origin: center; /* Ensure the scale transformation happens from the center */
+}
+
+.active {
+  transform: scaleX(1); /* Scale to full width when active */
+}
+
+.inactive {
+  transform: scaleX(0); /* Scale to zero width when inactive */
 }

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { IonicModule } from '@ionic/angular';
 import { GlobalModule } from './global/global.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, LandingPageComponent],
@@ -13,6 +14,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     BrowserModule,
     AppRoutingModule,
     GlobalModule,
+    BrowserAnimationsModule,
     IonicModule.forRoot({}),
   ],
   providers: [],

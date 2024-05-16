@@ -2,7 +2,9 @@
   <ion-item lines="none">
     <div class="bot-cont">
       <button (click)="setActive(0)" class="home-cont">
-        <div *ngIf="isActive === 0" class="active"></div>
+        <div
+          [ngClass]="{ active: isActive === 0, inactive: isActive !== 0 }"
+        ></div>
         <div class="menu-icon">
           <ng-container *ngIf="isActive === 0; else notSelected" class="active">
             <img
@@ -19,7 +21,9 @@
       </button>
       <div class="gap"></div>
       <button (click)="setActive(1)" class="note-cont">
-        <div *ngIf="isActive === 1" class="active"></div>
+        <div
+          [ngClass]="{ active: isActive === 1, inactive: isActive !== 1 }"
+        ></div>
         <div class="menu-icon">
           <ng-container
             *ngIf="isActive === 1; else notSelected1"
@@ -33,14 +37,15 @@
             <img src="../../../../assets/logo/bottom-bar/Icon Catatan.png" />
           </ng-template>
         </div>
-
         <div class="icon-desc">
           <label class="logo-info">Catatan</label>
         </div>
       </button>
       <div class="gap"></div>
       <button (click)="setActive(2)" class="profile-cont">
-        <div *ngIf="isActive === 2" class="active"></div>
+        <div
+          [ngClass]="{ active: isActive === 2, inactive: isActive !== 2 }"
+        ></div>
         <div class="menu-icon">
           <ng-container
             *ngIf="isActive === 2; else notSelected2"
