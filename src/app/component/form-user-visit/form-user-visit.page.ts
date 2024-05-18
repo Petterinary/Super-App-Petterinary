@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-user-visit',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form-user-visit.page.scss'],
 })
 export class FormUserVisitPage implements OnInit {
+  constructor(private router: Router) {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  public async toConsultInfoUV() {
+    this.router.navigate([`/consultation-info-uv`], {});
   }
-
 }

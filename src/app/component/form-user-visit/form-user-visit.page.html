@@ -3,30 +3,65 @@
     <div class="bb-icon">
       <app-back-button [pageTitle]="'Form Pendaftaran'"></app-back-button>
     </div>
-    <!-- <div class="container">
-        <h1>Pilih Layanan Rawat...</h1>
+    <div class="form-type">
+      <ion-badge class="form-title">
+        <ion-text>User Visit</ion-text>
+      </ion-badge>
+    </div>
+    <div class="form-body">
+      <div class="input-tile">
+        <p>Nama</p>
+        <input
+          placeholder="Silahkan masukan nama..."
+          class="test"
+          #input
+          type="text"
+        />
+        <p>Nomor yang bisa dihubungi</p>
+        <input
+          placeholder="Silahkan masukan nomor yang dapat dihubungi..."
+          class="test"
+          #input
+          type="text"
+        />
+        <p>Deskripsi Keluhan</p>
+        <textarea
+          placeholder="Deskripsikan keluhan hewan kamu..."
+          class="testarea"
+          #input
+        ></textarea>
+        <!-- vv Scroll overflow test -->
+        <!-- <p>Deskripsi Keluhan</p>
+        <textarea
+          placeholder="Deskripsikan keluhan hewan kamu..."
+          class="testarea"
+          #input
+        ></textarea>
+        <p>Deskripsi Keluhan</p>
+        <textarea
+          placeholder="Deskripsikan keluhan hewan kamu..."
+          class="testarea"
+          #input
+        ></textarea>
+        <p>Deskripsi Keluhan</p>
+        <textarea
+          placeholder="Deskripsikan keluhan hewan kamu..."
+          class="testarea"
+          #input
+        ></textarea>
+        <p>Deskripsi Keluhan</p>
+        <textarea
+          placeholder="Deskripsikan keluhan hewan kamu..."
+          class="testarea"
+          #input
+        ></textarea> -->
       </div>
-      <div class="gap"></div>
-      <div class="option-container">
-        <div class="user-cont">
-          <span class="circle1" (click)="toServiceSelect()">
-            <img
-              class="info-icon-pict"
-              src="../../../assets/icon/service-selection/Icon User.png"
-            />
-            <p>User visit</p>
-          </span>
-        </div>
-        <div class="gap"></div>
-        <div class="vet-cont">
-          <span class="circle2">
-            <img
-              class="info-icon-pict"
-              src="../../../assets/icon/service-selection/Icon Vet.png"
-            />
-            <p>Vet visit</p>
-          </span>
-        </div>
-      </div> -->
+      <div class="send-button-cont">
+        <ion-badge (click)="toConsultInfoUV()" class="send-button">
+          <ion-text>Kirim Permohonan Konsultasi</ion-text>
+        </ion-badge>
+      </div>
+    </div>
+    <div class="bottom-gap"></div>
   </div>
 </ion-content>
