@@ -1,12 +1,32 @@
-<!-- <app-header-bar></app-header-bar> -->
-
-<ion-content [fullscreen]="true">
+<ion-content class="white-space" [fullscreen]="true">
   <div class="contents">
-    <ion-header collapse="condense">
-      <ion-toolbar>
-        <ion-title size="large">history</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    <div class="search-container">
+      <ion-searchbar placeholder="Cari History"></ion-searchbar>
+    </div>
+    <div class="container">
+      <ng-container *ngIf="dataHIstory">
+        <ng-container *ngFor="let data of dataHIstory">
+          <ion-card>
+            <div class="item-container">
+              <div class="docter-img">
+                <ng-container
+                  *ngIf="data.jenisKelamin === 'Laki-laki'; else female"
+                >
+                  <img src="assets/icon/dokter-male.png" />
+                </ng-container>
+                <ng-template #female>
+                  <img src="assets/icon/dokter-female.png" />
+                </ng-template>
+              </div>
+              <div class="content-container">
+                <h1>{{data.nama}}</h1>
+                <p>{{data.keluhan}}</p>
+              </div>
+            </div>
+            <ion-icon class="list-icon" name="list"></ion-icon>
+          </ion-card>
+        </ng-container>
+      </ng-container>
+    </div>
   </div>
 </ion-content>
-<!-- <app-bottom-bar></app-bottom-bar> -->

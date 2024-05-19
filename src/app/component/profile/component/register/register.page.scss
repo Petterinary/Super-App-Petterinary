@@ -1,0 +1,25 @@
+@import "src/global.scss";
+
+.container {
+  margin-top: 68px;
+  margin-bottom: 108px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.form-register {
+  padding: 10px;
+  border: 1px solid #9c9c9c;
+  border-radius: 20px;
+
+  .form-aksi {
+    width: 100%;
+    margin-top: 40px;
+    display: flex;
+    justify-content: end;
+
+    .register {
+      background-color: #8791e5;
+    }
+  }
+}
