@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DoctorDataService } from '../service/data/docter.data.serivce';
 
 @Component({
   selector: 'app-home',
@@ -155,11 +156,22 @@ export class HomePage implements OnInit {
       rate: '2.4',
     },
   ];
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private doctorDataSerivice: DoctorDataService
+  ) {}
+
+  getDoctor() {
+    this.doctorDataSerivice.getAllDoctors().subscribe((res) => {
+      console.log(res);
+    });
+  }
 
   public async toServiceSelect(idVet: number) {
     this.router.navigate([`/service-selection/${idVet}`], {});
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getDoctor();
+  }
 }
