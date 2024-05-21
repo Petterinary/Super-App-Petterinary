@@ -1,0 +1,24 @@
+<ion-content class="white-space" [fullscreen]="true">
+  <div class="overall-container">
+    <ng-container *ngIf="imageType === 'Check'; else cross">
+      <div class="sf-icon">
+        <img
+          src="../../../../assets/logo/success-failed/Button checklist.png"
+        />
+      </div>
+    </ng-container>
+    <ng-template #cross>
+      <div class="sf-icon">
+        <img src="../../../../assets/logo/success-failed/Button Cross.png" />
+      </div>
+    </ng-template>
+    <div class="caption">
+      <h1>{{ logoText }}</h1>
+    </div>
+    <div class="button">
+      <ion-badge class="button-back">
+        <ion-text>{{ buttonText }}</ion-text>
+      </ion-badge>
+    </div>
+  </div>
+</ion-content>
