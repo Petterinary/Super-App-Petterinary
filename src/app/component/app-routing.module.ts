@@ -34,6 +34,10 @@ const routes: Routes = [
     path: 'consultation-info-uv',
     loadChildren: () => import('./consultation-info-uv/consultation-info-uv.module').then( m => m.ConsultationInfoUvPageModule)
   },
+  {
+    path: 'confirmation-page',
+    loadChildren: () => import('./confirmation-page/confirmation-page.module').then( m => m.ConfirmationPagePageModule)
+  },
 
 
   // {

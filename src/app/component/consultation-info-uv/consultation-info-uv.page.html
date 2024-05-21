@@ -91,7 +91,7 @@
       <ng-container *ngFor="let data of consultData">
         <ng-container *ngIf="data.stageStatus === 0">
           <div class="cancel-cont">
-            <ion-badge class="cancel-button">
+            <ion-badge (click)="toCancelPage()" class="cancel-button">
               <ion-text>Batalkan Konsultasi</ion-text>
             </ion-badge>
           </div>

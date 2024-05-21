@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-consultation-info-uv',
@@ -11,7 +12,7 @@ export class ConsultationInfoUvPage implements OnInit {
       tanggalDaftar: '11 Mei 2024',
       namaPemohon: 'Jamarius Quangledangle',
       drTujuan: 'drh. Joni',
-      stageStatus: 5,
+      stageStatus: 0,
       alasanGagal:
         'Mohon maaf, saya sudah ada janji temu dengan Pasien lain. Mohon mendaftar di lain hari.',
       status: [
@@ -80,7 +81,11 @@ export class ConsultationInfoUvPage implements OnInit {
     },
   ];
 
-  constructor() {}
+  constructor(private router: Router) {}
+
+  public async toCancelPage() {
+    this.router.navigate([`/confirmation-page`], {});
+  }
 
   ngOnInit() {}
 }
