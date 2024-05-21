@@ -1,0 +1,167 @@
+<ion-content class="white-space" [fullscreen]="true">
+  <div class="contents">
+    <div class="bb-icon">
+      <app-back-button [pageTitle]="'Informasi Konsultasi'"></app-back-button>
+    </div>
+    <div class="form-body">
+      <div class="bottom-border">
+        <div class="status-info">
+          <ng-container *ngFor="let data of consultData">
+            <h5>Tanggal Pendaftaran</h5>
+            <p>{{data.tanggalDaftar}}</p>
+            <h5>Pemohon</h5>
+            <p>{{data.namaPemohon}}</p>
+            <h5>Dokter Tujuan</h5>
+            <p>{{data.drTujuan}}</p>
+          </ng-container>
+        </div>
+      </div>
+      <div class="status-stage-section">
+        <h5 class="status-heading">Status</h5>
+        <ng-container *ngFor="let data of consultData">
+          <div class="banner-sect">
+            <ion-badge
+              [ngClass]="data.stageStatus === 0 ? 'status-banner-kuning' : data.stageStatus === 1 ? 'status-banner-kuning' :  data.stageStatus === 2 ? 'status-banner-kuning' : data.stageStatus === 3 ? 'status-banner-ijo' : data.stageStatus === 4 ? 'status-banner-merah' : 'status-banner-merah'"
+            >
+              <ion-text
+                [ngClass]="data.stageStatus === 0 ? 'status-text-hitam' : data.stageStatus === 1 ? 'status-text-hitam' :  data.stageStatus === 2 ? 'status-status-text-hitam' :data.stageStatus === 3 ? 'status-text-hitam' : data.stageStatus === 4 ? 'status-status-text-putih' :'status-text-putih'"
+                >{{data.stageStatus === 0 ? 'Menunggu konfirmasi dokter' :
+                data.stageStatus === 1 ? 'Menunggu konsultasi' :
+                data.stageStatus === 2 ? 'Menunggu pembayaran' :
+                data.stageStatus === 3 ? 'Konsultasi selesai' : data.stageStatus
+                === 4 ? 'Permohonan ditolak' : 'Pembayaran gagal'}}</ion-text
+              >
+            </ion-badge>
+          </div>
+        </ng-container>
+        <div class="status-pointer-sect">
+          <ng-container *ngFor="let data of consultData; let i = index">
+            <!-- <ng-container *ngIf="listTransaction?.length !== 0"> -->
+            <ng-container *ngFor="let statuses of data.status">
+              <ul
+                [ngClass]="statuses.passStatus === 0 ? 'not-last-array-ul-kuning' : statuses.passStatus === 1 ? 'not-last-array-ul-ijo' :  statuses.passStatus === 2 ? 'not-last-array-ul-merah' : 'not-last-array-ul-abu'"
+              >
+                <!-- <ng-container *ngFor="let status of .status"> -->
+                <li
+                  [ngClass]="statuses.passStatus === 0 ? 'not-last-array-li-kuning' : statuses.passStatus === 1 ? 'not-last-array-li-ijo' :  statuses.passStatus === 2 ? 'not-last-array-li-merah' : 'not-last-array-li-abu'"
+                >
+                  <div class="act-contents">
+                    {{statuses.tanggalStatusPass}}
+
+                    <h5 class="font-smaller">{{statuses.statusInfo}}</h5>
+
+                    <!-- ({{statuses.modGmail}}) -->
+                  </div>
+                  <div class="status-icon">
+                    <h5 class="font-smaller">{{statuses.waktu}}</h5>
+                    <ion-badge
+                      [ngClass]="statuses.passStatus === 0 ? 'badge-kuning' : statuses.passStatus === 1 ? 'badge-ijo' :  statuses.passStatus === 2 ? 'badge-merah' : 'badge-non-exist'"
+                    >
+                      <ng-container *ngIf="statuses.passStatus === 0">
+                        <ion-icon
+                          class="hourglass-icon"
+                          name="hourglass-outline"
+                        ></ion-icon>
+                      </ng-container>
+                      <ng-container *ngIf="statuses.passStatus === 1">
+                        <ion-icon
+                          class="check-icon"
+                          name="checkmark-outline"
+                        ></ion-icon>
+                      </ng-container>
+                      <ng-container
+                        *ngIf="statuses.passStatus === 2; else nonExistant"
+                      >
+                        <ion-icon
+                          class="failed-icon"
+                          name="close-circle-outline"
+                        ></ion-icon>
+                      </ng-container>
+                      <ng-template #nonExistant></ng-template>
+                    </ion-badge>
+                  </div>
+                </li>
+              </ul>
+            </ng-container>
+            <!-- </ng-container> -->
+          </ng-container>
+        </div>
+      </div>
+
+      <ng-container *ngFor="let data of consultData">
+        <ng-container *ngIf="data.stageStatus === 0">
+          <div class="cancel-cont">
+            <ion-badge class="cancel-button">
+              <ion-text>Batalkan Konsultasi</ion-text>
+            </ion-badge>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="data.stageStatus === 1">
+          <div class="lt-cont">
+            <ion-badge class="lt-button">
+              <ion-text>Live Tracking</ion-text>
+            </ion-badge>
+          </div>
+          <div class="done-cont">
+            <ion-badge class="done-button">
+              <ion-text>Selesaikan Konsultasi</ion-text>
+            </ion-badge>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="data.stageStatus === 2">
+          <div class="byr-cont">
+            <ion-badge class="byr-button">
+              <ion-text>Bayar Konsultasi</ion-text>
+            </ion-badge>
+          </div>
+          <div class="catatan-cont">
+            <ion-badge class="catatan-button">
+              <ion-text>Lihat Catatan Konsultasi</ion-text>
+            </ion-badge>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="data.stageStatus === 3">
+          <div class="catatan-cont">
+            <ion-badge class="catatan-button">
+              <ion-text>Lihat Catatan Konsultasi</ion-text>
+            </ion-badge>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="data.stageStatus === 4">
+          <div class="dr-gbs-cont">
+            <div class="tab-header">
+              <p class="title">Permohonan Gagal</p>
+            </div>
+            <div class="content-box">
+              <h5 class="pesan-batal">
+                Mohon maaf permohonan anda tidak dapat diproses.
+              </h5>
+              <h5 class="pesan-batal">Pesan dari Dokter:</h5>
+              <p class="main-note">{{data.alasanGagal}}</p>
+              <br />
+              <p class="post-note">P.s {{data.drTujuan}}</p>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="data.stageStatus === 5">
+          <div class="byr-gagal-cont">
+            <div class="tab-header">
+              <p class="title">Pembayaran Gagal</p>
+            </div>
+            <div class="content-box">
+              <h5 class="pesan-batal">
+                Mohon maaf permohonan anda tidak dapat diproses.
+              </h5>
+              <p class="main-note">
+                Pembayaran Gagal karena melebihi batas waktu yang ditentukan
+              </p>
+              <br />
+              <p class="post-note">Mohon membuat form perjanjian baru.</p>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+    <div class="bottom-gap"></div>
+  </div>
+</ion-content>

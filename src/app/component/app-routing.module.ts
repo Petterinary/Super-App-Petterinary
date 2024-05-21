@@ -30,6 +30,10 @@ const routes: Routes = [
     path: 'form-user-visit',
     loadChildren: () => import('./form-user-visit/form-user-visit.module').then( m => m.FormUserVisitPageModule)
   },
+  {
+    path: 'consultation-info-uv',
+    loadChildren: () => import('./consultation-info-uv/consultation-info-uv.module').then( m => m.ConsultationInfoUvPageModule)
+  },
 
 
   // {
