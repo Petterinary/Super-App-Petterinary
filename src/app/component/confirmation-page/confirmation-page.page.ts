@@ -10,8 +10,4 @@ export class ConfirmationPagePage implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {}
-
-  public async toHome() {
-    this.router.navigate([`/home`], {});
-  }
 }
