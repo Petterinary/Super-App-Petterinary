@@ -16,7 +16,7 @@
       <h1>{{ logoText }}</h1>
     </div>
     <div class="button">
-      <ion-badge class="button-back">
+      <ion-badge (click)="directTo(directUrl)" class="button-back">
         <ion-text>{{ buttonText }}</ion-text>
       </ion-badge>
     </div>
