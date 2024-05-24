@@ -26,32 +26,63 @@ const routes: Routes = [
     path: 'history',
     loadChildren: () =>
       import('./history/history.module').then((m) => m.HistoryPageModule),
-  },  {
+  },
+  {
     path: 'form-user-visit',
-    loadChildren: () => import('./form-user-visit/form-user-visit.module').then( m => m.FormUserVisitPageModule)
+    loadChildren: () =>
+      import('./form-user-visit/form-user-visit.module').then(
+        (m) => m.FormUserVisitPageModule
+      ),
   },
   {
     path: 'consultation-info-uv',
-    loadChildren: () => import('./consultation-info-uv/consultation-info-uv.module').then( m => m.ConsultationInfoUvPageModule)
+    loadChildren: () =>
+      import('./consultation-info-uv/consultation-info-uv.module').then(
+        (m) => m.ConsultationInfoUvPageModule
+      ),
   },
   {
     path: 'confirmation-page',
-    loadChildren: () => import('./confirmation-page/confirmation-page.module').then( m => m.ConfirmationPagePageModule)
+    loadChildren: () =>
+      import('./confirmation-page/confirmation-page.module').then(
+        (m) => m.ConfirmationPagePageModule
+      ),
   },
   {
     path: 'uv-live-tracking',
-    loadChildren: () => import('./uv-live-tracking/uv-live-tracking.module').then( m => m.UvLiveTrackingPageModule)
+    loadChildren: () =>
+      import('./uv-live-tracking/uv-live-tracking.module').then(
+        (m) => m.UvLiveTrackingPageModule
+      ),
   },
   {
     path: 'uv-payment',
-    loadChildren: () => import('./uv-payment/uv-payment.module').then( m => m.UvPaymentPageModule)
+    loadChildren: () =>
+      import('./uv-payment/uv-payment.module').then(
+        (m) => m.UvPaymentPageModule
+      ),
   },
   {
     path: 'confirmation-page-payment',
-    loadChildren: () => import('./confirmation-page-payment/confirmation-page-payment.module').then( m => m.ConfirmationPagePaymentPageModule)
+    loadChildren: () =>
+      import(
+        './confirmation-page-payment/confirmation-page-payment.module'
+      ).then((m) => m.ConfirmationPagePaymentPageModule),
   },
-
-
+  {
+    path: 'form-vet-visit',
+    loadChildren: () =>
+      import('./form-vet-visit/form-vet-visit.module').then(
+        (m) => m.FormVetVisitPageModule
+      ),
+  },
+  {
+    path: 'consultation-info-vv',
+    loadChildren: () =>
+      import('./consultation-info-vv/consultation-info-vv.module').then(
+        (m) => m.ConsultationInfoVvPageModule
+      ),
+  },
   // {
   //   path: 'global',
   //   loadChildren: () =>
