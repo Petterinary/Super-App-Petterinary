@@ -9,31 +9,42 @@
         <h4 class="wallet-methods">Lihat Semua</h4>
       </div>
     </div>
-    <div class="wallet-panel">
-      <div class="left-wp">
-        <img
-          class="gopay-icon"
-          src="../../../../assets/icon/payment/gopay-icon.png"
-        />
-        <h1 class="selected-wp">Gopay</h1>
-      </div>
-      <div class="right-wp">
-        <ng-container *ngIf="isActive === 0; else notSelected2">
+    <ng-container *ngIf="isActive === 0; else notSelected2">
+      <div (click)="setActive(0)" class="wallet-panel">
+        <div class="left-wp">
+          <img
+            class="gopay-icon"
+            src="../../../../assets/icon/payment/gopay-icon.png"
+          />
+          <h1 class="selected-wp">Gopay</h1>
+        </div>
+        <div class="right-wp">
           <ion-icon
-            (click)="setActive(0)"
             class="check-circle-selected"
             name="checkmark-outline"
           ></ion-icon>
-        </ng-container>
-        <ng-template #notSelected2>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #notSelected2>
+      <div (click)="setActive(0)" class="wallet-panel">
+        <div class="left-wp">
+          <img
+            class="gopay-icon"
+            src="../../../../assets/icon/payment/gopay-icon.png"
+          />
+          <h1 class="selected-wp">Gopay</h1>
+        </div>
+        <div class="right-wp">
           <ion-icon
-            (click)="setActive(0)"
             class="check-circle-not-selected"
             name="checkmark-outline"
           ></ion-icon>
-        </ng-template>
+        </div>
       </div>
-    </div>
+    </ng-template>
+
     <div class="bank-header">
       <div class="left-bh">
         <h1 class="bank-title">Metode Pembayaran Lainnya</h1>
@@ -42,31 +53,40 @@
         <h4 class="bank-methods">Lihat Semua</h4>
       </div>
     </div>
-    <div class="bank-panel">
-      <div class="left-bp">
-        <img
-          class="bca-icon"
-          src="../../../../assets/icon/payment/bca-icon.png"
-        />
-        <h1 class="selected-bp">BCA Virtual Account</h1>
-      </div>
-      <div class="right-bp">
-        <ng-container *ngIf="isActive === 1; else notSelected1">
+    <ng-container *ngIf="isActive === 1; else notSelected1">
+      <div (click)="setActive(1)" class="bank-panel">
+        <div class="left-bp">
+          <img
+            class="bca-icon"
+            src="../../../../assets/icon/payment/bca-icon.png"
+          />
+          <h1 class="selected-bp">BCA Virtual Account</h1>
+        </div>
+        <div class="right-bp">
           <ion-icon
-            (click)="setActive(1)"
             class="check-circle-selected"
             name="checkmark-outline"
           ></ion-icon>
-        </ng-container>
-        <ng-template #notSelected1>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #notSelected1>
+      <div (click)="setActive(1)" class="bank-panel">
+        <div class="left-bp">
+          <img
+            class="bca-icon"
+            src="../../../../assets/icon/payment/bca-icon.png"
+          />
+          <h1 class="selected-bp">BCA Virtual Account</h1>
+        </div>
+        <div class="right-bp">
           <ion-icon
-            (click)="setActive(1)"
             class="check-circle-not-selected"
             name="checkmark-outline"
           ></ion-icon>
-        </ng-template>
+        </div>
       </div>
-    </div>
+    </ng-template>
     <div class="ringkasan-cont">
       <div class="ringkasan-title">
         <h1 class="ringkasan-title-text">Ringkasan Pembayaran</h1>
