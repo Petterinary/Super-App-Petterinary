@@ -38,6 +38,18 @@ const routes: Routes = [
     path: 'confirmation-page',
     loadChildren: () => import('./confirmation-page/confirmation-page.module').then( m => m.ConfirmationPagePageModule)
   },
+  {
+    path: 'uv-live-tracking',
+    loadChildren: () => import('./uv-live-tracking/uv-live-tracking.module').then( m => m.UvLiveTrackingPageModule)
+  },
+  {
+    path: 'uv-payment',
+    loadChildren: () => import('./uv-payment/uv-payment.module').then( m => m.UvPaymentPageModule)
+  },
+  {
+    path: 'confirmation-page-payment',
+    loadChildren: () => import('./confirmation-page-payment/confirmation-page-payment.module').then( m => m.ConfirmationPagePaymentPageModule)
+  },
 
 
   // {
