@@ -12,7 +12,7 @@ export class ConsultationInfoUvPage implements OnInit {
       tanggalDaftar: '11 Mei 2024',
       namaPemohon: 'Jamarius Quangledangle',
       drTujuan: 'drh. Joni',
-      stageStatus: 0,
+      stageStatus: 2,
       alasanGagal:
         'Mohon maaf, saya sudah ada janji temu dengan Pasien lain. Mohon mendaftar di lain hari.',
       status: [
@@ -85,6 +85,14 @@ export class ConsultationInfoUvPage implements OnInit {
 
   public async toCancelPage() {
     this.router.navigate([`/confirmation-page`], {});
+  }
+
+  public async toLTPage() {
+    this.router.navigate([`/uv-live-tracking`], {});
+  }
+
+  public async toPayPage() {
+    this.router.navigate([`/uv-payment`], {});
   }
 
   ngOnInit() {}

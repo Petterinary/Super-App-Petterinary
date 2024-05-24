@@ -98,7 +98,7 @@
         </ng-container>
         <ng-container *ngIf="data.stageStatus === 1">
           <div class="lt-cont">
-            <ion-badge class="lt-button">
+            <ion-badge (click)="toLTPage()" class="lt-button">
               <ion-text>Live Tracking</ion-text>
             </ion-badge>
           </div>
@@ -110,7 +110,7 @@
         </ng-container>
         <ng-container *ngIf="data.stageStatus === 2">
           <div class="byr-cont">
-            <ion-badge class="byr-button">
+            <ion-badge (click)="toPayPage()" class="byr-button">
               <ion-text>Bayar Konsultasi</ion-text>
             </ion-badge>
           </div>
@@ -121,8 +121,8 @@
           </div>
         </ng-container>
         <ng-container *ngIf="data.stageStatus === 3">
-          <div class="catatan-cont">
-            <ion-badge class="catatan-button">
+          <div class="catatan-cont1">
+            <ion-badge class="catatan-button1">
               <ion-text>Lihat Catatan Konsultasi</ion-text>
             </ion-badge>
           </div>
