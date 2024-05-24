@@ -1,0 +1,110 @@
+<ion-content class="white-space" [fullscreen]="true">
+  <div class="overall-container">
+    <div class="wallet-header">
+      <div class="left-wh">
+        <h1 class="wallet-title">E-Wallet</h1>
+      </div>
+      <div class="right-wh">
+        <h4 class="wallet-methods">Lihat Semua</h4>
+      </div>
+    </div>
+    <div class="wallet-panel">
+      <div class="left-wp">
+        <img
+          class="gopay-icon"
+          src="../../../../assets/icon/payment/gopay-icon.png"
+        />
+        <h1 class="selected-wp">Gopay</h1>
+      </div>
+      <div class="right-wp">
+        <ng-container *ngIf="isActive === 0; else notSelected2">
+          <ion-icon
+            (click)="setActive(0)"
+            class="check-circle-selected"
+            name="checkmark-outline"
+          ></ion-icon>
+        </ng-container>
+        <ng-template #notSelected2>
+          <ion-icon
+            (click)="setActive(0)"
+            class="check-circle-not-selected"
+            name="checkmark-outline"
+          ></ion-icon>
+        </ng-template>
+      </div>
+    </div>
+    <div class="bank-header">
+      <div class="left-bh">
+        <h1 class="bank-title">Metode Pembayaran Lainnya</h1>
+      </div>
+      <div class="right-bh">
+        <h4 class="bank-methods">Lihat Semua</h4>
+      </div>
+    </div>
+    <div class="bank-panel">
+      <div class="left-bp">
+        <img
+          class="bca-icon"
+          src="../../../../assets/icon/payment/bca-icon.png"
+        />
+        <h1 class="selected-bp">BCA Virtual Account</h1>
+      </div>
+      <div class="right-bp">
+        <ng-container *ngIf="isActive === 1; else notSelected1">
+          <ion-icon
+            (click)="setActive(1)"
+            class="check-circle-selected"
+            name="checkmark-outline"
+          ></ion-icon>
+        </ng-container>
+        <ng-template #notSelected1>
+          <ion-icon
+            (click)="setActive(1)"
+            class="check-circle-not-selected"
+            name="checkmark-outline"
+          ></ion-icon>
+        </ng-template>
+      </div>
+    </div>
+    <div class="ringkasan-cont">
+      <div class="ringkasan-title">
+        <h1 class="ringkasan-title-text">Ringkasan Pembayaran</h1>
+      </div>
+      <ng-container *ngFor="let data of test">
+        <ng-container *ngFor="let k of data.daftarHarga">
+          <div class="ringkasan-byr">
+            <div class="left-rb">
+              <h1 class="info-byr">{{ k.konsul }}</h1>
+            </div>
+            <div class="right-rb">
+              <h1 class="harga-byr">Rp.{{ k.harga }}</h1>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+    <div class="timer">
+      <h1 class="timer-text">Waktu Pembayaran</h1>
+    </div>
+    <div class="button">
+      <ion-badge class="button-back">
+        <ion-text>00:05:00</ion-text>
+      </ion-badge>
+    </div>
+  </div>
+</ion-content>
+<ion-footer class="footer-fixed">
+  <div class="bank-header">
+    <div class="left-bh">
+      <h1 class="bank-title">Total Tagihan</h1>
+      <ng-container *ngFor="let data of test">
+        <h1 class="bank-title1">Rp. {{ data.totalTagihan }}</h1>
+      </ng-container>
+    </div>
+    <div class="right-bh">
+      <ion-badge (click)="toPaymentConfirm()" class="button-back">
+        <ion-text>Bayar</ion-text>
+      </ion-badge>
+    </div>
+  </div>
+</ion-footer>
