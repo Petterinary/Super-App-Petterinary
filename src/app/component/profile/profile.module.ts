@@ -8,6 +8,7 @@ import { ProfilePageRoutingModule } from './profile-routing.module';
 
 import { ProfilePage } from './profile.page';
 import { GlobalModule } from '../global/global.module';
+import { ServiceSelectionRegisterComponent } from './component/service-selection-register/service-selection-register.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { GlobalModule } from '../global/global.module';
     GlobalModule,
     ProfilePageRoutingModule,
   ],
-  declarations: [ProfilePage],
+  declarations: [ProfilePage, ServiceSelectionRegisterComponent],
 })
 export class ProfilePageModule {}

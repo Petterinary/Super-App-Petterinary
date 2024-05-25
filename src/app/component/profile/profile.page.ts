@@ -12,7 +12,7 @@ export class ProfilePage implements OnInit {
   constructor(private router: Router) {}
 
   public goRegister() {
-    this.router.navigate([`profile/register`], {});
+    this.router.navigate([`profile/service-selection-register`], {});
   }
 
   ngOnInit() {}
