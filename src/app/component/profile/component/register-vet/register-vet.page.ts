@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-vet',
@@ -7,11 +7,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./register-vet.page.scss'],
 })
 export class RegisterVetPage implements OnInit {
-  constructor(private router: Router) {}
+  public type: string = '';
+  public title = 'Form Pendaftaran';
+  public isRincian: boolean = false;
+
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   public async submitRegister() {
     this.router.navigate([`profile/confirmation-register`], {});
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      this.type = params['type'];
+      if (this.type === 'lihat') {
+        this.isRincian = true;
+        this.title = 'Rincian Profile';
+      } else {
+        this.isRincian = false;
+        this.title = 'Form Pendaftaran';
+      }
+    });
+  }
 }

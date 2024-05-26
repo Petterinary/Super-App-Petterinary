@@ -1,7 +1,7 @@
 <ion-content class="white-space" [fullscreen]="true">
   <div class="container">
     <div class="bb-icon">
-      <app-back-button [pageTitle]="'Form Pendaftaran'"></app-back-button>
+      <app-back-button [pageTitle]="title"></app-back-button>
     </div>
     <div class="form-register">
       <div class="input-fields">
@@ -30,7 +30,7 @@
           <ion-input placeholder="Masukkan Konfirmasi Password"></ion-input>
         </ion-item>
       </div>
-      <div class="form-aksi">
+      <div *ngIf="!isRincian" class="form-aksi">
         <button class="btn-aksi register" (click)="submitRegister()">
           Register
         </button>
