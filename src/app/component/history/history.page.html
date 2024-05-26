@@ -7,7 +7,7 @@
       <ng-container *ngIf="dataHIstory">
         <ng-container *ngFor="let data of dataHIstory">
           <ion-card>
-            <div class="item-container">
+            <div class="item-container" (click)="toRecapKonsulUV()">
               <div class="docter-img">
                 <ng-container
                   *ngIf="data.jenisKelamin === 'Laki-laki'; else female"

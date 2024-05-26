@@ -95,5 +95,9 @@ export class ConsultationInfoUvPage implements OnInit {
     this.router.navigate([`/uv-payment`], {});
   }
 
+  public async toRecapKonsulUV() {
+    this.router.navigate([`/rekap-konsultasi-uv`], {});
+  }
+
   ngOnInit() {}
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-history',
@@ -10,7 +11,7 @@ export class HistoryPage implements OnInit {
     {
       idVet: 4,
       nama: 'Drh. Joni',
-      keluhan: 'Anjing terluka dimata',
+      keluhan: 'Kucing muntah-muntah terus',
       jenisKelamin: 'Laki-laki',
     },
     {
@@ -26,7 +27,11 @@ export class HistoryPage implements OnInit {
       jenisKelamin: 'Laki-laki',
     },
   ];
-  constructor() {}
+  constructor(private router: Router) {}
+
+  public async toRecapKonsulUV() {
+    this.router.navigate([`/rekap-konsultasi-uv`], {});
+  }
 
   ngOnInit() {}
 }

@@ -70,21 +70,11 @@ const routes: Routes = [
       ).then((m) => m.ConfirmationPagePaymentPageModule),
   },
   {
-    path: 'form-vet-visit',
+    path: 'rekap-konsultasi-uv',
     loadChildren: () =>
-      import('./form-vet-visit/form-vet-visit.module').then(
-        (m) => m.FormVetVisitPageModule
+      import('./rekap-konsultasi-uv/rekap-konsultasi-uv.module').then(
+        (m) => m.RekapKonsultasiUvPageModule
       ),
-  },
-  {
-    path: 'consultation-info-vv',
-    loadChildren: () =>
-      import('./consultation-info-vv/consultation-info-vv.module').then(
-        (m) => m.ConsultationInfoVvPageModule
-      ),
-  },  {
-    path: 'vv-payment',
-    loadChildren: () => import('./vv-payment/vv-payment.module').then( m => m.VvPaymentPageModule)
   },
 
   // {

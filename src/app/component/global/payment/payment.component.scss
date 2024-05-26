@@ -3,7 +3,7 @@ ion-content.white-space {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  //   flex-grow: 1; // Ensures the content takes the remaining space
+  flex-grow: 1; // Ensures the content takes the remaining space
 }
 
 ion-footer.footer-fixed {
@@ -64,7 +64,6 @@ ion-footer {
   //   align-items: center;
   flex: 1;
   padding-bottom: 68px;
-  height: 100%;
 
   .wallet-header {
     margin: 10px 10px 5px 10px;
