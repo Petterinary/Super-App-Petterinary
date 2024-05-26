@@ -4,10 +4,10 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RegisterPageRoutingModule } from './register-routing.module';
+import { VvPaymentPageRoutingModule } from './vv-payment-routing.module';
 
-import { RegisterPage } from './register.page';
-import { GlobalModule } from 'src/app/component/global/global.module';
+import { VvPaymentPage } from './vv-payment.page';
+import { GlobalModule } from '../global/global.module';
 
 @NgModule({
   imports: [
@@ -15,8 +15,8 @@ import { GlobalModule } from 'src/app/component/global/global.module';
     FormsModule,
     IonicModule,
     GlobalModule,
-    RegisterPageRoutingModule,
+    VvPaymentPageRoutingModule,
   ],
-  declarations: [RegisterPage],
+  declarations: [VvPaymentPage],
 })
-export class RegisterPageModule {}
+export class VvPaymentPageModule {}

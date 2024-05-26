@@ -82,7 +82,11 @@ const routes: Routes = [
       import('./consultation-info-vv/consultation-info-vv.module').then(
         (m) => m.ConsultationInfoVvPageModule
       ),
+  },  {
+    path: 'vv-payment',
+    loadChildren: () => import('./vv-payment/vv-payment.module').then( m => m.VvPaymentPageModule)
   },
+
   // {
   //   path: 'global',
   //   loadChildren: () =>

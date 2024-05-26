@@ -55,7 +55,7 @@ export class ConsultationInfoVvPage implements OnInit {
   }
 
   public async toPayPage() {
-    this.router.navigate([`/uv-payment`], {});
+    this.router.navigate([`/vv-payment`], {});
   }
   ngOnInit() {}
 }

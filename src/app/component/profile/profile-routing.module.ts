@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ProfilePage } from './profile.page';
 import { ServiceSelectionRegisterComponent } from './component/service-selection-register/service-selection-register.component';
+import { ConfirmationRegisterComponent } from './component/confirmation-register/confirmation-register.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'service-selection-register',
     component: ServiceSelectionRegisterComponent,
+  },
+  {
+    path: 'confirmation-register',
+    component: ConfirmationRegisterComponent,
   },
 ];
 
