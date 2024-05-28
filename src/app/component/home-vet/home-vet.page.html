@@ -1,0 +1,106 @@
+<!-- <app-header-bar></app-header-bar> -->
+<ion-content class="white-space" [fullscreen]="true">
+  <div class="contents">
+    <div class="search-container">
+      <ion-searchbar placeholder="Cari Nama Dokter"></ion-searchbar>
+    </div>
+    <div class="container">
+      <ng-container *ngIf="antriUser">
+        <ng-container *ngFor="let data of antriUser">
+          <ng-container
+            *ngIf="data.stat !== 3 && data.stat !== 4; else doneAntrian"
+          >
+            <ion-card>
+              <ng-container *ngIf="data.idTypeVisit === 0; else toVvStatusPage">
+                <div class="item-container" (click)="toQueueStatusPageUv()">
+                  <div class="docter-img">
+                    <ng-container
+                      *ngIf="data.jenisKelamin === 'Laki-laki'; else female"
+                    >
+                      <img src="assets/icon/dokter-male.png" />
+                    </ng-container>
+                    <ng-template #female>
+                      <img src="assets/icon/dokter-female.png" />
+                    </ng-template>
+                  </div>
+                  <div class="content-container">
+                    <h1>{{data.nama}}</h1>
+                    <ion-badge
+                      [ngClass]="data.idTypeVisit === 0 ? 'badge-yellow' : 'badge-blue'"
+                    >
+                      <p>
+                        {{data.idTypeVisit == 0 ? 'User Visit' : 'Vet Visit'}}
+                      </p>
+                    </ion-badge>
+                    <!-- <span><strong>{{data.umur}} Tahun</strong></span> -->
+                    <!-- <div class="rate">
+                    <img src="assets/icon/icon-rate.png" />
+                    <p>{{data.rate}}</p>
+                  </div> -->
+                  </div>
+
+                  <div class="status-cont">
+                    <ion-badge
+                      [ngClass]="data.stat === 0 ? 'stat-badge-yellow' : data.stat === 1 ? 'stat-badge-blue' :  data.stat === 2 ? 'stat-badge-ijo' : 'stat-badge-none'"
+                    >
+                      <ion-text
+                        [ngClass]="data.stat === 0 ? 'status-text-hitam' : data.stat === 1 ? 'status-text-putih' :  data.stat === 2 ? 'status-text-hitam' :'status-text-putih'"
+                        >{{data.stat === 0 ? 'Menunggu konfirmasi dokter' :
+                        data.stat === 1 ? 'Menunggu konsultasi' : data.stat ===
+                        2 ? 'Menunggu pembayaran' : ''}}</ion-text
+                      >
+                    </ion-badge>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-template #toVvStatusPage>
+                <div class="item-container" (click)="toQueueStatusPageVv()">
+                  <div class="docter-img">
+                    <ng-container
+                      *ngIf="data.jenisKelamin === 'Laki-laki'; else female"
+                    >
+                      <img src="assets/icon/dokter-male.png" />
+                    </ng-container>
+                    <ng-template #female>
+                      <img src="assets/icon/dokter-female.png" />
+                    </ng-template>
+                  </div>
+                  <div class="content-container">
+                    <h1>{{data.nama}}</h1>
+                    <ion-badge
+                      [ngClass]="data.idTypeVisit === 0 ? 'badge-yellow' : 'badge-blue'"
+                    >
+                      <p>
+                        {{data.idTypeVisit == 0 ? 'User Visit' : 'Vet Visit'}}
+                      </p>
+                    </ion-badge>
+                    <!-- <span><strong>{{data.umur}} Tahun</strong></span> -->
+                    <!-- <div class="rate">
+                      <img src="assets/icon/icon-rate.png" />
+                      <p>{{data.rate}}</p>
+                    </div> -->
+                  </div>
+
+                  <div class="status-cont">
+                    <ion-badge
+                      [ngClass]="data.stat === 0 ? 'stat-badge-yellow' : data.stat === 1 ? 'stat-badge-blue' :  data.stat === 2 ? 'stat-badge-ijo' : 'stat-badge-none'"
+                    >
+                      <ion-text
+                        [ngClass]="data.stat === 0 ? 'status-text-hitam' : data.stat === 1 ? 'status-text-putih' :  data.stat === 2 ? 'status-text-hitam' :'status-text-putih'"
+                        >{{data.stat === 0 ? 'Menunggu konfirmasi dokter' :
+                        data.stat === 1 ? 'Menunggu konsultasi' : data.stat ===
+                        2 ? 'Menunggu pembayaran' : ''}}</ion-text
+                      >
+                    </ion-badge>
+                  </div>
+                </div>
+              </ng-template>
+            </ion-card>
+          </ng-container>
+          <ng-template #doneAntrian></ng-template>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</ion-content>
+<!-- <app-bottom-bar></app-bottom-bar> -->

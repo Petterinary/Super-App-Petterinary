@@ -10,18 +10,21 @@ export class HistoryPage implements OnInit {
   public dataHIstory = [
     {
       idVet: 4,
+      idTypeVisit: 0,
       nama: 'Drh. Joni',
       keluhan: 'Kucing muntah-muntah terus',
       jenisKelamin: 'Laki-laki',
     },
     {
-      idVet: 7,
-      nama: 'Drh, Ani',
+      idVet: 4,
+      idTypeVisit: 1,
+      nama: 'Drh. Joni',
       keluhan: 'Kucing patah tulang',
       jenisKelamin: 'Perempuan',
     },
     {
       idVet: 5,
+      idTypeVisit: 1,
       nama: 'Drh. Soni',
       keluhan: 'Sapi tidak nafsu makan',
       jenisKelamin: 'Laki-laki',
@@ -31,6 +34,10 @@ export class HistoryPage implements OnInit {
 
   public async toRecapKonsulUV() {
     this.router.navigate([`/rekap-konsultasi-uv`], {});
+  }
+
+  public async toRecapKonsulVV() {
+    this.router.navigate([`/rekap-konsultasi-vv`], {});
   }
 
   ngOnInit() {}

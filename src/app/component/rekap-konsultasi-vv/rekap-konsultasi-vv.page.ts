@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-rekap-konsultasi-uv',
-  templateUrl: './rekap-konsultasi-uv.page.html',
-  styleUrls: ['./rekap-konsultasi-uv.page.scss'],
+  selector: 'app-rekap-konsultasi-vv',
+  templateUrl: './rekap-konsultasi-vv.page.html',
+  styleUrls: ['./rekap-konsultasi-vv.page.scss'],
 })
-export class RekapKonsultasiUvPage implements OnInit {
+export class RekapKonsultasiVvPage implements OnInit {
   public test: any = [
     {
       totalTagihan: ' 275.000',
@@ -13,8 +13,8 @@ export class RekapKonsultasiUvPage implements OnInit {
       namaP: 'Ryu',
       hasilKon: 'Kucing terkena mual biasa',
       deskripsiKeluhan: 'Kucing muntah-muntah terus',
-      bayarDengan: 0,
-      sudahDibayar: 1,
+      bayarDengan: 'Gopay',
+      sudahDibayar: 0,
     },
   ];
 
