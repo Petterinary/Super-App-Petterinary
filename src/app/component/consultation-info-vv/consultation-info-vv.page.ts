@@ -55,7 +55,7 @@ export class ConsultationInfoVvPage implements OnInit {
   }
 
   public async toPayPage() {
-    this.router.navigate([`/uv-payment`], {});
+    this.router.navigate([`/vv-payment`], {});
   }
 
   public async toLTVVPage() {
@@ -68,6 +68,10 @@ export class ConsultationInfoVvPage implements OnInit {
 
   public async toRecapKonsulVV() {
     this.router.navigate([`/rekap-konsultasi-vv`], {});
+  }
+
+  public async toRincianKonsul() {
+    this.router.navigate([`/consultation-info-vv/rincian-consul-vv`], {});
   }
 
   ngOnInit() {}

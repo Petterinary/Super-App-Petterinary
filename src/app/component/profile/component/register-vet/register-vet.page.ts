@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.page.html',
-  styleUrls: ['./register.page.scss'],
+  selector: 'app-register-vet',
+  templateUrl: './register-vet.page.html',
+  styleUrls: ['./register-vet.page.scss'],
 })
-export class RegisterPage implements OnInit {
+export class RegisterVetPage implements OnInit {
   public type: string = '';
   public title = 'Form Pendaftaran';
   public isRincian: boolean = false;

@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RegisterPageRoutingModule } from './register-routing.module';
+import { RegisterVetPageRoutingModule } from './register-vet-routing.module';
 
-import { RegisterPage } from './register.page';
+import { RegisterVetPage } from './register-vet.page';
 import { GlobalModule } from 'src/app/component/global/global.module';
 
 @NgModule({
@@ -15,8 +15,8 @@ import { GlobalModule } from 'src/app/component/global/global.module';
     FormsModule,
     IonicModule,
     GlobalModule,
-    RegisterPageRoutingModule,
+    RegisterVetPageRoutingModule,
   ],
-  declarations: [RegisterPage],
+  declarations: [RegisterVetPage],
 })
-export class RegisterPageModule {}
+export class RegisterVetPageModule {}

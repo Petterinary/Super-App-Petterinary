@@ -115,39 +115,63 @@ const routes: Routes = [
     path: 'home-vet',
     loadChildren: () =>
       import('./home-vet/home-vet.module').then((m) => m.HomeVetPageModule),
-  },  {
+  },
+  {
     path: 'consultation-info-uv-vet',
-    loadChildren: () => import('./consultation-info-uv-vet/consultation-info-uv-vet.module').then( m => m.ConsultationInfoUvVetPageModule)
+    loadChildren: () =>
+      import('./consultation-info-uv-vet/consultation-info-uv-vet.module').then(
+        (m) => m.ConsultationInfoUvVetPageModule
+      ),
   },
   {
     path: 'consultation-info-vv-vet',
-    loadChildren: () => import('./consultation-info-vv-vet/consultation-info-vv-vet.module').then( m => m.ConsultationInfoVvVetPageModule)
+    loadChildren: () =>
+      import('./consultation-info-vv-vet/consultation-info-vv-vet.module').then(
+        (m) => m.ConsultationInfoVvVetPageModule
+      ),
   },
   {
     path: 'cancel-form-vet',
-    loadChildren: () => import('./cancel-form-vet/cancel-form-vet.module').then( m => m.CancelFormVetPageModule)
+    loadChildren: () =>
+      import('./cancel-form-vet/cancel-form-vet.module').then(
+        (m) => m.CancelFormVetPageModule
+      ),
   },
   {
     path: 'history-vet',
-    loadChildren: () => import('./history-vet/history-vet.module').then( m => m.HistoryVetPageModule)
+    loadChildren: () =>
+      import('./history-vet/history-vet.module').then(
+        (m) => m.HistoryVetPageModule
+      ),
   },
   {
     path: 'confirmation-page-vet',
-    loadChildren: () => import('./confirmation-page-vet/confirmation-page-vet.module').then( m => m.ConfirmationPageVetPageModule)
+    loadChildren: () =>
+      import('./confirmation-page-vet/confirmation-page-vet.module').then(
+        (m) => m.ConfirmationPageVetPageModule
+      ),
   },
   {
     path: 'cancel-confirm-vet',
-    loadChildren: () => import('./cancel-confirm-vet/cancel-confirm-vet.module').then( m => m.CancelConfirmVetPageModule)
+    loadChildren: () =>
+      import('./cancel-confirm-vet/cancel-confirm-vet.module').then(
+        (m) => m.CancelConfirmVetPageModule
+      ),
   },
   {
     path: 'rekap-konsultasi-vv-vet',
-    loadChildren: () => import('./rekap-konsultasi-vv-vet/rekap-konsultasi-vv-vet.module').then( m => m.RekapKonsultasiVvVetPageModule)
+    loadChildren: () =>
+      import('./rekap-konsultasi-vv-vet/rekap-konsultasi-vv-vet.module').then(
+        (m) => m.RekapKonsultasiVvVetPageModule
+      ),
   },
   {
     path: 'rekap-konsultasi-uv-vet',
-    loadChildren: () => import('./rekap-konsultasi-uv-vet/rekap-konsultasi-uv-vet.module').then( m => m.RekapKonsultasiUvVetPageModule)
+    loadChildren: () =>
+      import('./rekap-konsultasi-uv-vet/rekap-konsultasi-uv-vet.module').then(
+        (m) => m.RekapKonsultasiUvVetPageModule
+      ),
   },
-
 
   // {
   //   path: 'global',
