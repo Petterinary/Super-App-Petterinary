@@ -70,5 +70,9 @@ export class ConsultationInfoVvPage implements OnInit {
     this.router.navigate([`/rekap-konsultasi-vv`], {});
   }
 
+  public async toRincianKonsul() {
+    this.router.navigate([`/consultation-info-vv/rincian-consul-vv`], {});
+  }
+
   ngOnInit() {}
 }

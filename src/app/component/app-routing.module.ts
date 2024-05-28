@@ -35,10 +35,24 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'form-vet-visit',
+    loadChildren: () =>
+      import('./form-vet-visit/form-vet-visit.module').then(
+        (m) => m.FormVetVisitPageModule
+      ),
+  },
+  {
     path: 'consultation-info-uv',
     loadChildren: () =>
       import('./consultation-info-uv/consultation-info-uv.module').then(
         (m) => m.ConsultationInfoUvPageModule
+      ),
+  },
+  {
+    path: 'consultation-info-vv',
+    loadChildren: () =>
+      import('./consultation-info-vv/consultation-info-vv.module').then(
+        (m) => m.ConsultationInfoVvPageModule
       ),
   },
   {
