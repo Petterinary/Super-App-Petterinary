@@ -1,4 +1,4 @@
 export const environment = {
-    production: false,
-    apiUrl: 'http://localhost:4000'  // local URL for development
+  production: false,
+  apiUrl: 'https://petterinary.onrender.com', // local URL for development
 };

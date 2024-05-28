@@ -83,6 +83,47 @@ const routes: Routes = [
         (m) => m.ConsultationInfoVvPageModule
       ),
   },
+  {
+    path: 'vv-live-tracking',
+    loadChildren: () =>
+      import('./vv-live-tracking/vv-live-tracking.module').then(
+        (m) => m.VvLiveTrackingPageModule
+      ),
+  },
+  {
+    path: 'vv-payment',
+    loadChildren: () =>
+      import('./vv-payment/vv-payment.module').then(
+        (m) => m.VvPaymentPageModule
+      ),
+  },
+  {
+    path: 'rekap-konsultasi-vv',
+    loadChildren: () =>
+      import('./rekap-konsultasi-vv/rekap-konsultasi-vv.module').then(
+        (m) => m.RekapKonsultasiVvPageModule
+      ),
+  },
+  {
+    path: 'rekap-konsultasi-uv',
+    loadChildren: () =>
+      import('./rekap-konsultasi-uv/rekap-konsultasi-uv.module').then(
+        (m) => m.RekapKonsultasiUvPageModule
+      ),
+  },
+  {
+    path: 'home-vet',
+    loadChildren: () =>
+      import('./home-vet/home-vet.module').then((m) => m.HomeVetPageModule),
+  },  {
+    path: 'consultation-info-uv-vet',
+    loadChildren: () => import('./consultation-info-uv-vet/consultation-info-uv-vet.module').then( m => m.ConsultationInfoUvVetPageModule)
+  },
+  {
+    path: 'consultation-info-vv-vet',
+    loadChildren: () => import('./consultation-info-vv-vet/consultation-info-vv-vet.module').then( m => m.ConsultationInfoVvVetPageModule)
+  },
+
 
   // {
   //   path: 'global',

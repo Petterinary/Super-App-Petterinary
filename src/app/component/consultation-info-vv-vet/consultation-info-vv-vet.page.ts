@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-consultation-info-vv',
-  templateUrl: './consultation-info-vv.page.html',
-  styleUrls: ['./consultation-info-vv.page.scss'],
+  selector: 'app-consultation-info-vv-vet',
+  templateUrl: './consultation-info-vv-vet.page.html',
+  styleUrls: ['./consultation-info-vv-vet.page.scss'],
 })
-export class ConsultationInfoVvPage implements OnInit {
+export class ConsultationInfoVvVetPage implements OnInit {
   public consultData: any = [
     {
       tanggalDaftar: '11 Mei 2024',

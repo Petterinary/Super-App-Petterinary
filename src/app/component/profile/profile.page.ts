@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class ProfilePage implements OnInit {
   public isLogin = false;
-  public isDokter = true;
+  public isDokter = false;
   constructor(private router: Router) {}
 
   public goRegister() {

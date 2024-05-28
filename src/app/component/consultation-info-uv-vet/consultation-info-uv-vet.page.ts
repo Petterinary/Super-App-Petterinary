@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-consultation-info-uv',
-  templateUrl: './consultation-info-uv.page.html',
-  styleUrls: ['./consultation-info-uv.page.scss'],
+  selector: 'app-consultation-info-uv-vet',
+  templateUrl: './consultation-info-uv-vet.page.html',
+  styleUrls: ['./consultation-info-uv-vet.page.scss'],
 })
-export class ConsultationInfoUvPage implements OnInit {
+export class ConsultationInfoUvVetPage implements OnInit {
   public consultData: any = [
     {
       tanggalDaftar: '11 Mei 2024',
@@ -84,6 +84,10 @@ export class ConsultationInfoUvPage implements OnInit {
   constructor(private router: Router) {}
 
   public async toCancelPage() {
+    this.router.navigate([`/confirmation-page`], {});
+  }
+
+  public async toAcceptPage() {
     this.router.navigate([`/confirmation-page`], {});
   }
 

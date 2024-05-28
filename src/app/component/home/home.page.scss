@@ -8,8 +8,8 @@ ion-content.white-space {
   margin-bottom: 108px;
 
   .container {
-    display: grid;
-    grid-template-columns: auto auto;
+    // display: grid;
+    // grid-template-columns: auto auto;
 
     ion-card {
       box-shadow: 0px 2px 12px 0px rgb(151 151 151 / 50%);
@@ -46,6 +46,34 @@ ion-content.white-space {
             font-weight: 400;
           }
         }
+
+        // .status-cont{
+        //   .stat-badge-yellow{
+        //     ion-text.status-text-hitam{
+        //       color: #000;
+        //     }
+        //     ion-text.status-text-putih{
+        //       color: #fff;
+        //     }
+        //   }
+        //   .stat-badge-ijo{
+        //     ion-text.status-text-hitam{
+        //       color: #000;
+        //     }
+        //     ion-text.status-text-putih{
+        //       color: #fff;
+        //     }
+
+        //   }
+        //   .stat-badge-red{
+        //     ion-text.status-text-hitam{
+        //       color: #000;
+        //     }
+        //     ion-text.status-text-putih{
+        //       color: #fff;
+        //     }
+        //   }
+        // }
 
         .rate {
           display: flex;

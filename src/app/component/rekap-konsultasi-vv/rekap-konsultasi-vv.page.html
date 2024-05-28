@@ -5,7 +5,7 @@
     </div>
     <div class="form-type">
       <ion-badge class="form-title">
-        <ion-text>User Visit</ion-text>
+        <ion-text>Vet Visit</ion-text>
       </ion-badge>
     </div>
     <div class="form-body">
@@ -82,26 +82,15 @@
               <div class="paid-by">
                 <ion-text class="text">Dibayar dengan</ion-text>
                 <ion-text class="payment-method-text"
-                  >{{data.bayarDengan === 0 ? 'Gopay' : 'BCA'}}</ion-text
+                  >{{data.bayarDengan}}</ion-text
                 >
               </div>
-              <ng-container *ngIf="data.bayarDengan === 0; else bayarBca">
-                <div class="img-cont">
-                  <img
-                    class="gopay-icon"
-                    src="../../../assets/icon/payment/gopay-icon.png"
-                  />
-                </div>
-              </ng-container>
-
-              <ng-template #bayarBca>
-                <div class="img-cont-bca">
-                  <img
-                    class="bca-icon"
-                    src="../../../assets/icon/payment/bca-icon.png"
-                  />
-                </div>
-              </ng-template>
+              <div class="img-cont">
+                <img
+                  class="gopay-icon"
+                  src="../../../assets/icon/payment/gopay-icon.png"
+                />
+              </div>
             </div>
 
             <div class="text-container">
