@@ -29,7 +29,8 @@
                 data.stageStatus === 1 ? 'Menunggu konsultasi' :
                 data.stageStatus === 2 ? 'Menunggu pembayaran' :
                 data.stageStatus === 3 ? 'Konsultasi selesai' : data.stageStatus
-                === 4 ? 'Permohonan ditolak' : 'Pembayaran gagal'}}</ion-text
+                === 4 ? 'Permohonan ditolak' : data.stageStatus === 5 ?
+                'Pembayaran gagal' : 'Dibatalkan pemohon'}}</ion-text
               >
             </ion-badge>
           </div>
@@ -96,7 +97,10 @@
             </ion-badge>
           </div>
           <div class="accept-cont">
-            <ion-badge (click)="toAcceptPage()" class="cancel-button">
+            <!-- <ion-badge (click)="toAcceptPage()" class="accept-button">
+              <ion-text>Terima Permohonan</ion-text>
+            </ion-badge> -->
+            <ion-badge class="accept-button">
               <ion-text>Terima Permohonan</ion-text>
             </ion-badge>
           </div>
@@ -115,8 +119,8 @@
         </ng-container>
         <ng-container *ngIf="data.stageStatus === 2">
           <div class="byr-cont">
-            <ion-badge (click)="toPayPage()" class="byr-button">
-              <ion-text>Bayar Konsultasi</ion-text>
+            <ion-badge class="byr-button">
+              <ion-text>Menunggu pembayaran konsultasi</ion-text>
             </ion-badge>
           </div>
           <div (click)="toRecapKonsulUV()" class="catatan-cont">
@@ -125,11 +129,8 @@
             </ion-badge>
           </div>
         </ng-container>
-        <ng-container
-          (click)="toRecapKonsulUV()"
-          *ngIf="data.stageStatus === 3"
-        >
-          <div class="catatan-cont1">
+        <ng-container *ngIf="data.stageStatus === 3">
+          <div (click)="toRecapKonsulUV()" class="catatan-cont1">
             <ion-badge class="catatan-button1">
               <ion-text>Lihat Catatan Konsultasi</ion-text>
             </ion-badge>

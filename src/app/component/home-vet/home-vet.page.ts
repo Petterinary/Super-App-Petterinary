@@ -11,7 +11,7 @@ export class HomeVetPage implements OnInit {
   public antriUser = [
     {
       idUser: 4,
-      nama: 'Plimpus',
+      nama: 'Jamarius Quangledangle',
       specialis: 'Anjing',
       umur: 24,
       jenisKelamin: 'Laki-laki',
@@ -21,7 +21,7 @@ export class HomeVetPage implements OnInit {
     },
     {
       idUser: 7,
-      nama: 'Gakster',
+      nama: 'Jamarius Quangledangle',
       specialis: 'Kucing',
       umur: 24,
       stat: 1,
@@ -130,7 +130,7 @@ export class HomeVetPage implements OnInit {
     },
     {
       idUser: 14,
-      nama: 'Solo Jabba Credo',
+      nama: 'Solo Jabba Greedo',
       specialis: 'Kucing',
       umur: 24,
       stat: 0,

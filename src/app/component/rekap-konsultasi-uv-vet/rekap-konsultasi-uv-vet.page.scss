@@ -16,7 +16,7 @@ ion-content.white-space {
     width: 100%;
 
     .form-title {
-      --background: #00ffff;
+      --background: #ffe600;
       padding: 5px 10px 5px 10px;
       ion-text {
         color: #000;
@@ -164,6 +164,14 @@ ion-content.white-space {
           align-items: center;
           img {
             width: 35px;
+          }
+        }
+        .img-cont-bca {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            width: 50px;
           }
         }
       }

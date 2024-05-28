@@ -12,7 +12,7 @@ export class ConsultationInfoUvVetPage implements OnInit {
       tanggalDaftar: '11 Mei 2024',
       namaPemohon: 'Jamarius Quangledangle',
       drTujuan: 'drh. Joni',
-      stageStatus: 0,
+      stageStatus: 2,
       alasanGagal:
         'Mohon maaf, saya sudah ada janji temu dengan Pasien lain. Mohon mendaftar di lain hari.',
       status: [
@@ -84,11 +84,11 @@ export class ConsultationInfoUvVetPage implements OnInit {
   constructor(private router: Router) {}
 
   public async toCancelPage() {
-    this.router.navigate([`/confirmation-page`], {});
+    this.router.navigate([`/cancel-form-vet`], {});
   }
 
   public async toAcceptPage() {
-    this.router.navigate([`/confirmation-page`], {});
+    this.router.navigate([`/confirmation-page-vet`], {});
   }
 
   public async toLTPage() {
@@ -100,7 +100,7 @@ export class ConsultationInfoUvVetPage implements OnInit {
   }
 
   public async toRecapKonsulUV() {
-    this.router.navigate([`/rekap-konsultasi-uv`], {});
+    this.router.navigate([`/rekap-konsultasi-uv-vet`], {});
   }
 
   ngOnInit() {}

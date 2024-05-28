@@ -1,0 +1,28 @@
+<ion-content class="white-space" [fullscreen]="true">
+  <div class="contents">
+    <div class="bb-icon">
+      <app-back-button [pageTitle]="'Form Penolakan'"></app-back-button>
+    </div>
+    <!-- <div class="form-type">
+      <ion-badge class="form-title">
+        <ion-text>Vet Visit</ion-text>
+      </ion-badge>
+    </div> -->
+    <div class="form-body">
+      <div class="input-tile">
+        <ion-item>
+          <ion-label position="stacked">Alasan Penolakan</ion-label>
+          <ion-textarea
+            placeholder="Berikan alasan penolakan..."
+          ></ion-textarea>
+        </ion-item>
+      </div>
+      <div class="send-button-cont">
+        <ion-badge (click)="toCancelPageConf()" class="send-button">
+          <ion-text>Tolak Permohonan</ion-text>
+        </ion-badge>
+      </div>
+    </div>
+    <div class="bottom-gap"></div>
+  </div>
+</ion-content>

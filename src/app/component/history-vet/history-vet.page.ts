@@ -2,30 +2,30 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-history',
-  templateUrl: './history.page.html',
-  styleUrls: ['./history.page.scss'],
+  selector: 'app-history-vet',
+  templateUrl: './history-vet.page.html',
+  styleUrls: ['./history-vet.page.scss'],
 })
-export class HistoryPage implements OnInit {
+export class HistoryVetPage implements OnInit {
   public dataHIstory = [
     {
-      idVet: 4,
+      idUser: 4,
       idTypeVisit: 0,
-      nama: 'Drh. Joni',
+      nama: 'Jamarius Quangledangle',
       keluhan: 'Kucing muntah-muntah terus',
       jenisKelamin: 'Laki-laki',
     },
     {
-      idVet: 4,
+      idUser: 4,
       idTypeVisit: 1,
-      nama: 'Drh. Joni',
+      nama: 'Jamarius Quangledangle',
       keluhan: 'Kucing patah tulang',
       jenisKelamin: 'Perempuan',
     },
     {
-      idVet: 5,
+      idUser: 5,
       idTypeVisit: 1,
-      nama: 'Drh. Soni',
+      nama: 'Roberto Coochiesmith',
       keluhan: 'Sapi tidak nafsu makan',
       jenisKelamin: 'Laki-laki',
     },
@@ -33,15 +33,11 @@ export class HistoryPage implements OnInit {
   constructor(private router: Router) {}
 
   public async toRecapKonsulUV() {
-    this.router.navigate([`/consultation-info-uv`], {});
-  }
-
-  public async toHisVet() {
-    this.router.navigate([`/history-vet`], {});
+    this.router.navigate([`/consultation-info-uv-vet`], {});
   }
 
   public async toRecapKonsulVV() {
-    this.router.navigate([`/consultation-info-vv`], {});
+    this.router.navigate([`/consultation-info-vv-vet`], {});
   }
 
   ngOnInit() {}

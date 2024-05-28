@@ -123,6 +123,30 @@ const routes: Routes = [
     path: 'consultation-info-vv-vet',
     loadChildren: () => import('./consultation-info-vv-vet/consultation-info-vv-vet.module').then( m => m.ConsultationInfoVvVetPageModule)
   },
+  {
+    path: 'cancel-form-vet',
+    loadChildren: () => import('./cancel-form-vet/cancel-form-vet.module').then( m => m.CancelFormVetPageModule)
+  },
+  {
+    path: 'history-vet',
+    loadChildren: () => import('./history-vet/history-vet.module').then( m => m.HistoryVetPageModule)
+  },
+  {
+    path: 'confirmation-page-vet',
+    loadChildren: () => import('./confirmation-page-vet/confirmation-page-vet.module').then( m => m.ConfirmationPageVetPageModule)
+  },
+  {
+    path: 'cancel-confirm-vet',
+    loadChildren: () => import('./cancel-confirm-vet/cancel-confirm-vet.module').then( m => m.CancelConfirmVetPageModule)
+  },
+  {
+    path: 'rekap-konsultasi-vv-vet',
+    loadChildren: () => import('./rekap-konsultasi-vv-vet/rekap-konsultasi-vv-vet.module').then( m => m.RekapKonsultasiVvVetPageModule)
+  },
+  {
+    path: 'rekap-konsultasi-uv-vet',
+    loadChildren: () => import('./rekap-konsultasi-uv-vet/rekap-konsultasi-uv-vet.module').then( m => m.RekapKonsultasiUvVetPageModule)
+  },
 
 
   // {

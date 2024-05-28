@@ -21,15 +21,17 @@
         <ng-container *ngFor="let data of consultData">
           <div class="banner-sect">
             <ion-badge
-              [ngClass]="data.stageStatus === 0 ? 'status-banner-kuning' : data.stageStatus === 1 ? 'status-banner-kuning' :  data.stageStatus === 2 ? 'status-banner-kuning' : data.stageStatus === 3 ? 'status-banner-ijo' : data.stageStatus === 4 ? 'status-banner-merah' : 'status-banner-merah'"
+              [ngClass]="data.stageStatus === 0 ? 'status-banner-kuning' : data.stageStatus === 1 ? 'status-banner-kuning' :  data.stageStatus === 2 ? 'status-banner-kuning' : data.stageStatus === 3 ? 'status-banner-ijo' : data.stageStatus === 4 ? 'status-banner-ijo' : data.stageStatus === 5 ? 'status-banner-merah' : 'status-banner-merah'"
             >
               <ion-text
-                [ngClass]="data.stageStatus === 0 ? 'status-text-hitam' : data.stageStatus === 1 ? 'status-text-hitam' :  data.stageStatus === 2 ? 'status-text-hitam' :data.stageStatus === 3 ? 'status-text-hitam' : data.stageStatus === 4 ? 'status-text-putih' :'status-text-putih'"
+                [ngClass]="data.stageStatus === 0 ? 'status-text-hitam' : data.stageStatus === 1 ? 'status-text-hitam' :  data.stageStatus === 2 ? 'status-text-hitam' :data.stageStatus === 3 ? 'status-text-hitam' : data.stageStatus === 4 ? 'status-text-hitam' :data.stageStatus === 5 ? 'status-text-putih' :'status-text-putih'"
                 >{{data.stageStatus === 0 ? 'Menunggu konfirmasi dokter' :
-                data.stageStatus === 1 ? 'Menunggu konsultasi' :
-                data.stageStatus === 2 ? 'Menunggu pembayaran' :
-                data.stageStatus === 3 ? 'Konsultasi selesai' : data.stageStatus
-                === 4 ? 'Permohonan ditolak' : 'Pembayaran gagal'}}</ion-text
+                data.stageStatus === 1 ? 'Menunggu pembayaran transportasi' :
+                data.stageStatus === 2 ? 'Menunggu konsultasi' :
+                data.stageStatus === 3 ? 'Menunggu pembayaran konsultasi' :
+                data.stageStatus === 4 ? 'Konsultasi selesai' : data.stageStatus
+                === 5 ? 'Permohonan ditolak' : data.stageStatus === 6 ?
+                'Pembayaran gagal' : 'Dibatalkan pemohon'}}</ion-text
               >
             </ion-badge>
           </div>
@@ -95,8 +97,28 @@
               <ion-text>Batalkan Konsultasi</ion-text>
             </ion-badge>
           </div>
+          <div class="accept-cont">
+            <!-- <ion-badge (click)="toAcceptPage()" class="accept-button">
+              <ion-text>Terima Permohonan</ion-text>
+            </ion-badge> -->
+            <ion-badge class="accept-button">
+              <ion-text>Terima Permohonan</ion-text>
+            </ion-badge>
+          </div>
         </ng-container>
         <ng-container *ngIf="data.stageStatus === 1">
+          <div class="byr-cont">
+            <ion-badge class="byr-button">
+              <ion-text>Menunggu pembayaran transportasi</ion-text>
+            </ion-badge>
+          </div>
+          <!-- <div (click)="toRecapKonsulVV()" class="catatan-cont">
+            <ion-badge class="catatan-button">
+              <ion-text>Lihat Catatan Konsultasi</ion-text>
+            </ion-badge>
+          </div> -->
+        </ng-container>
+        <ng-container *ngIf="data.stageStatus === 2">
           <div class="lt-cont">
             <ion-badge (click)="toLTVVPage()" class="lt-button">
               <ion-text>Live Tracking</ion-text>
@@ -108,10 +130,10 @@
             </ion-badge>
           </div>
         </ng-container>
-        <ng-container *ngIf="data.stageStatus === 2">
+        <ng-container *ngIf="data.stageStatus === 3">
           <div class="byr-cont">
-            <ion-badge (click)="toPayVVPage()" class="byr-button">
-              <ion-text>Bayar Konsultasi</ion-text>
+            <ion-badge class="byr-button">
+              <ion-text>Menunggu pembayaran konsultasi</ion-text>
             </ion-badge>
           </div>
           <div (click)="toRecapKonsulVV()" class="catatan-cont">
@@ -120,14 +142,14 @@
             </ion-badge>
           </div>
         </ng-container>
-        <ng-container *ngIf="data.stageStatus === 3">
+        <ng-container *ngIf="data.stageStatus === 4">
           <div (click)="toRecapKonsulVV()" class="catatan-cont1">
             <ion-badge class="catatan-button1">
               <ion-text>Lihat Catatan Konsultasi</ion-text>
             </ion-badge>
           </div>
         </ng-container>
-        <ng-container *ngIf="data.stageStatus === 4">
+        <ng-container *ngIf="data.stageStatus === 5">
           <div class="dr-gbs-cont">
             <div class="tab-header">
               <p class="title">Permohonan Gagal</p>
@@ -143,7 +165,7 @@
             </div>
           </div>
         </ng-container>
-        <ng-container *ngIf="data.stageStatus === 5">
+        <ng-container *ngIf="data.stageStatus === 6">
           <div class="byr-gagal-cont">
             <div class="tab-header">
               <p class="title">Pembayaran Gagal</p>
@@ -157,6 +179,19 @@
               </p>
               <br />
               <p class="post-note">Mohon membuat form perjanjian baru.</p>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="data.stageStatus === 7">
+          <div class="byr-gagal-cont">
+            <div class="tab-header">
+              <p class="title">Konsultasi dibatalkan</p>
+            </div>
+            <div class="content-box">
+              <h5 class="pesan-batal">
+                Mohon maaf, konsultasi telah dibatalkan oleh pemohon
+              </h5>
+              <br />
             </div>
           </div>
         </ng-container>

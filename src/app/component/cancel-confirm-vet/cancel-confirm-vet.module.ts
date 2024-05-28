@@ -4,19 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { VvPaymentPageRoutingModule } from './vv-payment-routing.module';
+import { CancelConfirmVetPageRoutingModule } from './cancel-confirm-vet-routing.module';
 
-import { VvPaymentPage } from './vv-payment.page';
+import { CancelConfirmVetPage } from './cancel-confirm-vet.page';
 import { GlobalModule } from '../global/global.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
     GlobalModule,
+    FormsModule,
     IonicModule,
-    VvPaymentPageRoutingModule,
+    CancelConfirmVetPageRoutingModule,
   ],
-  declarations: [VvPaymentPage],
+  declarations: [CancelConfirmVetPage],
 })
-export class VvPaymentPageModule {}
+export class CancelConfirmVetPageModule {}

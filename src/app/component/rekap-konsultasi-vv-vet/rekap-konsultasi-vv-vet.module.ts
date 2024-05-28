@@ -4,19 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { VvPaymentPageRoutingModule } from './vv-payment-routing.module';
+import { RekapKonsultasiVvVetPageRoutingModule } from './rekap-konsultasi-vv-vet-routing.module';
 
-import { VvPaymentPage } from './vv-payment.page';
+import { RekapKonsultasiVvVetPage } from './rekap-konsultasi-vv-vet.page';
 import { GlobalModule } from '../global/global.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
     GlobalModule,
+    FormsModule,
     IonicModule,
-    VvPaymentPageRoutingModule,
+    RekapKonsultasiVvVetPageRoutingModule,
   ],
-  declarations: [VvPaymentPage],
+  declarations: [RekapKonsultasiVvVetPage],
 })
-export class VvPaymentPageModule {}
+export class RekapKonsultasiVvVetPageModule {}
