@@ -157,8 +157,12 @@ export class ServiceSelectionPage implements OnInit {
   ];
   constructor(private router: Router) {}
 
-  public async toServiceSelect() {
-    this.router.navigate([`/form-user-visit`], {});
+  public async toServiceSelect(event: number) {
+    if (event === 1) {
+      this.router.navigate([`/form-user-visit`], {});
+    } else if (event === 2) {
+      this.router.navigate([`/form-vet-visit`], {});
+    }
   }
 
   ngOnInit() {}

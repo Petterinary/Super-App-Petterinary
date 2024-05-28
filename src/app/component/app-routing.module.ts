@@ -70,10 +70,17 @@ const routes: Routes = [
       ).then((m) => m.ConfirmationPagePaymentPageModule),
   },
   {
-    path: 'rekap-konsultasi-uv',
+    path: 'form-vet-visit',
     loadChildren: () =>
-      import('./rekap-konsultasi-uv/rekap-konsultasi-uv.module').then(
-        (m) => m.RekapKonsultasiUvPageModule
+      import('./form-vet-visit/form-vet-visit.module').then(
+        (m) => m.FormVetVisitPageModule
+      ),
+  },
+  {
+    path: 'consultation-info-vv',
+    loadChildren: () =>
+      import('./consultation-info-vv/consultation-info-vv.module').then(
+        (m) => m.ConsultationInfoVvPageModule
       ),
   },
 
