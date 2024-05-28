@@ -21,7 +21,7 @@
         <ng-container *ngFor="let data of consultData">
           <div class="banner-sect">
             <ion-badge
-              [ngClass]="data.stageStatus === 0 ? 'status-banner-kuning' : data.stageStatus === 1 ? 'status-banner-kuning' :  data.stageStatus === 2 ? 'status-banner-kuning' : data.stageStatus === 3 ? 'status-banner-ijo' : data.stageStatus === 4 ? 'status-banner-merah' : 'status-banner-merah'"
+              [ngClass]="data.stageStatus === 0 ? 'status-banner-kuning' : data.stageStatus === 1 ? 'status-banner-kuning' :  data.stageStatus === 2 ? 'status-banner-ijo' : data.stageStatus === 3 ? 'status-banner-ijo' : data.stageStatus === 4 ? 'status-banner-merah' : 'status-banner-merah'"
             >
               <ion-text
                 [ngClass]="data.stageStatus === 0 ? 'status-text-hitam' : data.stageStatus === 1 ? 'status-text-hitam' :  data.stageStatus === 2 ? 'status-text-hitam' :data.stageStatus === 3 ? 'status-text-hitam' : data.stageStatus === 4 ? 'status-text-putih' :'status-text-putih'"
