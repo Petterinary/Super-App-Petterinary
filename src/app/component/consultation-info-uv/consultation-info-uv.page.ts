@@ -12,7 +12,7 @@ export class ConsultationInfoUvPage implements OnInit {
       tanggalDaftar: '11 Mei 2024',
       namaPemohon: 'Jamarius Quangledangle',
       drTujuan: 'drh. Joni',
-      stageStatus: 2,
+      stageStatus: 5,
       alasanGagal:
         'Mohon maaf, saya sudah ada janji temu dengan Pasien lain. Mohon mendaftar di lain hari.',
       status: [

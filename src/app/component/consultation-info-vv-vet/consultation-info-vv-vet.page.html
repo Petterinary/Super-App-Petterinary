@@ -16,9 +16,16 @@
               <p>{{data.drTujuan}}</p>
             </ng-container>
           </div>
-          <button class="btn-rincian" (click)="toRincianKonsul()">
-            Rincian
-          </button>
+          <ng-container *ngFor="let data of consultData">
+            <ng-container
+              *ngIf="data.stageStatus !== 3 && data.stageStatus !== 4; else noRincian"
+            >
+              <button class="btn-rincian" (click)="toRincianKonsul()">
+                Rincian
+              </button>
+            </ng-container>
+            <ng-template #noRincian></ng-template>
+          </ng-container>
         </div>
       </div>
       <div class="status-stage-section">
