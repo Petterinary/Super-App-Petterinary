@@ -18,22 +18,22 @@ ion-content.white-space {
         gap: 20px;
 
         .docter-img {
-          padding: 1vh;
+          padding: 10px;
           background-color: var(--ion-color-primary);
           border-radius: 100%;
 
           img {
-            width: 6vh;
+            width: 50px;
           }
         }
 
         .content-container {
           color: #000;
-          font-size: 1.3vh;
+          font-size: 14px;
 
           h1 {
             margin: 2px 0;
-            font-size: 2vh;
+            font-size: 16px;
             font-weight: 600;
           }
 
@@ -74,11 +74,6 @@ ion-content.white-space {
             margin: 0;
           }
         }
-      }
-
-      .list-icon {
-        width: 3.5vh;
-        height: 3.5vh;
       }
     }
   }
