@@ -6,19 +6,23 @@
     <div class="form-body">
       <div class="bottom-border">
         <div class="status-info">
-          <div class="info">
-            <ng-container *ngFor="let data of consultData">
+          <ng-container *ngFor="let data of consultData">
+            <div class="info">
               <h5>Tanggal Pendaftaran</h5>
               <p>{{data.tanggalDaftar}}</p>
               <h5>Pemohon</h5>
               <p>{{data.namaPemohon}}</p>
               <h5>Dokter Tujuan</h5>
               <p>{{data.drTujuan}}</p>
-            </ng-container>
-          </div>
-          <button class="btn-rincian" (click)="toRincianKonsul()">
-            Rincian
-          </button>
+            </div>
+            <button
+              *ngIf="data.stageStatus !== 3 && data.stageStatus !==2"
+              class="btn-rincian"
+              (click)="toRincianKonsul()"
+            >
+              Rincian
+            </button>
+          </ng-container>
         </div>
       </div>
       <div class="status-stage-section">
