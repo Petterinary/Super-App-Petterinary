@@ -6,14 +6,19 @@
     <div class="form-body">
       <div class="bottom-border">
         <div class="status-info">
-          <ng-container *ngFor="let data of consultData">
-            <h5>Tanggal Pendaftaran</h5>
-            <p>{{data.tanggalDaftar}}</p>
-            <h5>Pemohon</h5>
-            <p>{{data.namaPemohon}}</p>
-            <h5>Dokter Tujuan</h5>
-            <p>{{data.drTujuan}}</p>
-          </ng-container>
+          <div class="info">
+            <ng-container *ngFor="let data of consultData">
+              <h5>Tanggal Pendaftaran</h5>
+              <p>{{data.tanggalDaftar}}</p>
+              <h5>Pemohon</h5>
+              <p>{{data.namaPemohon}}</p>
+              <h5>Dokter Tujuan</h5>
+              <p>{{data.drTujuan}}</p>
+            </ng-container>
+          </div>
+          <button class="btn-rincian" (click)="toRincianKonsul()">
+            Rincian
+          </button>
         </div>
       </div>
       <div class="status-stage-section">

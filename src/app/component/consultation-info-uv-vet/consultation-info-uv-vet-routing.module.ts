@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: ConsultationInfoUvVetPage
+  },  {
+    path: 'rincian-consul-uv-vet',
+    loadChildren: () => import('./rincian-consul-uv-vet/rincian-consul-uv-vet.module').then( m => m.RincianConsulUvVetPageModule)
   }
+
 ];
 
 @NgModule({

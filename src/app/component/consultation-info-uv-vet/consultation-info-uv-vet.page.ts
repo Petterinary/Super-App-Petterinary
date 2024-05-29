@@ -103,5 +103,12 @@ export class ConsultationInfoUvVetPage implements OnInit {
     this.router.navigate([`/rekap-konsultasi-uv-vet`], {});
   }
 
+  public async toRincianKonsul() {
+    this.router.navigate(
+      [`/consultation-info-uv-vet/rincian-consul-uv-vet`],
+      {}
+    );
+  }
+
   ngOnInit() {}
 }
