@@ -3,38 +3,35 @@
     <ng-container *ngIf="!isLogin; else login">
       <div class="header">
         <ng-container>
-          <div class="form-profile">
-            <ion-item>
-              <ion-label position="stacked">Username/Email</ion-label>
-              <ion-input placeholder="Masukkan Username/Email"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label position="stacked">Password</ion-label>
-              <ion-input placeholder="Masukkan Password"></ion-input>
-            </ion-item>
-          </div>
+          <form [formGroup]="loginForm">
+            <div class="form-profile">
+              <ion-item>
+                <ion-label position="stacked">Username/Email</ion-label>
+                <ion-input
+                  placeholder="Masukkan Username/Email"
+                  formControlName="email"
+                ></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="stacked" form>Password</ion-label>
+                <ion-input
+                  type="password"
+                  placeholder="Masukkan Password"
+                  formControlName="password"
+                ></ion-input>
+              </ion-item>
+            </div>
+          </form>
           <div class="form-aksi">
             <p>Belum terdaftar? Silahkan pilih "<span>Register</span>"</p>
             <button class="btn-aksi register" (click)="goRegister()">
               Register
             </button>
-            <button class="btn-aksi login">Login</button>
+            <button class="btn-aksi login" (click)="submitLogin()">
+              Login
+            </button>
           </div>
         </ng-container>
-      </div>
-      <div class="content">
-        <div class="aksi-container">
-          <div class="icon-aksi">
-            <img src="assets/icon/Rincian-Profil.png" />
-          </div>
-          <p>Rincian Profile</p>
-        </div>
-        <div class="aksi-container">
-          <div class="icon-aksi">
-            <img src="assets/icon/logout.png" />
-          </div>
-          <p>Log Out</p>
-        </div>
       </div>
     </ng-container>
     <ng-template #login>
@@ -48,11 +45,11 @@
           </ng-template>
         </div>
         <div class="item-container">
-          <h1>Nama</h1>
+          <h1>{{userData.username}}</h1>
           <div class="list-item">
-            <p>Nomor Telepon:</p>
-            <p>Email:</p>
-            <p>Alamat:</p>
+            <p>Nomor Telepon: {{userData.nomorTelepon}}</p>
+            <p>Email: {{userData.email}}</p>
+            <p>Alamat: {{userData.alamat}}</p>
           </div>
         </div>
       </div>
@@ -63,7 +60,7 @@
           </div>
           <p>Rincian Profile</p>
         </div>
-        <div class="aksi-container">
+        <div class="aksi-container" (click)="submitLogout()">
           <div class="icon-aksi">
             <img src="assets/icon/logout.png" />
           </div>
