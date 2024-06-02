@@ -65,11 +65,11 @@ export class RegisterPage implements OnInit {
         await this.authService
           .register(email, password, username, alamat, nomorTelepon, 0)
           .toPromise();
-        this.router.navigate(['profile/confirmation-register'], {
+        this.router.navigate(['confirmation'], {
           queryParams: { status: 'Register Berhasil' },
         });
       } catch (error) {
-        this.router.navigate(['profile/confirmation-register'], {
+        this.router.navigate(['confirmation'], {
           queryParams: { status: 'Register Gagal' },
         });
       }

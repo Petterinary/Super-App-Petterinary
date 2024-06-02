@@ -3,6 +3,7 @@
 .container {
   margin-left: 10px;
   margin-right: 10px;
+  margin-bottom: 20px;
 
   height: 100%;
   display: flex;
@@ -24,12 +25,10 @@
   flex-direction: column;
   justify-content: space-between;
 
-  .input-fields {
-  }
-
   .form-aksi {
     width: 100%;
     margin-top: 40px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: end;
 

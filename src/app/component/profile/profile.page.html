@@ -1,40 +1,6 @@
 <ion-content class="white-space" [fullscreen]="true">
   <div class="container">
-    <ng-container *ngIf="!isLogin; else login">
-      <div class="header">
-        <ng-container>
-          <form [formGroup]="loginForm">
-            <div class="form-profile">
-              <ion-item>
-                <ion-label position="stacked">Username/Email</ion-label>
-                <ion-input
-                  placeholder="Masukkan Username/Email"
-                  formControlName="email"
-                ></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label position="stacked" form>Password</ion-label>
-                <ion-input
-                  type="password"
-                  placeholder="Masukkan Password"
-                  formControlName="password"
-                ></ion-input>
-              </ion-item>
-            </div>
-          </form>
-          <div class="form-aksi">
-            <p>Belum terdaftar? Silahkan pilih "<span>Register</span>"</p>
-            <button class="btn-aksi register" (click)="goRegister()">
-              Register
-            </button>
-            <button class="btn-aksi login" (click)="submitLogin()">
-              Login
-            </button>
-          </div>
-        </ng-container>
-      </div>
-    </ng-container>
-    <ng-template #login>
+    <ng-container>
       <div class="profile-card">
         <div class="profile-img">
           <ng-container *ngIf="!isDokter; else dokter">
@@ -67,6 +33,6 @@
           <p>Log Out</p>
         </div>
       </div>
-    </ng-template>
+    </ng-container>
   </div>
 </ion-content>

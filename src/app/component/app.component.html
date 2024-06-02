@@ -3,8 +3,13 @@
     <app-landing-page></app-landing-page>
   </div>
   <div *ngIf="!showLandingPage" @fadeInOut>
-    <app-header-bar></app-header-bar>
-    <ion-router-outlet></ion-router-outlet>
-    <app-bottom-bar></app-bottom-bar>
+    <ng-container *ngIf="!hideHeaderFooter; else notLoginOrLanding">
+      <app-header-bar></app-header-bar>
+      <ion-router-outlet></ion-router-outlet>
+      <app-bottom-bar></app-bottom-bar>
+    </ng-container>
+    <ng-template #notLoginOrLanding>
+      <ion-router-outlet></ion-router-outlet>
+    </ng-template>
   </div>
 </ion-app>

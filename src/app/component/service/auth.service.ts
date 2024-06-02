@@ -74,7 +74,12 @@ export class AuthService {
     );
   }
 
-  getUserData(): Promise<any> {
-    return this.storageService.get('user');
+  async getUserData(): Promise<any> {
+    try {
+      const userData = await this.storageService.get('user');
+      return userData || null;
+    } catch (error) {
+      return null;
+    }
   }
 }

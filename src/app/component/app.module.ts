@@ -14,9 +14,10 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environtments/environment';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { RouteReuseStrategy } from '@angular/router';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 @NgModule({
-  declarations: [AppComponent, LandingPageComponent],
+  declarations: [AppComponent, LandingPageComponent, ConfirmationComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

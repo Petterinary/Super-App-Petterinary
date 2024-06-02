@@ -4,20 +4,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ProfilePageRoutingModule } from './profile-routing.module';
+import { LoginPageRoutingModule } from './login-routing.module';
 
-import { ProfilePage } from './profile.page';
+import { LoginPage } from './login.page';
 import { GlobalModule } from '../global/global.module';
-import { ServiceSelectionRegisterComponent } from './component/service-selection-register/service-selection-register.component';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     GlobalModule,
-    ProfilePageRoutingModule,
     ReactiveFormsModule,
+    LoginPageRoutingModule,
   ],
-  declarations: [ProfilePage, ServiceSelectionRegisterComponent],
+  declarations: [LoginPage],
 })
-export class ProfilePageModule {}
+export class LoginPageModule {}

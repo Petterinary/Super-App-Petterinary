@@ -1,53 +1,50 @@
-<ion-content class="white-space" [fullscreen]="true">
-  <div class="container">
-    <div class="bb-icon">
-      <app-back-button [pageTitle]="title"></app-back-button>
-    </div>
-    <div class="form-register">
-      <div class="input-fields">
-        <ion-item>
-          <ion-label position="stacked">Email</ion-label>
-          <ion-input placeholder="Masukkan Email"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Username</ion-label>
-          <ion-input placeholder="Masukkan Username"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Nomor Telepon</ion-label>
-          <ion-input placeholder="Masukkan Nomor Telepon"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Tempat Praktik</ion-label>
-          <ion-textarea placeholder="Masukkan Alamat"></ion-textarea>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Jadwal Praktik</ion-label>
-          <ion-textarea placeholder="Masukkan Alamat"></ion-textarea>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Lama Pengalaman Praktik</ion-label>
-          <ion-input placeholder="Masukkan Nomor Telepon"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Specialisasi Hewan</ion-label>
-          <ion-input placeholder="Masukkan Nomor Telepon"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Password</ion-label>
-          <ion-input placeholder="Masukkan Password"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Konfirmasi Password</ion-label>
-          <ion-input placeholder="Masukkan Konfirmasi Password"></ion-input>
-        </ion-item>
-      </div>
-      <div *ngIf="!isRincian" class="form-aksi">
-        <button class="btn-aksi register" (click)="submitRegister()">
-          Register
-        </button>
-      </div>
-    </div>
-    <div class="bottom-gap"></div>
+<div class="container">
+  <div class="bb-icon">
+    <app-back-button [pageTitle]="title"></app-back-button>
   </div>
-</ion-content>
+  <div class="form-register">
+    <div class="input-fields">
+      <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input placeholder="Masukkan Email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Username</ion-label>
+        <ion-input placeholder="Masukkan Username"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Nomor Telepon</ion-label>
+        <ion-input placeholder="Masukkan Nomor Telepon"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Tempat Praktik</ion-label>
+        <ion-textarea placeholder="Masukkan Alamat"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Jadwal Praktik</ion-label>
+        <ion-textarea placeholder="Masukkan Alamat"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Lama Pengalaman Praktik</ion-label>
+        <ion-input placeholder="Masukkan Nomor Telepon"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Specialisasi Hewan</ion-label>
+        <ion-input placeholder="Masukkan Nomor Telepon"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input placeholder="Masukkan Password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Konfirmasi Password</ion-label>
+        <ion-input placeholder="Masukkan Konfirmasi Password"></ion-input>
+      </ion-item>
+    </div>
+    <div *ngIf="!isRincian" class="form-aksi">
+      <button class="btn-aksi register" (click)="submitRegister()">
+        Register
+      </button>
+    </div>
+  </div>
+</div>

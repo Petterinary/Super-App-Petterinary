@@ -1,99 +1,95 @@
-<!-- src/app/register/register.page.html -->
-<ion-content class="white-space" [fullscreen]="true">
-  <div class="container">
-    <div class="bb-icon">
-      <app-back-button [pageTitle]="title"></app-back-button>
-    </div>
-    <div class="form-register">
-      <form [formGroup]="registerForm">
-        <div class="input-fields">
-          <ion-item>
-            <ion-label position="stacked">Email</ion-label>
-            <ion-input
-              formControlName="email"
-              placeholder="Masukkan Email"
-            ></ion-input>
-            <div
-              *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)"
-            >
-              <small>Email diperlukan.</small>
-            </div>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Username</ion-label>
-            <ion-input
-              formControlName="username"
-              placeholder="Masukkan Username"
-            ></ion-input>
-            <div
-              *ngIf="registerForm.get('username')?.invalid && (registerForm.get('username')?.dirty || registerForm.get('username')?.touched)"
-            >
-              <small>Username diperlukan.</small>
-            </div>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Alamat</ion-label>
-            <ion-textarea
-              formControlName="alamat"
-              placeholder="Masukkan Alamat"
-            ></ion-textarea>
-            <div
-              *ngIf="registerForm.get('alamat')?.invalid && (registerForm.get('alamat')?.dirty || registerForm.get('alamat')?.touched)"
-            >
-              <small>Alamat diperlukan.</small>
-            </div>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Nomor Telepon</ion-label>
-            <ion-input
-              formControlName="nomorTelepon"
-              placeholder="Masukkan Nomor Telepon"
-            ></ion-input>
-            <div
-              *ngIf="registerForm.get('nomorTelepon')?.invalid && (registerForm.get('nomorTelepon')?.dirty || registerForm.get('nomorTelepon')?.touched)"
-            >
-              <small>Nomor telepon diperlukan.</small>
-            </div>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Password</ion-label>
-            <ion-input
-              formControlName="password"
-              type="password"
-              placeholder="Masukkan Password"
-            ></ion-input>
-            <div
-              *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)"
-            >
-              <small>Kata sandi diperlukan.</small>
-            </div>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Konfirmasi Password</ion-label>
-            <ion-input
-              formControlName="confirmPassword"
-              type="password"
-              placeholder="Masukkan Konfirmasi Password"
-            ></ion-input>
-            <div
-              *ngIf="registerForm.get('confirmPassword')?.invalid && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched)"
-            >
-              <small>Konfirmasi kata sandi diperlukan.</small>
-            </div>
-          </ion-item>
-        </div>
-        <div *ngIf="!isRincian" class="form-aksi">
-          <button
-            (click)="submitRegister()"
-            class="btn-aksi register"
-            type="submit"
-            [disabled]="registerForm.invalid"
-          >
-            Register
-          </button>
-        </div>
-      </form>
-    </div>
-    <div class="bottom-gap"></div>
+<div class="container">
+  <div class="bb-icon">
+    <app-back-button [pageTitle]="title"></app-back-button>
   </div>
-</ion-content>
+  <div class="form-register">
+    <form [formGroup]="registerForm">
+      <div class="input-fields">
+        <ion-item>
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input
+            formControlName="email"
+            placeholder="Masukkan Email"
+          ></ion-input>
+          <div
+            *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)"
+          >
+            <small>Email diperlukan.</small>
+          </div>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Username</ion-label>
+          <ion-input
+            formControlName="username"
+            placeholder="Masukkan Username"
+          ></ion-input>
+          <div
+            *ngIf="registerForm.get('username')?.invalid && (registerForm.get('username')?.dirty || registerForm.get('username')?.touched)"
+          >
+            <small>Username diperlukan.</small>
+          </div>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Alamat</ion-label>
+          <ion-textarea
+            formControlName="alamat"
+            placeholder="Masukkan Alamat"
+          ></ion-textarea>
+          <div
+            *ngIf="registerForm.get('alamat')?.invalid && (registerForm.get('alamat')?.dirty || registerForm.get('alamat')?.touched)"
+          >
+            <small>Alamat diperlukan.</small>
+          </div>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Nomor Telepon</ion-label>
+          <ion-input
+            formControlName="nomorTelepon"
+            placeholder="Masukkan Nomor Telepon"
+          ></ion-input>
+          <div
+            *ngIf="registerForm.get('nomorTelepon')?.invalid && (registerForm.get('nomorTelepon')?.dirty || registerForm.get('nomorTelepon')?.touched)"
+          >
+            <small>Nomor telepon diperlukan.</small>
+          </div>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Password</ion-label>
+          <ion-input
+            formControlName="password"
+            type="password"
+            placeholder="Masukkan Password"
+          ></ion-input>
+          <div
+            *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)"
+          >
+            <small>Kata sandi diperlukan.</small>
+          </div>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Konfirmasi Password</ion-label>
+          <ion-input
+            formControlName="confirmPassword"
+            type="password"
+            placeholder="Masukkan Konfirmasi Password"
+          ></ion-input>
+          <div
+            *ngIf="registerForm.get('confirmPassword')?.invalid && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched)"
+          >
+            <small>Konfirmasi kata sandi diperlukan.</small>
+          </div>
+        </ion-item>
+      </div>
+    </form>
+    <div class="form-aksi">
+      <button
+        (click)="submitRegister()"
+        class="btn-aksi register"
+        type="submit"
+        [disabled]="registerForm.invalid"
+      >
+        Register
+      </button>
+    </div>
+  </div>
+</div>

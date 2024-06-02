@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { AuthService } from './service/auth.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -25,14 +27,40 @@ import { trigger, transition, style, animate } from '@angular/animations';
   ],
 })
 export class AppComponent implements OnInit {
-  showLandingPage = true;
+  public showLandingPage = true;
+  public hideHeaderFooter = false;
+  private routesToHideHeaderFooter = [
+    '/login',
+    '/profile/service-selection-register',
+    '/profile/register',
+    '/profile/register-vet',
+  ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          this.hideHeaderFooter = this.routesToHideHeaderFooter.includes(
+            event.url
+          );
+        }
+      });
+  }
 
-  ngOnInit() {
-    setTimeout(() => {
+  async ngOnInit() {
+    const userData = await this.authService.getUserData();
+    setTimeout(async () => {
       this.showLandingPage = false;
-      this.router.navigate(['/home']);
-    }, 3);
+      if (userData) {
+        if (userData.userType === 0) {
+          this.router.navigate(['/home']);
+        } else {
+          this.router.navigate(['/home-vet']);
+        }
+      } else {
+        this.router.navigate(['/login']);
+      }
+    }, 5000);
   }
 }

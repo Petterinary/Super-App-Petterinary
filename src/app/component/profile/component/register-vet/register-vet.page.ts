@@ -14,7 +14,7 @@ export class RegisterVetPage implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   public async submitRegister() {
-    this.router.navigate([`profile/confirmation-register`], {});
+    this.router.navigate([`confirmation`], {});
   }
 
   ngOnInit() {

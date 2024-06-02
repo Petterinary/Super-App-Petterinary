@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="icon-container">
+    <img src="assets\logo\logo-1.png" alt="Logo" />
+  </div>
+  <ng-container>
+    <form [formGroup]="loginForm">
+      <div class="form-profile">
+        <ion-item>
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input
+            placeholder="Masukkan Username/Email"
+            formControlName="email"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked" form>Password</ion-label>
+          <ion-input
+            type="password"
+            placeholder="Masukkan Password"
+            formControlName="password"
+          ></ion-input>
+        </ion-item>
+      </div>
+    </form>
+    <div class="form-aksi">
+      <p>Belum terdaftar? Silahkan pilih "<span>Register</span>"</p>
+      <button class="btn-aksi register" (click)="goRegister()">Register</button>
+      <button class="btn-aksi login" (click)="submitLogin()">Login</button>
+    </div>
+  </ng-container>
+</div>

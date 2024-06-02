@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-bottom-bar',
@@ -8,10 +9,12 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class BottomBarComponent implements OnInit {
   public isActive = 0;
+  public userData: any;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
+    this.getUser();
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.updateActiveIndex(event.urlAfterRedirects);
@@ -20,16 +23,30 @@ export class BottomBarComponent implements OnInit {
     this.updateActiveIndex(this.router.url);
   }
 
+  private async getUser() {
+    this.userData = await this.authService.getUserData();
+  }
+
   public setActive(index: number) {
     this.isActive = index;
-    if (index === 0) {
-      this.router.navigate([`/home`], {});
-    } else if (index === 1) {
-      //url
-      this.router.navigate([`/history`], {});
-    } else if (index === 2) {
-      //url
-      this.router.navigate([`/profile`], {});
+    if (this.userData) {
+      if (this.userData.userType === 0) {
+        if (index === 0) {
+          this.router.navigate([`/home`], {});
+        } else if (index === 1) {
+          this.router.navigate([`/history`], {});
+        } else if (index === 2) {
+          this.router.navigate([`/profile`], {});
+        }
+      } else {
+        if (index === 0) {
+          this.router.navigate([`/home-vet`], {});
+        } else if (index === 1) {
+          this.router.navigate([`/history-vet`], {});
+        } else if (index === 2) {
+          this.router.navigate([`/profile`], {});
+        }
+      }
     }
   }
 

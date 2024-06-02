@@ -20,44 +20,21 @@ export class ProfilePage implements OnInit {
     private router: Router
   ) {}
 
-  public form() {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-    });
-  }
-
-  public async submitLogin() {
-    if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
-      try {
-        await this.authService.login(email, password).toPromise();
-        this.userData = await this.authService.getUserData();
-        this.isLogin = true;
-        this.router.navigate(['profile/confirmation-register'], {
-          queryParams: { status: 'Login Berhasil' },
-        });
-      } catch (error) {
-        this.router.navigate(['profile/confirmation-register'], {
-          queryParams: { status: 'Login Gagal' },
-        });
-      }
-    } else {
-      console.log('Formulir tidak valid');
-    }
-  }
-
   public async submitLogout() {
     try {
       await this.authService.logout().toPromise();
       this.isLogin = false;
       this.userData = null;
-      this.router.navigate(['profile/confirmation-register'], {
-        queryParams: { status: 'Logout Berhasil' },
+      this.router.navigate(['confirmation'], {
+        queryParams: { status: 'Logout Berhasil', url: 'login', text: 'Login' },
       });
     } catch (error) {
-      this.router.navigate(['profile/confirmation-register'], {
-        queryParams: { status: 'Logout Gagal' },
+      this.router.navigate(['confirmation'], {
+        queryParams: {
+          status: 'Logout Gagal',
+          url: 'profile',
+          text: 'Profile',
+        },
       });
     }
   }
@@ -97,7 +74,6 @@ export class ProfilePage implements OnInit {
   }
 
   ngOnInit() {
-    this.form();
     this.checkLoginStatus();
     this.getUser();
   }

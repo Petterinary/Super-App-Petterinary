@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 // import { AppComponent } from './app.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
     path: 'home',
     loadChildren: () =>
@@ -171,6 +172,16 @@ const routes: Routes = [
       import('./rekap-konsultasi-uv-vet/rekap-konsultasi-uv-vet.module').then(
         (m) => m.RekapKonsultasiUvVetPageModule
       ),
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./login/login.module').then((m) => m.LoginPageModule),
+  },
+
+  {
+    path: 'confirmation',
+    component: ConfirmationComponent,
   },
 
   // {
