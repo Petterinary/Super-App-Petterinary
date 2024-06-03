@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable, from, switchMap } from 'rxjs';
+import { Observable, catchError, from, switchMap } from 'rxjs';
 import { StorageService } from './storage.service';
 
 @Injectable({
@@ -52,6 +52,43 @@ export class AuthService {
             email: userCredential.user.email,
             username: username,
             alamat: alamat,
+            nomorTelepon: nomorTelepon,
+            userType: userType,
+            createdAt: new Date(),
+          };
+          return this.fireStore
+            .collection('Users')
+            .doc(userCredential.user.uid)
+            .set(userData)
+            .then(() => userCredential);
+        } else {
+          throw new Error('User credential is null');
+        }
+      })
+    );
+  }
+
+  registerDoctors(
+    email: string,
+    password: string,
+    username: string,
+    tempatPraktik: string,
+    jadwalPraktik: string,
+    lamaPengalaman: string,
+    specialisasiHewan: string,
+    nomorTelepon: string,
+    userType: number
+  ): Observable<any> {
+    return from(this.auth.createUserWithEmailAndPassword(email, password)).pipe(
+      switchMap((userCredential) => {
+        if (userCredential.user) {
+          const userData = {
+            email: userCredential.user.email,
+            username: username,
+            tempatPraktik: tempatPraktik,
+            jadwalPraktik: jadwalPraktik,
+            lamaPengalaman: lamaPengalaman,
+            specialisasiHewan: specialisasiHewan,
             nomorTelepon: nomorTelepon,
             userType: userType,
             createdAt: new Date(),

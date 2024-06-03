@@ -38,7 +38,12 @@ export class LoginPage implements OnInit {
         }
       } catch (error) {
         this.router.navigate(['confirmation'], {
-          queryParams: { status: 'Login Gagal', url: 'login', text: 'Login' },
+          queryParams: {
+            status: 'Login Gagal',
+            url: 'login',
+            text: 'Login',
+            type: 'Fail',
+          },
         });
       }
     } else {

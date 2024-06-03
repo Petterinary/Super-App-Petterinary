@@ -58,23 +58,34 @@ export class RegisterPage implements OnInit {
   }
 
   public async submitRegister() {
-    if (this.registerForm.valid) {
-      const { email, password, username, alamat, nomorTelepon } =
-        this.registerForm.value;
-      try {
-        await this.authService
-          .register(email, password, username, alamat, nomorTelepon, 0)
-          .toPromise();
-        this.router.navigate(['confirmation'], {
-          queryParams: { status: 'Register Berhasil' },
-        });
-      } catch (error) {
-        this.router.navigate(['confirmation'], {
-          queryParams: { status: 'Register Gagal' },
-        });
-      }
-    } else {
-      console.log('Formulir tidak valid');
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
+      return;
+    }
+
+    const { email, password, username, alamat, nomorTelepon } =
+      this.registerForm.value;
+    try {
+      await this.authService
+        .register(email, password, username, alamat, nomorTelepon, 0)
+        .toPromise();
+      this.router.navigate(['confirmation'], {
+        queryParams: {
+          status: 'Register Berhasil',
+          url: 'login',
+          text: 'Login',
+          type: 'Check',
+        },
+      });
+    } catch (error) {
+      this.router.navigate(['confirmation'], {
+        queryParams: {
+          status: 'Register Gagal',
+          url: 'login',
+          text: 'Login',
+          type: 'Fail',
+        },
+      });
     }
   }
 

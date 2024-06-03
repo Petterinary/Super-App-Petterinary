@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ConfirmationComponent implements OnInit {
   public status!: string;
+  public type!: string;
   public url!: string;
   public text!: string;
 
@@ -18,6 +19,7 @@ export class ConfirmationComponent implements OnInit {
       this.status = params['status'];
       this.url = params['url'];
       this.text = `Kembali ke Halaman ${params['text']}`;
+      this.type = params['type'];
     });
   }
 }

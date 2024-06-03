@@ -14,7 +14,9 @@
           <div
             *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)"
           >
-            <small>Email diperlukan.</small>
+            <small class="danger"
+              >Email tidak boleh kosong dan harus format email.</small
+            >
           </div>
         </ion-item>
         <ion-item>
@@ -26,7 +28,7 @@
           <div
             *ngIf="registerForm.get('username')?.invalid && (registerForm.get('username')?.dirty || registerForm.get('username')?.touched)"
           >
-            <small>Username diperlukan.</small>
+            <small class="danger">Username tidak boleh kosong.</small>
           </div>
         </ion-item>
         <ion-item>
@@ -38,7 +40,7 @@
           <div
             *ngIf="registerForm.get('alamat')?.invalid && (registerForm.get('alamat')?.dirty || registerForm.get('alamat')?.touched)"
           >
-            <small>Alamat diperlukan.</small>
+            <small class="danger">Alamat tidak boleh kosong.</small>
           </div>
         </ion-item>
         <ion-item>
@@ -50,7 +52,7 @@
           <div
             *ngIf="registerForm.get('nomorTelepon')?.invalid && (registerForm.get('nomorTelepon')?.dirty || registerForm.get('nomorTelepon')?.touched)"
           >
-            <small>Nomor telepon diperlukan.</small>
+            <small class="danger">Nomor telepon tidak boleh kosong.</small>
           </div>
         </ion-item>
         <ion-item>
@@ -63,7 +65,9 @@
           <div
             *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)"
           >
-            <small>Kata sandi diperlukan.</small>
+            <small class="danger"
+              >Password tidak boleh kosong dan harus 6 huruf.</small
+            >
           </div>
         </ion-item>
         <ion-item>
@@ -76,7 +80,9 @@
           <div
             *ngIf="registerForm.get('confirmPassword')?.invalid && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched)"
           >
-            <small>Konfirmasi kata sandi diperlukan.</small>
+            <small class="danger"
+              >Konfirmasi password kosong atau tidak cocok.</small
+            >
           </div>
         </ion-item>
       </div>
@@ -86,7 +92,6 @@
         (click)="submitRegister()"
         class="btn-aksi register"
         type="submit"
-        [disabled]="registerForm.invalid"
       >
         Register
       </button>

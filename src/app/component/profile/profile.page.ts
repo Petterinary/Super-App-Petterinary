@@ -26,7 +26,12 @@ export class ProfilePage implements OnInit {
       this.isLogin = false;
       this.userData = null;
       this.router.navigate(['confirmation'], {
-        queryParams: { status: 'Logout Berhasil', url: 'login', text: 'Login' },
+        queryParams: {
+          status: 'Logout Berhasil',
+          url: 'login',
+          text: 'Login',
+          type: 'Check',
+        },
       });
     } catch (error) {
       this.router.navigate(['confirmation'], {
@@ -34,6 +39,7 @@ export class ProfilePage implements OnInit {
           status: 'Logout Gagal',
           url: 'profile',
           text: 'Profile',
+          type: 'Fail',
         },
       });
     }
