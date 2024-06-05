@@ -18,6 +18,7 @@ export class HomePage implements OnInit {
 
       stat: 0,
       rate: '2.4',
+      dist: '0.8km',
     },
     {
       idVet: 7,
@@ -27,6 +28,7 @@ export class HomePage implements OnInit {
       stat: 1,
       jenisKelamin: 'Perempuan',
       rate: '2.4',
+      dist: '1.1km',
     },
     {
       idVet: 5,
@@ -36,6 +38,7 @@ export class HomePage implements OnInit {
       stat: 2,
       jenisKelamin: 'Laki-laki',
       rate: '2.4',
+      dist: '1.5km',
     },
     {
       idVet: 6,
@@ -45,6 +48,7 @@ export class HomePage implements OnInit {
       stat: 3,
       jenisKelamin: 'Perempuan',
       rate: '2.4',
+      dist: '2.3km',
     },
     {
       idVet: 9,
@@ -54,6 +58,7 @@ export class HomePage implements OnInit {
       stat: 4,
       jenisKelamin: 'Laki-laki',
       rate: '2.4',
+      dist: '2.6km',
     },
     {
       idVet: 11,
@@ -63,6 +68,7 @@ export class HomePage implements OnInit {
       stat: 0,
       jenisKelamin: 'Perempuan',
       rate: '2.4',
+      dist: '2.9km',
     },
     {
       idVet: 25,
@@ -72,6 +78,7 @@ export class HomePage implements OnInit {
       stat: 0,
       jenisKelamin: 'Laki-laki',
       rate: '2.4',
+      dist: '3km',
     },
     {
       idVet: 16,
@@ -81,6 +88,7 @@ export class HomePage implements OnInit {
       stat: 0,
       jenisKelamin: 'Perempuan',
       rate: '2.4',
+      dist: '4km',
     },
 
     {
@@ -91,6 +99,7 @@ export class HomePage implements OnInit {
       stat: 0,
       jenisKelamin: 'Laki-laki',
       rate: '2.4',
+      dist: '5km',
     },
     {
       idVet: 20,
@@ -100,6 +109,7 @@ export class HomePage implements OnInit {
       stat: 0,
       jenisKelamin: 'Perempuan',
       rate: '2.4',
+      dist: '6km',
     },
     {
       idVet: 2,
@@ -109,6 +119,7 @@ export class HomePage implements OnInit {
       stat: 0,
       jenisKelamin: 'Laki-laki',
       rate: '2.4',
+      dist: '7km',
     },
     {
       idVet: 72,
@@ -118,6 +129,7 @@ export class HomePage implements OnInit {
       stat: 0,
       jenisKelamin: 'Perempuan',
       rate: '2.4',
+      dist: '8km',
     },
     {
       idVet: 89,
@@ -127,6 +139,7 @@ export class HomePage implements OnInit {
       stat: 0,
       jenisKelamin: 'Laki-laki',
       rate: '2.4',
+      dist: '9km',
     },
     {
       idVet: 14,
@@ -136,6 +149,7 @@ export class HomePage implements OnInit {
       stat: 0,
       jenisKelamin: 'Perempuan',
       rate: '2.4',
+      dist: '10km',
     },
 
     {
@@ -146,6 +160,7 @@ export class HomePage implements OnInit {
       stat: 0,
       jenisKelamin: 'Laki-laki',
       rate: '2.4',
+      dist: '10km',
     },
     {
       idVet: 27,
@@ -155,6 +170,7 @@ export class HomePage implements OnInit {
       stat: 0,
       jenisKelamin: 'Perempuan',
       rate: '2.4',
+      dist: '10km',
     },
     {
       idVet: 29,
@@ -164,6 +180,7 @@ export class HomePage implements OnInit {
       stat: 0,
       jenisKelamin: 'Laki-laki',
       rate: '2.4',
+      dist: '10km',
     },
     {
       idVet: 30,
@@ -173,6 +190,7 @@ export class HomePage implements OnInit {
       stat: 0,
       jenisKelamin: 'Perempuan',
       rate: '2.4',
+      dist: '10km',
     },
   ];
   constructor(
