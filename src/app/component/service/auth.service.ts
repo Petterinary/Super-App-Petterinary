@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable, catchError, from, switchMap } from 'rxjs';
 import { StorageService } from './storage.service';
+import { AccountDataService } from './data/account.data.serivce';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,8 @@ export class AuthService {
   constructor(
     private auth: AngularFireAuth,
     private fireStore: AngularFirestore,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private accountDataService: AccountDataService
   ) {}
 
   login(email: string, password: string): Observable<any> {
@@ -19,7 +21,7 @@ export class AuthService {
       switchMap((userCredential) => {
         if (userCredential.user) {
           return this.fireStore
-            .collection('Users')
+            .collection('Accounts')
             .doc(userCredential.user.uid)
             .get()
             .pipe(
@@ -51,16 +53,12 @@ export class AuthService {
           const userData = {
             email: userCredential.user.email,
             username: username,
-            alamat: alamat,
-            nomorTelepon: nomorTelepon,
-            userType: userType,
-            createdAt: new Date(),
+            address: alamat,
+            phoneNumber: nomorTelepon,
+            userType: 1,
+            uid: userCredential.user.uid,
           };
-          return this.fireStore
-            .collection('Users')
-            .doc(userCredential.user.uid)
-            .set(userData)
-            .then(() => userCredential);
+          return this.accountDataService.createAccount(userData);
         } else {
           throw new Error('User credential is null');
         }

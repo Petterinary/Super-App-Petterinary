@@ -15,19 +15,23 @@ export class AccountService {
     return this.http.get(`${this.apiUrl}/accounts`);
   }
 
-  getAccountById(accountID: string): Observable<any> {
+  getAccountById(accountID: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/accounts/${accountID}`);
+  }
+
+  getAccountByUid(uid: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/accounts/uid/${uid}`);
   }
 
   createAccount(account: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/accounts/create`, account);
   }
 
-  updateAccount(accountID: string, account: any): Observable<any> {
+  updateAccount(accountID: number, account: any): Observable<any> {
     return this.http.patch(`${this.apiUrl}/accounts/update/${accountID}`, account);
   }
 
-  deleteAccount(accountID: string): Observable<any> {
+  deleteAccount(accountID: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/accounts/delete/${accountID}`);
   }
 }
