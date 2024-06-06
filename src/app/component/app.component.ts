@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
     setTimeout(async () => {
       this.showLandingPage = false;
       if (userData) {
-        if (userData.userType === 0) {
+        if (userData.userType === 1) {
           this.router.navigate(['/home']);
         } else {
           this.router.navigate(['/home-vet']);

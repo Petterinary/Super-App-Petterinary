@@ -67,7 +67,7 @@ export class RegisterPage implements OnInit {
       this.registerForm.value;
     try {
       await this.authService
-        .register(email, password, username, alamat, nomorTelepon, 0)
+        .register(email, password, username, alamat, nomorTelepon)
         .toPromise();
       this.router.navigate(['confirmation'], {
         queryParams: {

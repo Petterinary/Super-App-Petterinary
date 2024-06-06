@@ -86,8 +86,7 @@ export class RegisterVetPage implements OnInit {
           jadwalPraktik,
           lamaPengalaman,
           specialisasiHewan,
-          nomorTelepon,
-          1
+          nomorTelepon
         )
         .toPromise();
       this.router.navigate(['confirmation'], {

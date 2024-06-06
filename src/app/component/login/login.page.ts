@@ -31,7 +31,8 @@ export class LoginPage implements OnInit {
       try {
         await this.authService.login(email, password).toPromise();
         this.userData = await this.authService.getUserData();
-        if (this.userData.userType === 0) {
+        console.log(this.userData);
+        if (this.userData.userType === 1) {
           this.router.navigate(['home']);
         } else {
           this.router.navigate(['home-vet']);

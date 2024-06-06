@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable, catchError, from, switchMap } from 'rxjs';
+import { Observable, catchError, from, map, switchMap, throwError } from 'rxjs';
 import { StorageService } from './storage.service';
 import { AccountDataService } from './data/account.data.serivce';
 
@@ -20,20 +20,17 @@ export class AuthService {
     return from(this.auth.signInWithEmailAndPassword(email, password)).pipe(
       switchMap((userCredential) => {
         if (userCredential.user) {
-          return this.fireStore
-            .collection('Accounts')
-            .doc(userCredential.user.uid)
-            .get()
+          return this.accountDataService
+            .getAccountByUid(userCredential.user.uid)
             .pipe(
-              switchMap((doc) => {
-                const userData = doc.data();
-                return this.storageService
-                  .set('user', userData)
-                  .then(() => userData);
+              switchMap((userData) => {
+                return from(this.storageService.set('user', userData)).pipe(
+                  map(() => userData)
+                );
               })
             );
         } else {
-          throw new Error('User not found');
+          return throwError(new Error('User not found'));
         }
       })
     );
@@ -44,8 +41,7 @@ export class AuthService {
     password: string,
     username: string,
     alamat: string,
-    nomorTelepon: string,
-    userType: number
+    nomorTelepon: string
   ): Observable<any> {
     return from(this.auth.createUserWithEmailAndPassword(email, password)).pipe(
       switchMap((userCredential) => {
@@ -74,8 +70,7 @@ export class AuthService {
     jadwalPraktik: string,
     lamaPengalaman: string,
     specialisasiHewan: string,
-    nomorTelepon: string,
-    userType: number
+    nomorTelepon: string
   ): Observable<any> {
     return from(this.auth.createUserWithEmailAndPassword(email, password)).pipe(
       switchMap((userCredential) => {
@@ -88,14 +83,10 @@ export class AuthService {
             lamaPengalaman: lamaPengalaman,
             specialisasiHewan: specialisasiHewan,
             nomorTelepon: nomorTelepon,
-            userType: userType,
-            createdAt: new Date(),
+            userType: 2,
+            uid: userCredential.user.uid,
           };
-          return this.fireStore
-            .collection('Users')
-            .doc(userCredential.user.uid)
-            .set(userData)
-            .then(() => userCredential);
+          return this.accountDataService.createAccount(userData);
         } else {
           throw new Error('User credential is null');
         }
