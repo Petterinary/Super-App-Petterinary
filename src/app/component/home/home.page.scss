@@ -75,6 +75,40 @@ ion-content.white-space {
         //   }
         // }
 
+        // .status-cont{
+        //   .stat-badge-yellow{
+        //     ion-text.status-text-hitam{
+        //       color: #000;
+        //     }
+        //     ion-text.status-text-putih{
+        //       color: #fff;
+        //     }
+        //   }
+        //   .stat-badge-ijo{
+        //     ion-text.status-text-hitam{
+        //       color: #000;
+        //     }
+        //     ion-text.status-text-putih{
+        //       color: #fff;
+        //     }
+
+        //   }
+        //   .stat-badge-red{
+        //     ion-text.status-text-hitam{
+        //       color: #000;
+        //     }
+        //     ion-text.status-text-putih{
+        //       color: #fff;
+        //     }
+        //   }
+        // }
+
+        .status-cont {
+          ion-text.dist {
+            font-weight: bold;
+          }
+        }
+
         .rate {
           display: flex;
           align-items: center;

@@ -18,6 +18,7 @@ export class HomeVetPage implements OnInit {
 
       stat: 0,
       idTypeVisit: 0,
+      dist: '1.1km',
     },
     {
       idUser: 7,
@@ -27,6 +28,7 @@ export class HomeVetPage implements OnInit {
       stat: 1,
       jenisKelamin: 'Perempuan',
       idTypeVisit: 1,
+      dist: '2.1km',
     },
     {
       idUser: 5,
@@ -36,6 +38,7 @@ export class HomeVetPage implements OnInit {
       stat: 2,
       jenisKelamin: 'Laki-laki',
       idTypeVisit: 0,
+      dist: '2.3km',
     },
     {
       idUser: 6,
@@ -45,6 +48,7 @@ export class HomeVetPage implements OnInit {
       stat: 3,
       jenisKelamin: 'Perempuan',
       idTypeVisit: 0,
+      dist: '2.7km',
     },
     {
       idUser: 9,
@@ -54,6 +58,7 @@ export class HomeVetPage implements OnInit {
       stat: 3,
       jenisKelamin: 'Laki-laki',
       idTypeVisit: 0,
+      dist: '9.2km',
     },
     {
       idUser: 11,
@@ -63,6 +68,7 @@ export class HomeVetPage implements OnInit {
       stat: 0,
       jenisKelamin: 'Perempuan',
       idTypeVisit: 0,
+      dist: '9.2km',
     },
     {
       idUser: 25,
@@ -72,6 +78,7 @@ export class HomeVetPage implements OnInit {
       stat: 0,
       jenisKelamin: 'Laki-laki',
       idTypeVisit: 0,
+      dist: '9.2km',
     },
     {
       idUser: 16,
@@ -81,6 +88,7 @@ export class HomeVetPage implements OnInit {
       stat: 0,
       jenisKelamin: 'Perempuan',
       idTypeVisit: 0,
+      dist: '9.2km',
     },
 
     {
@@ -136,6 +144,7 @@ export class HomeVetPage implements OnInit {
       stat: 0,
       jenisKelamin: 'Perempuan',
       idTypeVisit: 0,
+      dist: '9.2km',
     },
 
     {
@@ -146,6 +155,7 @@ export class HomeVetPage implements OnInit {
       stat: 3,
       jenisKelamin: 'Laki-laki',
       idTypeVisit: 0,
+      dist: '9.2km',
     },
     {
       idUser: 27,
@@ -155,6 +165,7 @@ export class HomeVetPage implements OnInit {
       stat: 3,
       jenisKelamin: 'Perempuan',
       idTypeVisit: 0,
+      dist: '9.2km',
     },
     {
       idUser: 29,
@@ -164,6 +175,7 @@ export class HomeVetPage implements OnInit {
       stat: 2,
       jenisKelamin: 'Laki-laki',
       idTypeVisit: 0,
+      dist: '9.2km',
     },
     {
       idUser: 30,
@@ -173,6 +185,7 @@ export class HomeVetPage implements OnInit {
       stat: 1,
       jenisKelamin: 'Perempuan',
       idTypeVisit: 0,
+      dist: '9.2km',
     },
   ];
   constructor(

@@ -12,24 +12,27 @@
     <div class="map-section">
       <img src="../../../assets/logo/mapdum.png" class="full-screen-image" />
       <div class="info-container">
-        <ng-container *ngIf="dataDokter">
-          <ng-container *ngFor="let data of dataDokter">
+        <ng-container *ngIf="dataUser">
+          <ng-container *ngFor="let data of dataUser">
             <ion-card>
               <div class="container">
                 <div class="docter-img">
                   <ng-container
                     *ngIf="data.jenisKelamin === 'Laki-laki'; else female"
                   >
-                    <img class="doc-prof" src="assets/icon/dokter-male.png" />
+                    <img
+                      class="doc-prof"
+                      src="../../../assets/icon/user-male.png"
+                    />
                   </ng-container>
                   <ng-template #female>
-                    <img class="doc-prof" src="assets/icon/dokter-female.png" />
+                    <img class="doc-prof" src="../../../assets/icon/user.png" />
                   </ng-template>
                 </div>
                 <div class="content-container">
                   <h1>{{data.nama}}</h1>
-                  <ion-badge class="badge-blue">
-                    <p>Vet Visit</p>
+                  <ion-badge class="badge-yellow">
+                    <p>User Visit</p>
                   </ion-badge>
 
                   <!-- <div class="rate">

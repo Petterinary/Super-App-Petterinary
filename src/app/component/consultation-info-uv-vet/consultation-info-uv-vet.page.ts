@@ -9,10 +9,11 @@ import { Router } from '@angular/router';
 export class ConsultationInfoUvVetPage implements OnInit {
   public consultData: any = [
     {
+      idKonsultasi: 0,
       tanggalDaftar: '11 Mei 2024',
       namaPemohon: 'Jamarius Quangledangle',
       drTujuan: 'drh. Joni',
-      stageStatus: 2,
+      stageStatus: 1,
       alasanGagal:
         'Mohon maaf, saya sudah ada janji temu dengan Pasien lain. Mohon mendaftar di lain hari.',
       status: [
@@ -92,7 +93,7 @@ export class ConsultationInfoUvVetPage implements OnInit {
   }
 
   public async toLTPage() {
-    this.router.navigate([`/uv-live-tracking`], {});
+    this.router.navigate([`/uv-live-tracking-vet`], {});
   }
 
   public async toPayPage() {

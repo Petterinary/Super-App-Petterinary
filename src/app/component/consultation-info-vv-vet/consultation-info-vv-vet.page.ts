@@ -12,7 +12,7 @@ export class ConsultationInfoVvVetPage implements OnInit {
       tanggalDaftar: '11 Mei 2024',
       namaPemohon: 'Jamarius Quangledangle',
       drTujuan: 'drh. Joni',
-      stageStatus: 3,
+      stageStatus: 2,
       alasanGagal:
         'Mohon maaf, saya sudah ada janji temu dengan Pasien lain. Mohon mendaftar di lain hari.',
       status: [
@@ -63,7 +63,7 @@ export class ConsultationInfoVvVetPage implements OnInit {
   }
 
   public async toLTVVPage() {
-    this.router.navigate([`/vv-live-tracking`], {});
+    this.router.navigate([`/vv-live-tracking-vet`], {});
   }
 
   public async toPayVVPage() {

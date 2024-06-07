@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { VvLiveTrackingPageRoutingModule } from './vv-live-tracking-routing.module';
+import { UvLiveTrackingVetPageRoutingModule } from './uv-live-tracking-vet-routing.module';
 
-import { VvLiveTrackingPage } from './vv-live-tracking.page';
+import { UvLiveTrackingVetPage } from './uv-live-tracking-vet.page';
 import { GlobalModule } from '../global/global.module';
 
 @NgModule({
@@ -15,8 +15,8 @@ import { GlobalModule } from '../global/global.module';
     FormsModule,
     IonicModule,
     GlobalModule,
-    VvLiveTrackingPageRoutingModule,
+    UvLiveTrackingVetPageRoutingModule,
   ],
-  declarations: [VvLiveTrackingPage],
+  declarations: [UvLiveTrackingVetPage],
 })
-export class VvLiveTrackingPageModule {}
+export class UvLiveTrackingVetPageModule {}
