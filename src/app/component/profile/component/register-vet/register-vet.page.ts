@@ -101,7 +101,7 @@ export class RegisterVetPage implements OnInit {
       this.router.navigate(['confirmation'], {
         queryParams: {
           status: 'Register Gagal',
-          url: 'register',
+          url: 'login',
           text: 'Coba Lagi',
           type: 'Fail',
         },

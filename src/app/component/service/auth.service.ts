@@ -78,11 +78,11 @@ export class AuthService {
           const userData = {
             email: userCredential.user.email,
             username: username,
-            tempatPraktik: tempatPraktik,
-            jadwalPraktik: jadwalPraktik,
-            lamaPengalaman: lamaPengalaman,
-            specialisasiHewan: specialisasiHewan,
-            nomorTelepon: nomorTelepon,
+            practicePlace: tempatPraktik,
+            practiceSchedule: jadwalPraktik,
+            longExperience: lamaPengalaman,
+            specialization: specialisasiHewan,
+            phoneNumber: nomorTelepon,
             userType: 2,
             uid: userCredential.user.uid,
           };
