@@ -24,8 +24,9 @@
     "@capacitor/core": "^5.7.4",
     "@ionic/angular": "^8.1.0",
     "@ionic/storage-angular": "^4.0.0",
-    "firebase": "^10.12.1",
+    "firebase": "^10.12.2",
     "rxjs": "~7.8.0",
+    "storage": "^0.2.0",
     "tslib": "^2.6.2",
     "zone.js": "~0.13.0"
   },
