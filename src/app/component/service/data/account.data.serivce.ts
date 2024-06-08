@@ -16,12 +16,20 @@ export class AccountDataService {
     return this.accountApiService.getAccountById(accountID);
   }
 
+  getDoctorAccountById(doctorID: number): Observable<any> {
+    return this.accountApiService.getDoctorAccountById(doctorID);
+  }
+
   getAccountByUid(uid: string): Observable<any> {
     return this.accountApiService.getAccountByUid(uid);
   }
 
   createAccount(account: any): Observable<any> {
     return this.accountApiService.createAccount(account);
+  }
+
+  createDoctorAccount(account: any): Observable<any> {
+    return this.accountApiService.createDoctorAccount(account);
   }
 
   updateAccount(accountID: number, account: any): Observable<any> {
