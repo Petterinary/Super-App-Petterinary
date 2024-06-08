@@ -47,6 +47,22 @@
         </div>
 
         <ion-item>
+          <ion-label position="stacked">Jenis kelamin</ion-label>
+          <ion-select
+            formControlName="jenisKelamin"
+            placeholder="Pilih jenis kelamin"
+          >
+            <ion-select-option value="Laki-laki">Laki-laki</ion-select-option>
+            <ion-select-option value="Perempuan">Perempuan</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div
+          *ngIf="registerForm.get('jenisKelamin')?.invalid && (registerForm.get('jenisKelamin')?.dirty || registerForm.get('jenisKelamin')?.touched)"
+        >
+          <small class="danger">Jenis kelamin tidak boleh kosong.</small>
+        </div>
+
+        <ion-item>
           <ion-label position="stacked">Tempat Praktik</ion-label>
           <ion-textarea
             formControlName="tempatPraktik"

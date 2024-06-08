@@ -70,7 +70,8 @@ export class AuthService {
     jadwalPraktik: string,
     lamaPengalaman: string,
     specialisasiHewan: string,
-    nomorTelepon: string
+    nomorTelepon: string,
+    jenisKelamin: string
   ): Observable<any> {
     return from(this.auth.createUserWithEmailAndPassword(email, password)).pipe(
       switchMap((userCredential) => {
@@ -78,15 +79,16 @@ export class AuthService {
           const userData = {
             email: userCredential.user.email,
             username: username,
-            practicePlace: tempatPraktik,
-            practiceSchedule: jadwalPraktik,
-            longExperience: lamaPengalaman,
+            address: tempatPraktik,
+            doctorSchedule: jadwalPraktik,
+            experience: lamaPengalaman,
+            gender: jenisKelamin,
             specialization: specialisasiHewan,
             phoneNumber: nomorTelepon,
             userType: 2,
             uid: userCredential.user.uid,
           };
-          return this.accountDataService.createAccount(userData);
+          return this.accountDataService.createDoctorAccount(userData);
         } else {
           throw new Error('User credential is null');
         }

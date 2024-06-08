@@ -32,6 +32,16 @@ ion-item {
     border: 1px solid #dedede;
     border-radius: 7px;
   }
+
+  ion-select {
+    padding-left: 8px;
+    background: #fff;
+    border: 1px solid #dedede;
+    border-radius: 7px;
+    font-weight: 500;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+  }
 }
 
 .btn-aksi {

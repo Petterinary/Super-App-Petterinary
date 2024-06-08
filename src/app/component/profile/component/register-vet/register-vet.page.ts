@@ -30,6 +30,7 @@ export class RegisterVetPage implements OnInit {
           '',
           [Validators.required, Validators.pattern('^[0-9]+$')],
         ],
+        jenisKelamin: ['', Validators.required],
         tempatPraktik: ['', Validators.required],
         jadwalPraktik: ['', Validators.required],
         lamaPengalaman: ['', [Validators.required]],
@@ -75,6 +76,7 @@ export class RegisterVetPage implements OnInit {
       lamaPengalaman,
       specialisasiHewan,
       nomorTelepon,
+      jenisKelamin,
     } = this.registerForm.value;
     try {
       await this.authService
@@ -86,7 +88,8 @@ export class RegisterVetPage implements OnInit {
           jadwalPraktik,
           lamaPengalaman,
           specialisasiHewan,
-          nomorTelepon
+          nomorTelepon,
+          jenisKelamin
         )
         .toPromise();
       this.router.navigate(['confirmation'], {
