@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { BackButtonComponent } from './back-button/back-button.component';
 import { SuccessFailedComponentComponent } from './success-failed-component/success-failed-component.component';
 import { PaymentComponent } from './payment/payment.component';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { PaymentComponent } from './payment/payment.component';
     BackButtonComponent,
     SuccessFailedComponentComponent,
     PaymentComponent,
+    MapComponent,
   ],
   imports: [IonicModule, CommonModule],
   exports: [
@@ -22,6 +24,7 @@ import { PaymentComponent } from './payment/payment.component';
     BackButtonComponent,
     SuccessFailedComponentComponent,
     PaymentComponent,
+    MapComponent,
   ],
 })
 export class GlobalModule {}

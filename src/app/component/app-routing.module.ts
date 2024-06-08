@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 // import { AppComponent } from './app.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
     path: 'home',
@@ -182,6 +182,20 @@ const routes: Routes = [
   {
     path: 'confirmation',
     component: ConfirmationComponent,
+  },
+  {
+    path: 'uv-live-tracking-vet',
+    loadChildren: () =>
+      import('./uv-live-tracking-vet/uv-live-tracking-vet.module').then(
+        (m) => m.UvLiveTrackingVetPageModule
+      ),
+  },
+  {
+    path: 'vv-live-tracking-vet',
+    loadChildren: () =>
+      import('./vv-live-tracking-vet/vv-live-tracking-vet.module').then(
+        (m) => m.VvLiveTrackingVetPageModule
+      ),
   },
 
   // {
