@@ -41,7 +41,8 @@ export class AuthService {
     password: string,
     username: string,
     alamat: string,
-    nomorTelepon: string
+    nomorTelepon: string,
+    jenisKelamin: string
   ): Observable<any> {
     return from(this.auth.createUserWithEmailAndPassword(email, password)).pipe(
       switchMap((userCredential) => {
@@ -51,6 +52,7 @@ export class AuthService {
             username: username,
             address: alamat,
             phoneNumber: nomorTelepon,
+            gender: jenisKelamin,
             userType: 1,
             uid: userCredential.user.uid,
           };

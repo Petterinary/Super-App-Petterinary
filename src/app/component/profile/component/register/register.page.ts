@@ -31,6 +31,7 @@ export class RegisterPage implements OnInit {
           '',
           [Validators.required, Validators.pattern('^[0-9]+$')],
         ],
+        jenisKelamin: ['', Validators.required],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', Validators.required],
       },
@@ -63,11 +64,11 @@ export class RegisterPage implements OnInit {
       return;
     }
 
-    const { email, password, username, alamat, nomorTelepon } =
+    const { email, password, username, alamat, nomorTelepon, jenisKelamin } =
       this.registerForm.value;
     try {
       await this.authService
-        .register(email, password, username, alamat, nomorTelepon)
+        .register(email, password, username, alamat, nomorTelepon, jenisKelamin)
         .toPromise();
       this.router.navigate(['confirmation'], {
         queryParams: {
