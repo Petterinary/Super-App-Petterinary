@@ -27,8 +27,8 @@ export class MapComponent implements OnInit, OnDestroy {
   googleMaps: any;
   // source: any = {};
   // dest: any = {};
-  source: any = { lat: -6.180081367723226, lng: 106.68878384858043 };
-  dest: any = { lat: -6.223242123198203, lng: 106.64905960538032 };
+  source: any = {};
+  dest: any = {};
   map: any;
   directionsService: any;
   directionsDisplay: any;
@@ -37,33 +37,32 @@ export class MapComponent implements OnInit, OnDestroy {
   trackSub: Subscription;
 
   constructor(
-    // private tracker: TrackerService,
+    private tracker: TrackerService,
     private maps: GmapService,
     private renderer: Renderer2
   ) {}
 
   ngOnInit() {
-    // this.trackSub = this.tracker.getLocation().subscribe({
-    //   next: (data) => {
-    //     console.log(data);
-    //     this.source = data;
-    //     if (!this.dest?.lat) {
-    //       this.dest = data;
-    //       this.loadMap();
-    //     } else {
-    //       // update marker & route
-    //       this.changeMarkerPosition(this.source);
-    //     }
-    //   },
-    // });
+    this.trackSub = this.tracker.getLocation().subscribe({
+      next: (data) => {
+        this.source = { lat: data.sourceLat, lng: data.sourceLng };
+        if (!this.dest?.lat) {
+          this.dest = { lat: data.destLat, lng: data.destLng };
+          this.loadMap();
+        } else {
+          // update marker & route
+          this.changeMarkerPosition(this.source);
+        }
+      },
+    });
   }
 
-  // changeMarkerPosition(data) {
-  //   const newPosition = { lat: data?.sourceLat, lng: data?.sourceLng }; // Set the new marker position coordinates
-  //   this.source_marker.setPosition(newPosition);
-  //   // this.map.panTo(newPosition); // Pan the map to the new marker position
-  //   this.drawRoute();
-  // }
+  changeMarkerPosition(data) {
+    const newPosition = { lat: data?.lat, lng: data?.lng }; // Set the new marker position coordinates
+    this.source_marker.setPosition(newPosition);
+    this.map.panTo(newPosition); // Pan the map to the new marker position
+    // this.drawRoute();
+  }
 
   ngAfterViewInit() {
     this.loadMap();
@@ -166,6 +165,6 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // if (this.trackSub) this.trackSub.unsubscribe();
+    if (this.trackSub) this.trackSub.unsubscribe();
   }
 }

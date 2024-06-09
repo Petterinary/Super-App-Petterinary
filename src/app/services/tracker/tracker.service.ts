@@ -1,32 +1,32 @@
 // tracker.service.ts
 import { Injectable } from '@angular/core';
-import { doc, Firestore, onSnapshot, updateDoc } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+} from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TrackerService {
-  constructor(private firestore: Firestore) {}
+  private docRef: AngularFirestoreDocument<any>;
 
-  docRef(path) {
-    return doc(this.firestore, path);
+  constructor(private afs: AngularFirestore) {
+    this.docRef = this.afs.doc('liveTracking/7bZdz2lWAIRKOG1Q9eAb');
   }
 
-  getLocation() {
-    let dataRef: any = this.docRef('liveTracking/7bZdz2lWAIRKOG1Q9eAb');
-    return new Observable<any>((observer) => {
-      onSnapshot(dataRef, (doc) => {
-        observer.next(doc.data());
-      });
-    });
+  getLocation(): Observable<any> {
+    return this.docRef.valueChanges();
   }
 
-  async updateSourceLocation(source) {
+  async updateSourceLocation(source: any) {
     try {
-      const dataRef = this.docRef('liveTracking/7bZdz2lWAIRKOG1Q9eAb');
-      await updateDoc<any, any>(dataRef, { source });
-
+      const userData = {
+        sourceLat: source.sourceLat,
+        sourceLng: source.sourceLng,
+      };
+      await this.docRef.update(userData);
       return true;
     } catch (e) {
       throw e;
