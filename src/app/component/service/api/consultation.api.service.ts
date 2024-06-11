@@ -24,7 +24,7 @@ export class ConsultationService {
   }
 
   getConsultationByDetailedId(consultationID: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/consultations/doctor/${consultationID}`);
+    return this.http.get(`${this.apiUrl}/consultations/detail/${consultationID}`);
   }
 
   createConsultation(consultation: any): Observable<any> {
