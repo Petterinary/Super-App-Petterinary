@@ -11,10 +11,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { environment } from 'src/environtments/environment';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { RouteReuseStrategy } from '@angular/router';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { environment } from 'src/environtments/environment';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 @NgModule({
   declarations: [AppComponent, LandingPageComponent, ConfirmationComponent],
@@ -30,7 +33,12 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
     AngularFirestoreModule,
     IonicStorageModule.forRoot(),
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    Geolocation,
+    LocationAccuracy,
+    AndroidPermissions,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

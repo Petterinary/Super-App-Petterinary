@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-service-selection',
@@ -155,15 +155,20 @@ export class ServiceSelectionPage implements OnInit {
       rate: '2.4',
     },
   ];
-  constructor(private router: Router) {}
+
+  public idDoctors: number;
+
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   public async toServiceSelect(event: number) {
     if (event === 1) {
-      this.router.navigate([`/form-user-visit`], {});
+      this.router.navigate([`/form-user-visit/${this.idDoctors}`], {});
     } else if (event === 2) {
       this.router.navigate([`/form-vet-visit`], {});
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.idDoctors = Number(this.route.snapshot.paramMap.get('vetId'));
+  }
 }

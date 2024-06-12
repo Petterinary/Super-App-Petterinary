@@ -9,73 +9,40 @@
       </ion-badge>
     </div>
     <div class="form-body">
-      <div class="input-tile">
-        <!-- <p>Nama</p>
-        <input
-          placeholder="Silahkan masukan nama..."
-          class="test"
-          #input
-          type="text"
-        />
-        <p>Nomor yang bisa dihubungi</p>
-        <input
-          placeholder="Silahkan masukan nomor yang dapat dihubungi..."
-          class="test"
-          #input
-          type="text"
-        />
-        <p>Deskripsi Keluhan</p>
-        <textarea
-          placeholder="Deskripsikan keluhan hewan kamu..."
-          class="testarea"
-          #input
-        ></textarea> -->
-
-        <ion-item>
-          <ion-label position="stacked">Nama</ion-label>
-          <ion-input placeholder="Silahkan masukan nama..."></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Nomor yang bisa dihubungi</ion-label>
-          <ion-input
-            placeholder="Silahkan masukan nomor yang dapat dihubungi..."
-          ></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Deskripsi Keluhan</ion-label>
-          <ion-textarea
-            placeholder="Deskripsikan keluhan hewan kamu..."
-          ></ion-textarea>
-        </ion-item>
-
-        <!-- vv Scroll overflow test -->
-        <!-- <p>Deskripsi Keluhan</p>
-        <textarea
-          placeholder="Deskripsikan keluhan hewan kamu..."
-          class="testarea"
-          #input
-        ></textarea>
-        <p>Deskripsi Keluhan</p>
-        <textarea
-          placeholder="Deskripsikan keluhan hewan kamu..."
-          class="testarea"
-          #input
-        ></textarea>
-        <p>Deskripsi Keluhan</p>
-        <textarea
-          placeholder="Deskripsikan keluhan hewan kamu..."
-          class="testarea"
-          #input
-        ></textarea>
-        <p>Deskripsi Keluhan</p>
-        <textarea
-          placeholder="Deskripsikan keluhan hewan kamu..."
-          class="testarea"
-          #input
-        ></textarea> -->
-      </div>
+      <form [formGroup]="formGroup">
+        <div class="input-tile">
+          <ion-item>
+            <ion-label position="stacked">Nama Hewan</ion-label>
+            <ion-input
+              formControlName="namaHewan"
+              placeholder="Silahkan masukan nama hewan..."
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Tipe Hewan</ion-label>
+            <ion-input
+              formControlName="tipeHewan"
+              placeholder="Silahkan masukan tipe hewan..."
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Nomor yang bisa dihubungi</ion-label>
+            <ion-input
+              formControlName="noTelp"
+              placeholder="Silahkan masukan nomor yang dapat dihubungi..."
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Deskripsi Keluhan</ion-label>
+            <ion-textarea
+              formControlName="keluhan"
+              placeholder="Deskripsikan keluhan hewan kamu..."
+            ></ion-textarea>
+          </ion-item>
+        </div>
+      </form>
       <div class="send-button-cont">
-        <ion-badge (click)="toConsultInfoUV()" class="send-button">
+        <ion-badge (click)="save()" class="send-button">
           <ion-text>Kirim Permohonan Konsultasi</ion-text>
         </ion-badge>
       </div>

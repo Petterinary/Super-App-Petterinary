@@ -1,6 +1,7 @@
 @import "src/global.scss";
 
 .container {
+  overflow: auto;
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 20px;
@@ -31,6 +32,11 @@
     margin-bottom: 10px;
     display: flex;
     justify-content: end;
+    gap: 20px;
+
+    .btn-location {
+      background-color: var(--ion-color-primary);
+    }
 
     .register {
       background-color: #8791e5;

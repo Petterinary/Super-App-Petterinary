@@ -117,6 +117,32 @@
         </div>
 
         <ion-item>
+          <ion-label position="stacked">Latitude</ion-label>
+          <ion-input
+            formControlName="latitude"
+            placeholder="Latitude"
+          ></ion-input>
+        </ion-item>
+        <div
+          *ngIf="registerForm.get('latitude')?.invalid && (registerForm.get('latitude')?.dirty || registerForm.get('latitude')?.touched)"
+        >
+          <small class="danger">Latitude tidak boleh kosong</small>
+        </div>
+
+        <ion-item>
+          <ion-label position="stacked">Longitude</ion-label>
+          <ion-input
+            formControlName="longitude"
+            placeholder="Longitude"
+          ></ion-input>
+        </ion-item>
+        <div
+          *ngIf="registerForm.get('longitude')?.invalid && (registerForm.get('longitude')?.dirty || registerForm.get('longitude')?.touched)"
+        >
+          <small class="danger">Longitude tidak boleh kosong</small>
+        </div>
+
+        <ion-item>
           <ion-label position="stacked">Password</ion-label>
           <ion-input
             formControlName="password"
@@ -150,6 +176,9 @@
       </div>
     </form>
     <div class="form-aksi">
+      <button (click)="getLocation()" class="btn-aksi btn-location">
+        Get Location
+      </button>
       <button
         (click)="submitRegister()"
         class="btn-aksi register"

@@ -36,25 +36,15 @@ export class AuthService {
     );
   }
 
-  register(
-    email: string,
-    password: string,
-    username: string,
-    alamat: string,
-    nomorTelepon: string,
-    jenisKelamin: string
-  ): Observable<any> {
+  register(email: string, password: string, data: any): Observable<any> {
     return from(this.auth.createUserWithEmailAndPassword(email, password)).pipe(
       switchMap((userCredential) => {
         if (userCredential.user) {
           const userData = {
-            email: userCredential.user.email,
-            username: username,
-            address: alamat,
-            phoneNumber: nomorTelepon,
-            gender: jenisKelamin,
+            ...data,
             userType: 1,
             uid: userCredential.user.uid,
+            email: userCredential.user.email,
           };
           return this.accountDataService.createAccount(userData);
         } else {
@@ -73,7 +63,9 @@ export class AuthService {
     lamaPengalaman: string,
     specialisasiHewan: string,
     nomorTelepon: string,
-    jenisKelamin: string
+    jenisKelamin: string,
+    lat: string,
+    lang: string
   ): Observable<any> {
     return from(this.auth.createUserWithEmailAndPassword(email, password)).pipe(
       switchMap((userCredential) => {
@@ -89,6 +81,8 @@ export class AuthService {
             phoneNumber: nomorTelepon,
             userType: 2,
             uid: userCredential.user.uid,
+            lat: lat,
+            lang: lang,
           };
           return this.accountDataService.createDoctorAccount(userData);
         } else {

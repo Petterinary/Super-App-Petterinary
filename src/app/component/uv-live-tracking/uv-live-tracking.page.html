@@ -1,75 +1,10 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>uv-live-tracking</ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
-<!-- <div class="bb-icon"> -->
-<app-back-button
-  class="uv-livetrack-bb"
-  [pageTitle]="'Powered by Google©'"
-></app-back-button>
-<!-- <app-back-button [pageTitle]=""></app-back-button> -->
-<!-- </div> -->
+<!-- uv-live-tracking.page.html -->
 <ion-content [fullscreen]="true" class="full-screen-content">
   <div class="contents">
     <div class="map-section">
-      <!-- <img src="../../../assets/logo/mapdum.png" class="full-screen-image" /> -->
-
       <app-map
         (updateDistanceAndDuration)="updateDistanceAndDuration($event.distance, $event.duration)"
       ></app-map>
-      <ion-modal
-        [isOpen]="openModal"
-        [breakpoints]="[0.4, 0.5, 0.7, 0.9]"
-        (didDismiss)="openModal = false"
-        [initialBreakpoint]="0.4"
-      >
-        <ng-template>
-          <ion-content color="light">
-            <form [formGroup]="form">
-              <ion-list>
-                <ion-list-header color="light">
-                  <ion-label> UPDATE SOURCE LOCATION </ion-label>
-                </ion-list-header>
-                <ion-item-group class="ion-padding">
-                  <ion-item>
-                    <ion-input
-                      label="LATITUDE"
-                      labelPlacement="floating"
-                      formControlName="lat"
-                      type="number"
-                    ></ion-input>
-                  </ion-item>
-                  <ion-item>
-                    <ion-input
-                      label="LONGITUDE"
-                      labelPlacement="floating"
-                      formControlName="lng"
-                      type="number"
-                    ></ion-input>
-                  </ion-item>
-                </ion-item-group>
-              </ion-list>
-              <div class="ion-padding-horizontal">
-                <ion-button
-                  *ngIf="!isSubmitted"
-                  expand="block"
-                  type="submit"
-                  color="primary"
-                  [disabled]="!form?.valid"
-                  (click)="onSubmit()"
-                >
-                  UPDATE
-                </ion-button>
-                <ion-button *ngIf="isSubmitted" expand="block" color="primary">
-                  <ion-spinner name="crescent"></ion-spinner>
-                </ion-button>
-              </div>
-            </form>
-          </ion-content>
-        </ng-template>
-      </ion-modal>
       <div class="info-container">
         <ng-container *ngIf="dataDokter">
           <ng-container *ngFor="let data of dataDokter">
@@ -92,28 +27,21 @@
                       <p>User Visit</p>
                     </ion-badge>
                     <ion-buttons slot="end">
-                      <ion-button (click)="openLocationModal()">
+                      <ion-button>
                         <ion-icon name="location"></ion-icon>
                       </ion-button>
                     </ion-buttons>
-
-                    <!-- <div class="rate">
-              <img src="assets/icon/icon-rate.png" />
-              <p>{{data.rate}}</p>
-            </div> -->
                   </div>
                   <div class="distance">
                     <span><strong>{{data.dummyJarak}}</strong></span>
                     <span><strong>{{data.dummyDuration}}</strong></span>
-                    <!-- just for testing purpose v  -->
                   </div>
                 </div>
               </div>
             </ion-card>
-          </ng-container></ng-container
-        >
+          </ng-container>
+        </ng-container>
       </div>
     </div>
   </div>
-  <!-- </div> -->
 </ion-content>

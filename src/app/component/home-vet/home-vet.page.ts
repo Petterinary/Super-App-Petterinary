@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DoctorDataService } from '../service/data/docter.data.serivce';
+import { DoctorDataService } from '../service/data/doctor.data.serivce';
 
 @Component({
   selector: 'app-home-vet',
