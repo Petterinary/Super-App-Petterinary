@@ -32,6 +32,10 @@ export class AccountDataService {
     return this.accountApiService.createDoctorAccount(account);
   }
 
+  createUserAccount(account: any): Observable<any> {
+    return this.accountApiService.createUserAccount(account);
+  }
+
   updateAccount(accountID: number, account: any): Observable<any> {
     return this.accountApiService.updateAccount(accountID, account);
   }

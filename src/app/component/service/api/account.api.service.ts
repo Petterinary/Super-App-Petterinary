@@ -30,8 +30,13 @@ export class AccountService {
   createAccount(account: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/accounts/create`, account);
   }
+
   createDoctorAccount(account: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/accounts/createDoctorAccount`, account);
+  }
+
+  createUserAccount(account: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/accounts/createUserAccount`, account);
   }
 
   updateAccount(accountID: number, account: any): Observable<any> {
