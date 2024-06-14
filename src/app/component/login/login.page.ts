@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
+import { LoadingService } from '../service/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginPage implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private loadingService: LoadingService,
     private router: Router
   ) {}
 
@@ -27,17 +29,19 @@ export class LoginPage implements OnInit {
 
   public async submitLogin() {
     if (this.loginForm.valid) {
+      this.loadingService.present();
       const { email, password } = this.loginForm.value;
       try {
         await this.authService.login(email, password).toPromise();
+        this.loadingService.dismiss();
         this.userData = await this.authService.getUserData();
-        console.log(this.userData);
         if (this.userData.userType === 1) {
           this.router.navigate(['home']);
         } else {
           this.router.navigate(['home-vet']);
         }
       } catch (error) {
+        this.loadingService.dismiss();
         this.router.navigate(['confirmation'], {
           queryParams: {
             status: 'Login Gagal',

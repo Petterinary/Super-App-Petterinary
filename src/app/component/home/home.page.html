@@ -5,14 +5,15 @@
       <ion-searchbar placeholder="Cari Nama Dokter"></ion-searchbar>
     </div>
     <div class="container">
-      <ng-container *ngIf="dataDokter">
-        <ng-container *ngFor="let data of dataDokter">
+      <ng-container *ngIf="doctors">
+        <ng-container *ngFor="let data of doctors">
           <ion-card>
-            <div class="item-container" (click)="toServiceSelect(data.idVet)">
+            <div
+              class="item-container"
+              (click)="toServiceSelect(data.doctorId)"
+            >
               <div class="docter-img">
-                <ng-container
-                  *ngIf="data.jenisKelamin === 'Laki-laki'; else female"
-                >
+                <ng-container *ngIf="data.gender === 'Laki-laki'; else female">
                   <img src="assets/icon/dokter-male.png" />
                 </ng-container>
                 <ng-template #female>
@@ -20,8 +21,8 @@
                 </ng-template>
               </div>
               <div class="content-container">
-                <h1>{{data.nama}}</h1>
-                <p>{{data.specialis}}</p>
+                <h1>{{data.name}}</h1>
+                <p>{{data.specialization}}</p>
                 <span><strong>{{data.umur}} Tahun</strong></span>
                 <!-- <div class="rate">
                   <img src="assets/icon/icon-rate.png" />

@@ -1,3 +1,4 @@
+// map.component.ts
 import {
   Component,
   ElementRef,
@@ -11,6 +12,7 @@ import {
 import { Subscription } from 'rxjs';
 import { GmapService } from 'src/app/services/gmap/gmap.service';
 import { TrackerService } from 'src/app/services/tracker/tracker.service';
+import { GeolocationService } from '../../service/live-location.service';
 
 @Component({
   selector: 'app-map',
@@ -25,8 +27,6 @@ export class MapComponent implements OnInit, OnDestroy {
   }>();
 
   googleMaps: any;
-  // source: any = {};
-  // dest: any = {};
   source: any = {};
   dest: any = {};
   map: any;
@@ -35,14 +35,20 @@ export class MapComponent implements OnInit, OnDestroy {
   source_marker: any;
   destination_marker: any;
   trackSub: Subscription;
+  geolocationSub: Subscription;
 
   constructor(
     private tracker: TrackerService,
     private maps: GmapService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private geolocationService: GeolocationService
   ) {}
 
   ngOnInit() {
+    this.getLatLng();
+  }
+
+  getLatLng() {
     this.trackSub = this.tracker.getLocation().subscribe({
       next: (data) => {
         this.source = { lat: data.sourceLat, lng: data.sourceLng };
@@ -50,22 +56,22 @@ export class MapComponent implements OnInit, OnDestroy {
           this.dest = { lat: data.destLat, lng: data.destLng };
           this.loadMap();
         } else {
-          // update marker & route
           this.changeMarkerPosition(this.source);
         }
       },
     });
+
+    this.geolocationSub = this.geolocationService.watchPosition((position) => {
+      console.log(position);
+      this.tracker.updateSourceLocation(position);
+    });
   }
 
   changeMarkerPosition(data) {
-    const newPosition = { lat: data?.lat, lng: data?.lng }; // Set the new marker position coordinates
+    const newPosition = { lat: data.lat, lng: data.lng };
     this.source_marker.setPosition(newPosition);
-    this.map.panTo(newPosition); // Pan the map to the new marker position
-    // this.drawRoute();
-  }
-
-  ngAfterViewInit() {
-    this.loadMap();
+    this.map.panTo(newPosition);
+    this.drawRoute();
   }
 
   async loadMap() {
@@ -166,5 +172,6 @@ export class MapComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.trackSub) this.trackSub.unsubscribe();
+    if (this.geolocationSub) this.geolocationSub.unsubscribe();
   }
 }

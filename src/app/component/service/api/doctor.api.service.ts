@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environtments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DoctorService {
   private apiUrl = environment.apiUrl;
@@ -17,7 +17,7 @@ export class DoctorService {
     return this.http.get(`${this.apiUrl}/doctors`);
   }
 
-  getDoctorById(doctorID: string): Observable<any> {
+  getDoctorById(doctorID: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/doctors/${doctorID}`);
   }
 

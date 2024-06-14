@@ -32,9 +32,19 @@
     margin-bottom: 10px;
     display: flex;
     justify-content: end;
+    gap: 20px;
+
+    .btn-location {
+      background-color: var(--ion-color-primary);
+    }
 
     .register {
       background-color: #8791e5;
+    }
+
+    .btn-disable {
+      background-color: rgb(209, 209, 209);
+      color: rgb(126, 126, 126);
     }
   }
 }

@@ -23,8 +23,8 @@ export class TrackerService {
   async updateSourceLocation(source: any) {
     try {
       const userData = {
-        sourceLat: source.sourceLat,
-        sourceLng: source.sourceLng,
+        sourceLat: source.lat,
+        sourceLng: source.lng,
       };
       await this.docRef.update(userData);
       return true;

@@ -29,7 +29,7 @@ export const routes: Routes = [
       import('./history/history.module').then((m) => m.HistoryPageModule),
   },
   {
-    path: 'form-user-visit',
+    path: 'form-user-visit/:vetId',
     loadChildren: () =>
       import('./form-user-visit/form-user-visit.module').then(
         (m) => m.FormUserVisitPageModule
