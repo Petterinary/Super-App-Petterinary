@@ -5,14 +5,17 @@
       <ion-searchbar placeholder="Cari Nama Dokter"></ion-searchbar>
     </div>
     <div class="container">
-      <ng-container *ngIf="antriUser">
-        <ng-container *ngFor="let data of antriUser">
+      <ng-container *ngIf="consultation">
+        <ng-container *ngFor="let data of consultation">
           <ng-container
             *ngIf="data.stat !== 3 && data.stat !== 4; else doneAntrian"
           >
             <ion-card>
-              <ng-container *ngIf="data.idTypeVisit === 0; else toVvStatusPage">
-                <div class="item-container" (click)="toQueueStatusPageUv()">
+              <ng-container *ngIf="data.visitType === 1; else toVvStatusPage">
+                <div
+                  class="item-container"
+                  (click)="toQueueStatusPageUv(data.consultationId)"
+                >
                   <div class="docter-img">
                     <ng-container
                       *ngIf="data.jenisKelamin === 'Laki-laki'; else female"
@@ -24,37 +27,36 @@
                     </ng-template>
                   </div>
                   <div class="content-container">
-                    <h1>{{data.nama}}</h1>
+                    <h1>{{data.userName}}</h1>
                     <ion-badge
-                      [ngClass]="data.idTypeVisit === 0 ? 'badge-yellow' : 'badge-blue'"
+                      [ngClass]="data.visitType === 1 ? 'badge-yellow' : 'badge-blue'"
                     >
                       <p>
-                        {{data.idTypeVisit == 0 ? 'User Visit' : 'Vet Visit'}}
+                        {{data.visitType == 1 ? 'User Visit' : 'Vet Visit'}}
                       </p>
                     </ion-badge>
-                    <!-- <span><strong>{{data.umur}} Tahun</strong></span> -->
-                    <!-- <div class="rate">
-                    <img src="assets/icon/icon-rate.png" />
-                    <p>{{data.rate}}</p>
-                  </div> -->
                   </div>
 
                   <div class="status-cont">
                     <ion-badge
-                      [ngClass]="data.stat === 0 ? 'stat-badge-yellow' : data.stat === 1 ? 'stat-badge-blue' :  data.stat === 2 ? 'stat-badge-ijo' : 'stat-badge-none'"
+                      [ngClass]="data.stageStatus === 0 ? 'stat-badge-yellow' : data.stageStatus === 1 ? 'stat-badge-blue' :  data.stageStatus === 2 ? 'stat-badge-ijo' : 'stat-badge-none'"
                     >
                       <ion-text
-                        [ngClass]="data.stat === 0 ? 'status-text-hitam' : data.stat === 1 ? 'status-text-putih' :  data.stat === 2 ? 'status-text-hitam' :'status-text-putih'"
-                        >{{data.stat === 0 ? 'Menunggu konfirmasi dokter' :
-                        data.stat === 1 ? 'Menunggu konsultasi' : data.stat ===
-                        2 ? 'Menunggu pembayaran' : ''}}</ion-text
+                        [ngClass]="data.stageStatus === 0 ? 'status-text-hitam' : data.stageStatus === 1 ? 'status-text-putih' :  data.stageStatus === 2 ? 'status-text-hitam' :'status-text-putih'"
+                        >{{data.stageStatus === 0 ? 'Menunggu konfirmasi dokter'
+                        : data.stageStatus === 1 ? 'Menunggu konsultasi' :
+                        data.stageStatus === 2 ? 'Menunggu pembayaran' :
+                        ''}}</ion-text
                       >
                     </ion-badge>
                   </div>
                 </div>
               </ng-container>
               <ng-template #toVvStatusPage>
-                <div class="item-container" (click)="toQueueStatusPageVv()">
+                <div
+                  class="item-container"
+                  (click)="toQueueStatusPageVv(data.consultationId)"
+                >
                   <div class="docter-img">
                     <ng-container
                       *ngIf="data.jenisKelamin === 'Laki-laki'; else female"
@@ -66,30 +68,26 @@
                     </ng-template>
                   </div>
                   <div class="content-container">
-                    <h1>{{data.nama}}</h1>
+                    <h1>{{data.userName}}</h1>
                     <ion-badge
-                      [ngClass]="data.idTypeVisit === 0 ? 'badge-yellow' : 'badge-blue'"
+                      [ngClass]="data.visitType === 1 ? 'badge-yellow' : 'badge-blue'"
                     >
                       <p>
-                        {{data.idTypeVisit == 0 ? 'User Visit' : 'Vet Visit'}}
+                        {{data.visitType == 1 ? 'User Visit' : 'Vet Visit'}}
                       </p>
                     </ion-badge>
-                    <!-- <span><strong>{{data.umur}} Tahun</strong></span> -->
-                    <!-- <div class="rate">
-                      <img src="assets/icon/icon-rate.png" />
-                      <p>{{data.rate}}</p>
-                    </div> -->
                   </div>
 
                   <div class="status-cont">
                     <ion-badge
-                      [ngClass]="data.stat === 0 ? 'stat-badge-yellow' : data.stat === 1 ? 'stat-badge-blue' :  data.stat === 2 ? 'stat-badge-ijo' : 'stat-badge-none'"
+                      [ngClass]="data.stageStatus === 0 ? 'stat-badge-yellow' : data.stageStatus === 1 ? 'stat-badge-blue' :  data.stageStatus === 2 ? 'stat-badge-ijo' : 'stat-badge-none'"
                     >
                       <ion-text
-                        [ngClass]="data.stat === 0 ? 'status-text-hitam' : data.stat === 1 ? 'status-text-putih' :  data.stat === 2 ? 'status-text-hitam' :'status-text-putih'"
-                        >{{data.stat === 0 ? 'Menunggu konfirmasi dokter' :
-                        data.stat === 1 ? 'Menunggu konsultasi' : data.stat ===
-                        2 ? 'Menunggu pembayaran' : ''}}</ion-text
+                        [ngClass]="data.stageStatus === 0 ? 'status-text-hitam' : data.stageStatus === 1 ? 'status-text-putih' :  data.stageStatus === 2 ? 'status-text-hitam' :'status-text-putih'"
+                        >{{data.stageStatus === 0 ? 'Menunggu konfirmasi dokter'
+                        : data.stageStatus === 1 ? 'Menunggu konsultasi' :
+                        data.stageStatus === 2 ? 'Menunggu pembayaran' :
+                        ''}}</ion-text
                       >
                     </ion-badge>
                   </div>

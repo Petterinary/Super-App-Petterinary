@@ -52,13 +52,11 @@
                 </div>
                 <div class="content-container">
                   <h1>{{data.doctorName}}</h1>
-                  <p>{{data.complaint}}</p>
+                  <p>Keluhan: {{data.complaint}}</p>
                   <ion-badge
-                    [ngClass]="data.idTypeVisit === 1 ? 'badge-yellow' : 'badge-blue'"
+                    [ngClass]="data.visitType === 1 ? 'badge-yellow' : 'badge-blue'"
                   >
-                    <p>
-                      {{data.idTypeVisit == 1 ? 'User Visit' : 'Vet Visit'}}
-                    </p>
+                    <p>{{data.visitType == 1 ? 'User Visit' : 'Vet Visit'}}</p>
                   </ion-badge>
                 </div>
               </div>

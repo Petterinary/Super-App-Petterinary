@@ -8,7 +8,10 @@
         <ng-container *ngFor="let data of consultation">
           <ng-container *ngIf="data.visitType === 1; else toVetVisit">
             <ion-card>
-              <div class="item-container" (click)="toRecapKonsulUV(data.consultationId)">
+              <div
+                class="item-container"
+                (click)="toRecapKonsulUV(data.consultationId)"
+              >
                 <div class="docter-img">
                   <ng-container
                     *ngIf="data.jenisKelamin === 'Laki-laki'; else female"
@@ -21,13 +24,11 @@
                 </div>
                 <div class="content-container">
                   <h1>{{data.userName}}</h1>
-                  <p>{{data.complaint}}</p>
+                  <p>Keluhan: {{data.complaint}}</p>
                   <ion-badge
                     [ngClass]="data.visitType === 1 ? 'badge-yellow' : 'badge-blue'"
                   >
-                    <p>
-                      {{data.visitType == 1 ? 'User Visit' : 'Vet Visit'}}
-                    </p>
+                    <p>{{data.visitType == 1 ? 'User Visit' : 'Vet Visit'}}</p>
                   </ion-badge>
                 </div>
               </div>
@@ -35,7 +36,10 @@
           </ng-container>
           <ng-template #toVetVisit>
             <ion-card>
-              <div class="item-container" (click)="toRecapKonsulVV(data.consultationId)">
+              <div
+                class="item-container"
+                (click)="toRecapKonsulVV(data.consultationId)"
+              >
                 <div class="docter-img">
                   <ng-container
                     *ngIf="data.jenisKelamin === 'Laki-laki'; else female"
@@ -48,13 +52,11 @@
                 </div>
                 <div class="content-container">
                   <h1>{{data.userName}}</h1>
-                  <p>{{data.complaint}}</p>
+                  <p>Keluhan: {{data.complaint}}</p>
                   <ion-badge
                     [ngClass]="data.visitType === 1 ? 'badge-yellow' : 'badge-blue'"
                   >
-                    <p>
-                      {{data.visitType == 1 ? 'User Visit' : 'Vet Visit'}}
-                    </p>
+                    <p>{{data.visitType == 1 ? 'User Visit' : 'Vet Visit'}}</p>
                   </ion-badge>
                 </div>
               </div>
