@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ConsultationDataService } from '../service/data/consultations.data.service';
 
 @Component({
   selector: 'app-vv-live-tracking',
@@ -6,17 +8,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./vv-live-tracking.page.scss'],
 })
 export class VvLiveTrackingPage implements OnInit {
-  public dataDokter = [
-    {
-      idDokter: 4,
-      koordinatUser: 'w',
-      koordinatDokter: 'w',
-      nama: 'Drh. Joni',
-      dummyJarak: '4.1km',
-      jenisKelamin: 'Laki-laki',
-    },
-  ];
-  constructor() {}
+  public consulStage: any;
+  public consultationId: number;
 
-  ngOnInit() {}
+  constructor(
+    private route: ActivatedRoute,
+    private consultationDataService: ConsultationDataService
+  ) {}
+
+  private getDetailConsul() {
+    this.consultationDataService
+      .getConsultationByDetailedId(this.consultationId)
+      .subscribe((res) => {
+        this.consulStage = res;
+      });
+  }
+
+  ngOnInit() {
+    this.consultationId = Number(this.route.snapshot.paramMap.get('id'));
+    if (this.consultationId) {
+      this.getDetailConsul();
+    }
+  }
 }

@@ -66,8 +66,8 @@ export class ConsultationInfoUvPage implements OnInit {
       );
   }
 
-  public async toLTPage() {
-    this.router.navigate([`/uv-live-tracking`], {});
+  public async toLTPage(id: number) {
+    this.router.navigate([`/uv-live-tracking/${id}`], {});
   }
 
   public async toPayPage() {

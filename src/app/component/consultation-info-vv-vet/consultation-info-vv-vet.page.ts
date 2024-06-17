@@ -124,16 +124,12 @@ export class ConsultationInfoVvVetPage implements OnInit {
       );
   }
 
-  public async toLTPage() {
-    this.router.navigate([`/uv-live-tracking`], {});
+  public async toLTPage(id: number) {
+    this.router.navigate([`/vv-live-tracking-vet/${id}`], {});
   }
 
   public async toPayPage() {
     this.router.navigate([`/uv-payment`], {});
-  }
-
-  public async toLTVVPage() {
-    this.router.navigate([`/vv-live-tracking-vet`], {});
   }
 
   public async toPayVVPage() {

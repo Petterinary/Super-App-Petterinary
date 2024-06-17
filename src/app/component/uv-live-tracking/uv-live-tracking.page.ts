@@ -1,6 +1,6 @@
-// uv-live-tracking.page.ts
 import { Component, OnInit } from '@angular/core';
-import { TrackerService } from 'src/app/services/tracker/tracker.service';
+import { ActivatedRoute } from '@angular/router';
+import { ConsultationDataService } from '../service/data/consultations.data.service';
 
 @Component({
   selector: 'app-uv-live-tracking',
@@ -8,24 +8,26 @@ import { TrackerService } from 'src/app/services/tracker/tracker.service';
   styleUrls: ['./uv-live-tracking.page.scss'],
 })
 export class UvLiveTrackingPage implements OnInit {
-  public dataDokter = [
-    {
-      idVet: 4,
-      koordinatUser: 'w',
-      koordinatDokter: 'w',
-      nama: 'Drh. Joni',
-      dummyJarak: '',
-      dummyDuration: '',
-      jenisKelamin: 'Laki-laki',
-    },
-  ];
+  public consulStage: any;
+  public consultationId: number;
 
-  constructor(private tracker: TrackerService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private consultationDataService: ConsultationDataService
+  ) {}
 
-  updateDistanceAndDuration(distance: string, duration: string) {
-    this.dataDokter[0].dummyJarak = distance;
-    this.dataDokter[0].dummyDuration = duration;
+  private getDetailConsul() {
+    this.consultationDataService
+      .getConsultationByDetailedId(this.consultationId)
+      .subscribe((res) => {
+        this.consulStage = res;
+      });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.consultationId = Number(this.route.snapshot.paramMap.get('id'));
+    if (this.consultationId) {
+      this.getDetailConsul();
+    }
+  }
 }

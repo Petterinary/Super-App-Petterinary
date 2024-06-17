@@ -1,11 +1,10 @@
-<!-- uv-live-tracking.page.html -->
 <ion-content [fullscreen]="true" class="full-screen-content">
   <div class="contents">
     <div class="map-section">
-      <app-map></app-map>
+      <app-map [consultationId]="consultationId"></app-map>
       <div class="info-container">
-        <ng-container *ngIf="dataUser">
-          <ng-container *ngFor="let data of dataUser">
+        <ng-container *ngIf="consulStage">
+          <ng-container *ngFor="let data of consulStage">
             <ion-card>
               <div class="container">
                 <div class="docter-img">
@@ -20,15 +19,10 @@
                 </div>
                 <div class="testo">
                   <div class="content-container">
-                    <h1>{{data.nama}}</h1>
+                    <h1>{{data.userName}}</h1>
                     <ion-badge class="badge-yellow">
                       <p>User Visit</p>
                     </ion-badge>
-                    <ion-buttons slot="end">
-                      <ion-button>
-                        <ion-icon name="location"></ion-icon>
-                      </ion-button>
-                    </ion-buttons>
                   </div>
                   <div class="distance">
                     <span><strong>{{data.dummyJarak}}</strong></span>

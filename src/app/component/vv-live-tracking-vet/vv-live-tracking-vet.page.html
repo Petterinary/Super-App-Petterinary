@@ -1,54 +1,38 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>uv-live-tracking</ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
-<div class="bb-icon">
-  <app-back-button [pageTitle]="''"></app-back-button>
-</div>
 <ion-content [fullscreen]="true" class="full-screen-content">
-  <div class="contents full-screen-content">
+  <div class="contents">
     <div class="map-section">
-      <img src="../../../assets/logo/mapdum.png" class="full-screen-image" />
+      <app-map [consultationId]="consultationId"></app-map>
       <div class="info-container">
-        <ng-container *ngIf="dataUser">
-          <ng-container *ngFor="let data of dataUser">
+        <ng-container *ngIf="consulStage">
+          <ng-container *ngFor="let data of consulStage">
             <ion-card>
               <div class="container">
                 <div class="docter-img">
                   <ng-container
                     *ngIf="data.jenisKelamin === 'Laki-laki'; else female"
                   >
-                    <img
-                      class="doc-prof"
-                      src="../../../assets/icon/user-male.png"
-                    />
+                    <img class="doc-prof" src="assets/icon/dokter-male.png" />
                   </ng-container>
                   <ng-template #female>
-                    <img class="doc-prof" src="../../../assets/icon/user.png" />
+                    <img class="doc-prof" src="assets/icon/dokter-female.png" />
                   </ng-template>
                 </div>
-                <div class="content-container">
-                  <h1>{{data.nama}}</h1>
-                  <ion-badge class="badge-blue">
-                    <p>Vet Visit</p>
-                  </ion-badge>
-
-                  <!-- <div class="rate">
-              <img src="assets/icon/icon-rate.png" />
-              <p>{{data.rate}}</p>
-            </div> -->
-                </div>
-                <div class="distance">
-                  <span><strong>{{data.dummyJarak}}</strong></span>
+                <div class="testo">
+                  <div class="content-container">
+                    <h1>{{data.doctorName}}</h1>
+                    <ion-badge class="badge-yellow">
+                      <p>Vet Visit</p>
+                    </ion-badge>
+                  </div>
+                  <div class="distance">
+                    <span><strong>{{data.dummyJarak}}</strong></span>
+                  </div>
                 </div>
               </div>
             </ion-card>
-          </ng-container></ng-container
-        >
+          </ng-container>
+        </ng-container>
       </div>
     </div>
   </div>
-  <!-- </div> -->
 </ion-content>

@@ -8,6 +8,7 @@ import {
   Output,
   EventEmitter,
   OnDestroy,
+  Input,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { GmapService } from 'src/app/services/gmap/gmap.service';
@@ -22,17 +23,18 @@ import { AuthService } from '../../service/auth.service';
 })
 export class MapComponent implements OnInit, OnDestroy {
   @ViewChild('map', { static: true }) mapElementRef: ElementRef;
+  @Input() consultationId: number;
 
-  googleMaps: any;
-  source: any = {};
-  dest: any = {};
-  map: any;
-  directionsService: any;
-  directionsDisplay: any;
-  source_marker: any;
-  destination_marker: any;
-  trackSub: Subscription;
-  geolocationSub: Subscription;
+  public googleMaps: any;
+  public source: any = {};
+  public dest: any = {};
+  public map: any;
+  public directionsService: any;
+  public directionsDisplay: any;
+  public source_marker: any;
+  public destination_marker: any;
+  public trackSub: Subscription;
+  public geolocationSub: Subscription;
 
   private userData: any;
   private isDoctor: boolean;
@@ -46,6 +48,7 @@ export class MapComponent implements OnInit, OnDestroy {
   ) {}
 
   async ngOnInit() {
+    console.log(this.consultationId);
     this.userData = await this.authService.getUserData();
     if (this.userData.userType === '1') {
       this.isDoctor = false;

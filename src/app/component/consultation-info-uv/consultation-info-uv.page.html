@@ -102,7 +102,10 @@
         </ng-container>
         <ng-container *ngIf="data.stageStatus === 1">
           <div class="lt-cont">
-            <ion-badge (click)="toLTPage()" class="lt-button">
+            <ion-badge
+              (click)="toLTPage(data.consultationId)"
+              class="lt-button"
+            >
               <ion-text>Live Tracking</ion-text>
             </ion-badge>
           </div>
