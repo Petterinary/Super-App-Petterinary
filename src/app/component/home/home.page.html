@@ -1,4 +1,3 @@
-<!-- <app-header-bar></app-header-bar> -->
 <ion-content class="white-space" [fullscreen]="true">
   <div class="contents">
     <div class="search-container">
@@ -22,19 +21,9 @@
               </div>
               <div class="content-container">
                 <h1>{{data.name}}</h1>
-                <p>{{data.specialization}}</p>
-                <span><strong>{{data.umur}} Tahun</strong></span>
-                <!-- <div class="rate">
-                  <img src="assets/icon/icon-rate.png" />
-                  <p>{{data.rate}}</p>
-                </div> -->
+                <p>Spesialis: {{data.specialization}}</p>
+                <span>Pengalaman:<strong> {{data.experience}}</strong></span>
               </div>
-
-              <!-- <div class="status-cont">
-                <ion-text class="dist" style="color: black"
-                  >{{data.dist}}</ion-text
-                >
-              </div> -->
             </div>
           </ion-card>
         </ng-container>

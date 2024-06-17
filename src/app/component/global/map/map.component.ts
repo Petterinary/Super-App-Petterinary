@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs';
 import { GmapService } from 'src/app/services/gmap/gmap.service';
 import { TrackerService } from 'src/app/services/tracker/tracker.service';
 import { GeolocationService } from '../../service/live-location.service';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-map',
@@ -21,10 +22,6 @@ import { GeolocationService } from '../../service/live-location.service';
 })
 export class MapComponent implements OnInit, OnDestroy {
   @ViewChild('map', { static: true }) mapElementRef: ElementRef;
-  @Output() updateDistanceAndDuration = new EventEmitter<{
-    distance: string;
-    duration: string;
-  }>();
 
   googleMaps: any;
   source: any = {};
@@ -37,14 +34,24 @@ export class MapComponent implements OnInit, OnDestroy {
   trackSub: Subscription;
   geolocationSub: Subscription;
 
+  private userData: any;
+  private isDoctor: boolean;
+
   constructor(
     private tracker: TrackerService,
     private maps: GmapService,
     private renderer: Renderer2,
+    private authService: AuthService,
     private geolocationService: GeolocationService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.userData = await this.authService.getUserData();
+    if (this.userData.userType === '1') {
+      this.isDoctor = false;
+    } else {
+      this.isDoctor = true;
+    }
     this.getLatLng();
   }
 
@@ -61,17 +68,22 @@ export class MapComponent implements OnInit, OnDestroy {
       },
     });
 
-    this.geolocationSub = this.geolocationService.watchPosition((position) => {
-      console.log(position);
-      this.tracker.updateSourceLocation(position);
-    });
+    if (this.isDoctor) {
+      this.geolocationSub = this.geolocationService.watchPosition(
+        (position) => {
+          this.tracker.updateSourceLocation(position);
+        }
+      );
+    }
   }
 
   changeMarkerPosition(data) {
     const newPosition = { lat: data.lat, lng: data.lng };
-    this.source_marker.setPosition(newPosition);
-    this.map.panTo(newPosition);
-    this.drawRoute();
+    if (newPosition) {
+      this.source_marker.setPosition(newPosition);
+      this.map.panTo(newPosition);
+      this.drawRoute();
+    }
   }
 
   async loadMap() {
@@ -161,8 +173,6 @@ export class MapComponent implements OnInit, OnDestroy {
           const directionsData = response.routes[0].legs[0];
           const distance = directionsData.distance.text;
           const duration = directionsData.duration.text;
-
-          this.updateDistanceAndDuration.emit({ distance, duration });
         } else {
           console.log(status);
         }

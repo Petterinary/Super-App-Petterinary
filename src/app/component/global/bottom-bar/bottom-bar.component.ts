@@ -30,7 +30,7 @@ export class BottomBarComponent implements OnInit {
   public setActive(index: number) {
     this.isActive = index;
     if (this.userData) {
-      if (this.userData.userType === 1) {
+      if (this.userData.userType === '1') {
         if (index === 0) {
           this.router.navigate([`/home`], {});
         } else if (index === 1) {

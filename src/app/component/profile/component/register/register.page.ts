@@ -6,28 +6,46 @@ import { Platform } from '@ionic/angular';
 import { AuthService } from 'src/app/component/service/auth.service';
 import { LoadingService } from 'src/app/component/service/loading.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-
+import { AlertService } from 'src/app/component/service/alert-service';
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
+import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
+import {
+  AndroidSettings,
+  IOSSettings,
+  NativeSettings,
+} from 'capacitor-native-settings';
+import * as CapGeolocation from '@capacitor/geolocation';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
+  private unsubscribe$: Subject<void>;
   public type: string = '';
   public title = 'Form Pendaftaran';
   public isRincian: boolean = false;
   public registerForm!: FormGroup;
+  private getPosition$ = new BehaviorSubject<any>(null);
+  private kordinat: any;
+  public isMobile: boolean;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private loadingService: LoadingService,
     private authService: AuthService,
+    private loadingService: LoadingService,
     private geolocation: Geolocation,
     private androidPermissions: AndroidPermissions,
+    private alertService: AlertService,
+    private location: Location,
+    private locationAccuracy: LocationAccuracy,
     private platform: Platform
-  ) {}
+  ) {
+    this.failSave = this.failSave.bind(this);
+  }
 
   public form() {
     this.registerForm = this.fb.group(
@@ -68,78 +86,96 @@ export class RegisterPage implements OnInit {
     };
   }
 
-  public getLocation() {
-    if (this.platform.is('cordova')) {
-      this.androidPermissions
-        .checkPermission(
-          this.androidPermissions.PERMISSION.ACCESS_FINE_LOCATION
-        )
-        .then((result) => {
-          if (result.hasPermission) {
-            this.getGeolocation();
-          } else {
-            this.requestLocationPermission();
-          }
-        })
-        .catch((error) => {
-          console.error('Error checking location permission:', error);
-        });
-    } else {
-      this.getBrowserGeolocation();
-    }
-  }
+  public async getLocation() {
+    await this.loadingService.present();
 
-  private getGeolocation() {
-    this.geolocation
-      .getCurrentPosition()
-      .then((position) => {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-        this.registerForm.patchValue({
-          latitude: latitude,
-          longitude: longitude,
-        });
-      })
-      .catch((error) => {
-        console.error('Error getting location:', error);
-      });
-  }
+    try {
+      if (this.isMobile && this.platform.is('android')) {
+        const permiss = await this.androidPermissions.requestPermissions([
+          this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION,
+          this.androidPermissions.PERMISSION.ACCESS_FINE_LOCATION,
+        ]);
 
-  private requestLocationPermission() {
-    this.androidPermissions
-      .requestPermission(
-        this.androidPermissions.PERMISSION.ACCESS_FINE_LOCATION
-      )
-      .then((result) => {
-        if (result.hasPermission) {
-          this.getGeolocation();
-        } else {
-          console.error('Location permission denied.');
+        if (!permiss.hasPermission) {
+          await this.alertService.alertSetting(
+            'Tidak dapat menerima lokasi',
+            'Gagal',
+            () =>
+              NativeSettings.open({
+                optionAndroid: AndroidSettings.ApplicationDetails,
+                optionIOS: IOSSettings.App,
+              })
+          );
+          this.location.back();
+          return;
         }
-      })
-      .catch((error) => {
-        console.error('Error requesting location permission:', error);
-      });
-  }
 
-  private getBrowserGeolocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const latitude = position.coords.latitude;
-          const longitude = position.coords.longitude;
-          this.registerForm.patchValue({
-            latitude: latitude,
-            longitude: longitude,
+        try {
+          const lokasi = await this.geolocation.getCurrentPosition({
+            timeout: 6000,
           });
-        },
-        (error) => {
-          console.error('Error getting location:', error);
-        },
-        { enableHighAccuracy: true }
-      );
-    } else {
-      console.error('Geolocation is not supported by this browser.');
+          this.kordinat = lokasi.coords;
+          this.getPosition$.next(lokasi);
+        } catch (err) {
+          console.log('Error getting current position: ', err);
+        }
+
+        if (!this.kordinat) {
+          try {
+            const canRequest = await this.locationAccuracy.canRequest();
+
+            if (canRequest) {
+              await this.locationAccuracy.request(
+                this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY
+              );
+
+              this.geolocation
+                .watchPosition()
+                .pipe(takeUntil(this.unsubscribe$))
+                .subscribe((res: any) => {
+                  if (res) {
+                    this.kordinat = res.coords;
+                    this.getPosition$.next(res);
+                  }
+                });
+            } else {
+              throw new Error('cannot-request');
+            }
+          } catch (err) {
+            console.log('Error during location accuracy request: ', err);
+          }
+        }
+      } else {
+        try {
+          const lokasi = await CapGeolocation.Geolocation.getCurrentPosition();
+          this.kordinat = lokasi.coords;
+          this.getPosition$.next(lokasi);
+        } catch (err) {
+          console.log('Error getting position with CapGeolocation: ', err);
+        }
+      }
+
+      if (this.kordinat) {
+        await this.loadingService.dismiss();
+        await this.alertService.alert('Lokasi Berhasil Di Dapat', 'Berhasil');
+        this.registerForm.patchValue({
+          latitude: this.kordinat.latitude,
+          longitude: this.kordinat.longitude,
+        });
+      } else {
+        await this.loadingService.dismiss();
+        await this.alertService.alertSetting(
+          'Tidak dapat menemukan lokasi, silakan aktifkan lokai pada perangkat',
+          'Gagal',
+          () =>
+            NativeSettings.open({
+              optionAndroid: AndroidSettings.ApplicationDetails,
+              optionIOS: IOSSettings.App,
+            })
+        );
+      }
+    } catch (err) {
+      console.log('Error in getLocation method: ', err);
     }
   }
 
@@ -168,38 +204,25 @@ export class RegisterPage implements OnInit {
         .register(dataAccount.email, dataAccount.password, data)
         .toPromise();
       this.loadingService.dismiss();
-      this.router.navigate(['confirmation'], {
-        queryParams: {
-          status: 'Register Berhasil',
-          url: 'login',
-          text: 'Login',
-          type: 'Check',
-        },
-      });
+      this.alertService.alert('Register berhasil', 'Berhasil', this.goLogin());
     } catch (error) {
       this.loadingService.dismiss();
-      this.router.navigate(['confirmation'], {
-        queryParams: {
-          status: 'Register Gagal',
-          url: 'login',
-          text: 'Login',
-          type: 'Fail',
-        },
-      });
+      this.alertService.alert('Register Gagal', 'Gagal', this.failSave);
     }
   }
 
-  ngOnInit() {
+  goLogin() {
+    this.router.navigateByUrl('/login');
+  }
+
+  failSave() {
     this.form();
-    this.route.queryParams.subscribe((params) => {
-      this.type = params['type'];
-      if (this.type === 'lihat') {
-        this.isRincian = true;
-        this.title = 'Rincian Profile';
-      } else {
-        this.isRincian = false;
-        this.title = 'Form Pendaftaran';
-      }
-    });
+    this.registerForm.reset();
+  }
+
+  ngOnInit() {
+    this.unsubscribe$ = new Subject<void>();
+    this.form();
+    this.isMobile = !this.platform.is('capacitor') ? false : true;
   }
 }

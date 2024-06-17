@@ -4,11 +4,14 @@
       <ion-searchbar placeholder="Cari History"></ion-searchbar>
     </div>
     <div class="container">
-      <ng-container *ngIf="dataHIstory">
-        <ng-container *ngFor="let data of dataHIstory">
-          <ng-container *ngIf="data.idTypeVisit === 0; else toVetVisit">
+      <ng-container *ngIf="consultation">
+        <ng-container *ngFor="let data of consultation">
+          <ng-container *ngIf="data.visitType === 1; else toVetVisit">
             <ion-card>
-              <div class="item-container" (click)="toRecapKonsulUV()">
+              <div
+                class="item-container"
+                (click)="toRecapKonsulUV(data.consultationId)"
+              >
                 <div class="docter-img">
                   <ng-container
                     *ngIf="data.jenisKelamin === 'Laki-laki'; else female"
@@ -20,14 +23,12 @@
                   </ng-template>
                 </div>
                 <div class="content-container">
-                  <h1>{{data.nama}}</h1>
-                  <p>{{data.keluhan}}</p>
+                  <h1>{{data.doctorName}}</h1>
+                  <p>Keluhan: {{data.complaint}}</p>
                   <ion-badge
-                    [ngClass]="data.idTypeVisit === 0 ? 'badge-yellow' : 'badge-blue'"
+                    [ngClass]="data.visitType === 1 ? 'badge-yellow' : 'badge-blue'"
                   >
-                    <p>
-                      {{data.idTypeVisit == 0 ? 'User Visit' : 'Vet Visit'}}
-                    </p>
+                    <p>{{data.visitType == 1 ? 'User Visit' : 'Vet Visit'}}</p>
                   </ion-badge>
                 </div>
               </div>
@@ -35,7 +36,10 @@
           </ng-container>
           <ng-template #toVetVisit>
             <ion-card>
-              <div class="item-container" (click)="toRecapKonsulVV()">
+              <div
+                class="item-container"
+                (click)="toRecapKonsulVV(data.consultationId)"
+              >
                 <div class="docter-img">
                   <ng-container
                     *ngIf="data.jenisKelamin === 'Laki-laki'; else female"
@@ -47,13 +51,13 @@
                   </ng-template>
                 </div>
                 <div class="content-container">
-                  <h1>{{data.nama}}</h1>
-                  <p>{{data.keluhan}}</p>
+                  <h1>{{data.doctorName}}</h1>
+                  <p>{{data.complaint}}</p>
                   <ion-badge
-                    [ngClass]="data.idTypeVisit === 0 ? 'badge-yellow' : 'badge-blue'"
+                    [ngClass]="data.idTypeVisit === 1 ? 'badge-yellow' : 'badge-blue'"
                   >
                     <p>
-                      {{data.idTypeVisit == 0 ? 'User Visit' : 'Vet Visit'}}
+                      {{data.idTypeVisit == 1 ? 'User Visit' : 'Vet Visit'}}
                     </p>
                   </ion-badge>
                 </div>
@@ -63,8 +67,5 @@
         </ng-container>
       </ng-container>
     </div>
-    <ion-badge (click)="toHisVet()"
-      ><ion-text>TO HISTORY VET</ion-text></ion-badge
-    >
   </div>
 </ion-content>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConsultationDataService } from '../service/data/consultations.data.service';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-history-vet',
@@ -7,38 +9,34 @@ import { Router } from '@angular/router';
   styleUrls: ['./history-vet.page.scss'],
 })
 export class HistoryVetPage implements OnInit {
-  public dataHIstory = [
-    {
-      idUser: 4,
-      idTypeVisit: 0,
-      nama: 'Jamarius Quangledangle',
-      keluhan: 'Kucing muntah-muntah terus',
-      jenisKelamin: 'Laki-laki',
-    },
-    {
-      idUser: 4,
-      idTypeVisit: 1,
-      nama: 'Jamarius Quangledangle',
-      keluhan: 'Kucing patah tulang',
-      jenisKelamin: 'Perempuan',
-    },
-    {
-      idUser: 5,
-      idTypeVisit: 1,
-      nama: 'Roberto Coochiesmith',
-      keluhan: 'Sapi tidak nafsu makan',
-      jenisKelamin: 'Laki-laki',
-    },
-  ];
-  constructor(private router: Router) {}
+  private userData: any;
 
-  public async toRecapKonsulUV() {
-    this.router.navigate([`/consultation-info-uv-vet`], {});
+  public consultation: any;
+
+  constructor(
+    private authService: AuthService,
+    private consultationDataService: ConsultationDataService,
+    private router: Router
+  ) {}
+
+  private getConsultation() {
+    this.consultationDataService
+      .getConsultationByDoctorId(this.userData.doctorId)
+      .subscribe((res) => {
+        this.consultation = res;
+      });
   }
 
-  public async toRecapKonsulVV() {
-    this.router.navigate([`/consultation-info-vv-vet`], {});
+  public async toRecapKonsulUV(id: number) {
+    this.router.navigate([`/consultation-info-uv-vet/${id}`], {});
   }
 
-  ngOnInit() {}
+  public async toRecapKonsulVV(id: number) {
+    this.router.navigate([`/consultation-info-vv-vet/${id}`], {});
+  }
+
+  async ngOnInit() {
+    this.userData = await this.authService.getUserData();
+    this.getConsultation();
+  }
 }

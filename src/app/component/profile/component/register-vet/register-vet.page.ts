@@ -44,7 +44,9 @@ export class RegisterVetPage implements OnInit {
     private location: Location,
     private locationAccuracy: LocationAccuracy,
     private platform: Platform
-  ) {}
+  ) {
+    this.failSave = this.failSave.bind(this);
+  }
 
   public form() {
     this.registerForm = this.fb.group(
@@ -62,8 +64,8 @@ export class RegisterVetPage implements OnInit {
         specialisasiHewan: ['', Validators.required],
         password: ['', [Validators.required]],
         confirmPassword: ['', Validators.required],
-        latitude: [{ value: '', disabled: true }, Validators.required],
-        longitude: [{ value: '', disabled: true }, Validators.required],
+        latitude: ['', Validators.required],
+        longitude: ['', Validators.required],
       },
       {
         validator: this.mustMatch('password', 'confirmPassword'),
@@ -95,168 +97,141 @@ export class RegisterVetPage implements OnInit {
     }
 
     this.loadingService.present();
-    const {
-      email,
-      password,
-      username,
-      tempatPraktik,
-      jadwalPraktik,
-      lamaPengalaman,
-      specialisasiHewan,
-      nomorTelepon,
-      jenisKelamin,
-      latitude,
-      longitude,
-    } = this.registerForm.getRawValue();
+    const formData = this.registerForm.value;
+    const dataAccount = {
+      email: formData.email,
+      password: formData.password,
+    };
+
+    const data = {
+      username: formData.username,
+      address: formData.tempatPraktik,
+      doctorSchedule: formData.jadwalPraktik,
+      experience: formData.lamaPengalaman,
+      gender: formData.jenisKelamin,
+      specialization: formData.specialisasiHewan,
+      phoneNumber: formData.nomorTelepon,
+      lat: formData.latitude.toString(),
+      lng: formData.longitude.toString(),
+    };
 
     try {
       await this.authService
-        .registerDoctors(
-          email,
-          password,
-          username,
-          tempatPraktik,
-          jadwalPraktik,
-          lamaPengalaman,
-          specialisasiHewan,
-          nomorTelepon,
-          jenisKelamin,
-          latitude,
-          longitude
-        )
+        .registerDoctors(dataAccount.email, dataAccount.password, data)
         .toPromise();
       this.loadingService.dismiss();
-      this.router.navigate(['confirmation'], {
-        queryParams: {
-          status: 'Register Berhasil',
-          url: 'login',
-          text: 'Login',
-          type: 'Check',
-        },
-      });
+      this.alertService.alert('Register berhasil', 'Berhasil', this.goLogin());
     } catch (error) {
       this.loadingService.dismiss();
-      this.router.navigate(['confirmation'], {
-        queryParams: {
-          status: 'Register Gagal',
-          url: 'login',
-          text: 'Coba Lagi',
-          type: 'Fail',
-        },
-      });
+      this.alertService.alert('Register Gagal', 'Gagal', this.failSave);
     }
   }
 
   public async getLocation() {
-    console.log('Is Mobile: ', this.isMobile);
-    console.log('Platform: ', this.platform.is('android'));
+    await this.loadingService.present();
 
-    if (this.isMobile && this.platform.is('android')) {
-      console.log('Requesting permissions...');
+    try {
+      if (this.isMobile && this.platform.is('android')) {
+        const permiss = await this.androidPermissions.requestPermissions([
+          this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION,
+          this.androidPermissions.PERMISSION.ACCESS_FINE_LOCATION,
+        ]);
 
-      // const permiss = await this.androidPermissions.requestPermissions([
-      //   this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION,
-      //   this.androidPermissions.PERMISSION.ACCESS_FINE_LOCATION,
-      // ]);
+        if (!permiss.hasPermission) {
+          await this.alertService.alertSetting(
+            'Tidak dapat menerima lokasi',
+            'Gagal',
+            () =>
+              NativeSettings.open({
+                optionAndroid: AndroidSettings.ApplicationDetails,
+                optionIOS: IOSSettings.App,
+              })
+          );
+          this.location.back();
+          return;
+        }
 
-      // if (!permiss.hasPermission) {
-      //   console.log('Permissions not granted');
-      //   await this.alertService.alertSetting(
-      //     'Tidak dapat menerima lokasi',
-      //     'Gagal',
-      //     () =>
-      //       NativeSettings.open({
-      //         optionAndroid: AndroidSettings.ApplicationDetails,
-      //         optionIOS: IOSSettings.App,
-      //       })
-      //   );
-      //   this.location.back();
-      //   return;
-      // }
-
-      try {
-        const lokasi = await this.geolocation.getCurrentPosition({
-          timeout: 6000,
-        });
-        console.log('Lokasi obtained: ', lokasi);
-        this.kordinat = lokasi.coords;
-        this.getPosition$.next(lokasi);
-      } catch (err) {
-        console.log('Error getting current position: ', err);
-      }
-
-      if (!this.kordinat) {
         try {
-          this.geolocation
-            .watchPosition()
-            .pipe(takeUntil(this.unsubscribe$))
-            .subscribe((res: any) => {
-              if (res) {
-                console.log('Watching position: ', res);
-                this.kordinat = res.coords;
-                this.getPosition$.next(res);
-              }
-            });
-          // const canRequest = await this.locationAccuracy.canRequest();
-          // console.log('Can request high accuracy: ', canRequest);
-
-          // if (canRequest) {
-          //   await this.locationAccuracy.request(
-          //     this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY
-          //   );
-
-          //   this.geolocation
-          //     .watchPosition()
-          //     .pipe(takeUntil(this.unsubscribe$))
-          //     .subscribe((res: any) => {
-          //       if (res) {
-          //         console.log('Watching position: ', res);
-          //         this.kordinat = res.coords;
-          //         this.getPosition$.next(res);
-          //       }
-          //     });
-          // } else {
-          //   throw new Error('cannot-request');
-          // }
+          const lokasi = await this.geolocation.getCurrentPosition({
+            timeout: 6000,
+          });
+          this.kordinat = lokasi.coords;
+          this.getPosition$.next(lokasi);
         } catch (err) {
-          console.log('Error during location accuracy request: ', err);
+          console.log('Error getting current position: ', err);
+        }
+
+        if (!this.kordinat) {
+          try {
+            const canRequest = await this.locationAccuracy.canRequest();
+
+            if (canRequest) {
+              await this.locationAccuracy.request(
+                this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY
+              );
+
+              this.geolocation
+                .watchPosition()
+                .pipe(takeUntil(this.unsubscribe$))
+                .subscribe((res: any) => {
+                  if (res) {
+                    this.kordinat = res.coords;
+                    this.getPosition$.next(res);
+                  }
+                });
+            } else {
+              throw new Error('cannot-request');
+            }
+          } catch (err) {
+            console.log('Error during location accuracy request: ', err);
+          }
+        }
+      } else {
+        try {
+          const lokasi = await CapGeolocation.Geolocation.getCurrentPosition();
+          this.kordinat = lokasi.coords;
+          this.getPosition$.next(lokasi);
+        } catch (err) {
+          console.log('Error getting position with CapGeolocation: ', err);
         }
       }
-    } else {
-      try {
-        const lokasi = await CapGeolocation.Geolocation.getCurrentPosition();
-        console.log('CapGeolocation obtained: ', lokasi);
-        this.kordinat = lokasi.coords;
-        this.getPosition$.next(lokasi);
-      } catch (err) {
-        console.log('Error getting position with CapGeolocation: ', err);
-      }
-    }
 
-    if (this.kordinat) {
-      console.log('Setting coordinates in form: ', this.kordinat);
-      this.registerForm.patchValue({
-        latitude: this.kordinat.latitude,
-        longitude: this.kordinat.longitude,
-      });
-    } else {
-      console.log('Coordinates not set because they are null');
+      if (this.kordinat) {
+        await this.loadingService.dismiss();
+        await this.alertService.alert('Lokasi Berhasil Di Dapat', 'Berhasil');
+        this.registerForm.patchValue({
+          latitude: this.kordinat.latitude,
+          longitude: this.kordinat.longitude,
+        });
+      } else {
+        await this.loadingService.dismiss();
+        await this.alertService.alertSetting(
+          'Tidak dapat menemukan lokasi, silakan aktifkan lokai pada perangkat',
+          'Gagal',
+          () =>
+            NativeSettings.open({
+              optionAndroid: AndroidSettings.ApplicationDetails,
+              optionIOS: IOSSettings.App,
+            })
+        );
+      }
+    } catch (err) {
+      console.log('Error in getLocation method: ', err);
     }
+  }
+
+  goLogin() {
+    this.router.navigateByUrl('/login');
+  }
+
+  failSave() {
+    this.form();
+    this.registerForm.reset();
   }
 
   ngOnInit() {
     this.unsubscribe$ = new Subject<void>();
     this.form();
-    this.route.queryParams.subscribe((params) => {
-      this.type = params['type'];
-      if (this.type === 'lihat') {
-        this.isRincian = true;
-        this.title = 'Rincian Profile';
-      } else {
-        this.isRincian = false;
-        this.title = 'Form Pendaftaran';
-      }
-    });
     this.isMobile = !this.platform.is('capacitor') ? false : true;
   }
 }

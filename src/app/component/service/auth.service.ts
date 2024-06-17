@@ -42,7 +42,7 @@ export class AuthService {
         if (userCredential.user) {
           const userData = {
             ...data,
-            userType: 1,
+            userType: '1',
             uid: userCredential.user.uid,
             email: userCredential.user.email,
           };
@@ -54,35 +54,15 @@ export class AuthService {
     );
   }
 
-  registerDoctors(
-    email: string,
-    password: string,
-    username: string,
-    tempatPraktik: string,
-    jadwalPraktik: string,
-    lamaPengalaman: string,
-    specialisasiHewan: string,
-    nomorTelepon: string,
-    jenisKelamin: string,
-    lat: string,
-    lang: string
-  ): Observable<any> {
+  registerDoctors(email: string, password: string, data: any): Observable<any> {
     return from(this.auth.createUserWithEmailAndPassword(email, password)).pipe(
       switchMap((userCredential) => {
         if (userCredential.user) {
           const userData = {
+            ...data,
             email: userCredential.user.email,
-            username: username,
-            address: tempatPraktik,
-            doctorSchedule: jadwalPraktik,
-            experience: lamaPengalaman,
-            gender: jenisKelamin,
-            specialization: specialisasiHewan,
-            phoneNumber: nomorTelepon,
-            userType: 2,
+            userType: '2',
             uid: userCredential.user.uid,
-            lat: lat,
-            lang: lang,
           };
           return this.accountDataService.createDoctorAccount(userData);
         } else {

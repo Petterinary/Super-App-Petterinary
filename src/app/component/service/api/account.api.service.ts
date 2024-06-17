@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environtments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AccountService {
   private apiUrl = environment.apiUrl;
@@ -28,11 +28,17 @@ export class AccountService {
   }
 
   createAccount(account: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/accounts/create`, account);
+    return this.http.post(
+      `${this.apiUrl}/accounts/createUserAccount `,
+      account
+    );
   }
 
   createDoctorAccount(account: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/accounts/createDoctorAccount`, account);
+    return this.http.post(
+      `${this.apiUrl}/accounts/createDoctorAccount`,
+      account
+    );
   }
 
   createUserAccount(account: any): Observable<any> {
@@ -40,7 +46,10 @@ export class AccountService {
   }
 
   updateAccount(accountID: number, account: any): Observable<any> {
-    return this.http.patch(`${this.apiUrl}/accounts/update/${accountID}`, account);
+    return this.http.patch(
+      `${this.apiUrl}/accounts/update/${accountID}`,
+      account
+    );
   }
 
   deleteAccount(accountID: number): Observable<any> {

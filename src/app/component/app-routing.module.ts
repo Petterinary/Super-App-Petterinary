@@ -36,7 +36,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'consultation-info-uv',
+    path: 'consultation-info-uv/:id',
     loadChildren: () =>
       import('./consultation-info-uv/consultation-info-uv.module').then(
         (m) => m.ConsultationInfoUvPageModule
@@ -50,7 +50,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'uv-live-tracking',
+    path: 'uv-live-tracking/:id',
     loadChildren: () =>
       import('./uv-live-tracking/uv-live-tracking.module').then(
         (m) => m.UvLiveTrackingPageModule
@@ -71,21 +71,21 @@ export const routes: Routes = [
       ).then((m) => m.ConfirmationPagePaymentPageModule),
   },
   {
-    path: 'form-vet-visit',
+    path: 'form-vet-visit/:vetId',
     loadChildren: () =>
       import('./form-vet-visit/form-vet-visit.module').then(
         (m) => m.FormVetVisitPageModule
       ),
   },
   {
-    path: 'consultation-info-vv',
+    path: 'consultation-info-vv/:id',
     loadChildren: () =>
       import('./consultation-info-vv/consultation-info-vv.module').then(
         (m) => m.ConsultationInfoVvPageModule
       ),
   },
   {
-    path: 'vv-live-tracking',
+    path: 'vv-live-tracking/:id',
     loadChildren: () =>
       import('./vv-live-tracking/vv-live-tracking.module').then(
         (m) => m.VvLiveTrackingPageModule
@@ -118,14 +118,14 @@ export const routes: Routes = [
       import('./home-vet/home-vet.module').then((m) => m.HomeVetPageModule),
   },
   {
-    path: 'consultation-info-uv-vet',
+    path: 'consultation-info-uv-vet/:id',
     loadChildren: () =>
       import('./consultation-info-uv-vet/consultation-info-uv-vet.module').then(
         (m) => m.ConsultationInfoUvVetPageModule
       ),
   },
   {
-    path: 'consultation-info-vv-vet',
+    path: 'consultation-info-vv-vet/:id',
     loadChildren: () =>
       import('./consultation-info-vv-vet/consultation-info-vv-vet.module').then(
         (m) => m.ConsultationInfoVvVetPageModule
@@ -184,14 +184,14 @@ export const routes: Routes = [
     component: ConfirmationComponent,
   },
   {
-    path: 'uv-live-tracking-vet',
+    path: 'uv-live-tracking-vet/:id',
     loadChildren: () =>
       import('./uv-live-tracking-vet/uv-live-tracking-vet.module').then(
         (m) => m.UvLiveTrackingVetPageModule
       ),
   },
   {
-    path: 'vv-live-tracking-vet',
+    path: 'vv-live-tracking-vet/:id',
     loadChildren: () =>
       import('./vv-live-tracking-vet/vv-live-tracking-vet.module').then(
         (m) => m.VvLiveTrackingVetPageModule

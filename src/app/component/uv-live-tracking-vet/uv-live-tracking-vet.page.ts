@@ -12,7 +12,7 @@ export class UvLiveTrackingVetPage implements OnInit {
       koordinatUser: 'w',
       koordinatDokter: 'w',
       nama: 'Jamarius Quangledangle',
-      dummyJarak: '4.1km',
+      dummyJarak: '',
       jenisKelamin: 'Laki-laki',
     },
   ];

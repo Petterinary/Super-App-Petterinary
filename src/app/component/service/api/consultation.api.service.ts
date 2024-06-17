@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environtments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class ConsultationService {
+export class ConsultationApiService {
   private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
@@ -24,18 +24,28 @@ export class ConsultationService {
   }
 
   getConsultationByDetailedId(consultationID: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/consultations/detailed/${consultationID}`);
+    return this.http.get(
+      `${this.apiUrl}/consultations/detailed/${consultationID}`
+    );
   }
 
   createConsultation(consultation: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/consultations/create`, consultation);
   }
 
-  updateConsultation(consultationID: number, consultation: any): Observable<any> {
-    return this.http.patch(`${this.apiUrl}/consultations/update/${consultationID}`, consultation);
+  updateConsultation(
+    consultationID: number,
+    consultation: any
+  ): Observable<any> {
+    return this.http.patch(
+      `${this.apiUrl}/consultations/update/${consultationID}`,
+      consultation
+    );
   }
 
   deleteConsultation(consultationID: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/consultations/delete/${consultationID}`);
+    return this.http.delete(
+      `${this.apiUrl}/consultations/delete/${consultationID}`
+    );
   }
 }

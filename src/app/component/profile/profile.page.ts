@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
+import { LoadingService } from '../service/loading.service';
+import { AlertService } from '../service/alert-service';
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +11,6 @@ import { AuthService } from '../service/auth.service';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  public isLogin = false;
   public isDokter = false;
   public loginForm!: FormGroup;
   public userData: any;
@@ -17,36 +18,23 @@ export class ProfilePage implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private loadingService: LoadingService,
+    private alertService: AlertService,
     private router: Router
   ) {}
 
   public async submitLogout() {
     try {
       await this.authService.logout().toPromise();
-      this.isLogin = false;
       this.userData = null;
-      this.router.navigate(['confirmation'], {
-        queryParams: {
-          status: 'Logout Berhasil',
-          url: 'login',
-          text: 'Login',
-          type: 'Check',
-        },
-      });
+      this.alertService.alert('Logout berhasil', 'Berhasil', this.goLogin());
     } catch (error) {
-      this.router.navigate(['confirmation'], {
-        queryParams: {
-          status: 'Logout Gagal',
-          url: 'profile',
-          text: 'Profile',
-          type: 'Fail',
-        },
-      });
+      this.alertService.alert('Logout Gagal', 'Gagal');
     }
   }
 
-  public goRegister() {
-    this.router.navigate(['profile/service-selection-register']);
+  goLogin() {
+    this.router.navigateByUrl('/login');
   }
 
   public goRincianProfile() {
@@ -64,14 +52,13 @@ export class ProfilePage implements OnInit {
   private async checkLoginStatus() {
     try {
       this.userData = await this.authService.getUserData();
-      if (this.userData) {
-        this.isLogin = true;
+      if (this.userData.userType === '2') {
+        this.isDokter = true;
       } else {
-        this.isLogin = false;
+        this.isDokter = false;
       }
     } catch (error) {
       console.error('Error checking login status', error);
-      this.isLogin = false;
     }
   }
 

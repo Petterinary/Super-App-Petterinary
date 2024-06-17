@@ -1,11 +1,12 @@
-{
-  "appId": "com.example.app",
-  "appName": "petterinary",
-  "bundledWebRuntime": false,
-  "webDir": "www",
-  "plugins": {
-    "SplashScreen": {
-      "launchShowDuration": 3000
-    }
+import { CapacitorConfig } from '@capacitor/cli';
+
+const config: CapacitorConfig = {
+  appId: 'com.example.app',
+  appName: 'petterinary',
+  webDir: 'www',
+  server: {
+    androidScheme: 'https'
   }
-}
+};
+
+export default config;

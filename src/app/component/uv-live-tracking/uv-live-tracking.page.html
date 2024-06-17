@@ -2,9 +2,7 @@
 <ion-content [fullscreen]="true" class="full-screen-content">
   <div class="contents">
     <div class="map-section">
-      <app-map
-        (updateDistanceAndDuration)="updateDistanceAndDuration($event.distance, $event.duration)"
-      ></app-map>
+      <app-map></app-map>
       <div class="info-container">
         <ng-container *ngIf="dataDokter">
           <ng-container *ngFor="let data of dataDokter">

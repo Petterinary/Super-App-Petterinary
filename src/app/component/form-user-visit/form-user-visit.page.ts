@@ -3,9 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { AuthService } from '../service/auth.service';
-import { ConsultationDataService } from '../service/data/consultations.data.service';
 import { finalize } from 'rxjs';
 import { LoadingService } from '../service/loading.service';
+import { AlertService } from '../service/alert-service';
+import { ServiceRegistrationFormDataService } from '../service/data/serviceRegistrationForm.data.service';
 
 @Component({
   selector: 'app-form-user-visit',
@@ -22,14 +23,16 @@ export class FormUserVisitPage implements OnInit {
     private route: ActivatedRoute,
     private authService: AuthService,
     private loadingService: LoadingService,
-    private consultationDataService: ConsultationDataService,
+    private serviceRegistrationFormDataService: ServiceRegistrationFormDataService,
+    private alertService: AlertService,
     private formBuilder: FormBuilder
-  ) {}
+  ) {
+    this.failSave = this.failSave.bind(this);
+  }
 
   async ngOnInit() {
     this.initForm();
     this.userData = await this.authService.getUserData();
-    console.log(this.userData);
     this.idDoctors = Number(this.route.snapshot.paramMap.get('vetId'));
   }
 
@@ -47,49 +50,44 @@ export class FormUserVisitPage implements OnInit {
     const formData = this.formGroup.value;
     const data = {
       doctorId: this.idDoctors,
-      userId: 1,
+      userId: this.userData.userId,
       visitType: 1,
-      address: 'jakarta',
-      lat: '-6.9138192',
-      lng: '107.198371',
+      address: this.userData.address,
+      lat: this.userData.lat,
+      lng: this.userData.lng,
       petName: formData.namaHewan,
       petType: formData.tipeHewan,
       complaint: formData.keluhan,
-      registrationDate: '5 Juni 2024 13:00:00',
+      registrationDate: moment().format('YYYY-MM-DDTHH:mm:ss'),
     };
 
-    this.consultationDataService
-      .createConsultation(data)
+    this.serviceRegistrationFormDataService
+      .createServiceRegistrationForm(data)
       .pipe(finalize(async () => await this.loadingService.dismiss()))
       .subscribe(
         async () => {
-          await this.router.navigate(['confirmation'], {
-            queryParams: {
-              status: 'Pendaftaran berhasil',
-              url: 'history',
-              text: 'History',
-              type: 'Check',
-            },
-          });
+          await this.alertService.alertAndDismiss(
+            'Pendaftaran Konsultasi Berhasil',
+            'Berhasil',
+            this.goHistory()
+          );
         },
         async (_) => {
-          await this.router.navigate(['confirmation'], {
-            queryParams: {
-              status: 'Pendaftaran gagal',
-              url: `form-user-visit/${this.idDoctors}`,
-              text: 'Form Pendaftaran User Visit',
-              type: 'Fail',
-            },
-          });
+          await this.alertService.alert(
+            'Pendaftaran Konsultasi Gagal',
+            'Gagal',
+            this.failSave
+          );
         }
       );
   }
 
-  public async toConsultInfoUV() {
-    if (this.formGroup.valid) {
-      this.router.navigate([`/consultation-info-uv`], {});
-    } else {
-      console.log('Form is not valid');
-    }
+  private goHistory() {
+    this.router.navigateByUrl('/history');
+  }
+
+  private failSave() {
+    this.initForm();
+    this.formGroup.reset();
   }
 }
