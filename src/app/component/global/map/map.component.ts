@@ -1,12 +1,9 @@
-// map.component.ts
 import {
   Component,
   ElementRef,
   OnInit,
   Renderer2,
   ViewChild,
-  Output,
-  EventEmitter,
   OnDestroy,
   Input,
 } from '@angular/core';
@@ -15,6 +12,7 @@ import { GmapService } from 'src/app/services/gmap/gmap.service';
 import { TrackerService } from 'src/app/services/tracker/tracker.service';
 import { GeolocationService } from '../../service/live-location.service';
 import { AuthService } from '../../service/auth.service';
+import { LiveTrackingDataService } from '../../service/data/live-tracking.data.service';
 
 @Component({
   selector: 'app-map',
@@ -23,7 +21,7 @@ import { AuthService } from '../../service/auth.service';
 })
 export class MapComponent implements OnInit, OnDestroy {
   @ViewChild('map', { static: true }) mapElementRef: ElementRef;
-  @Input() consultationId: number;
+  @Input() consulStage: any;
 
   public googleMaps: any;
   public source: any = {};
@@ -37,47 +35,142 @@ export class MapComponent implements OnInit, OnDestroy {
   public geolocationSub: Subscription;
 
   private userData: any;
-  private isDoctor: boolean;
+  private isDoctorTrack: boolean;
+  private isUserTrack: boolean;
+  private liveTracking: any;
 
   constructor(
     private tracker: TrackerService,
     private maps: GmapService,
     private renderer: Renderer2,
     private authService: AuthService,
+    private liveTrackingDataService: LiveTrackingDataService,
     private geolocationService: GeolocationService
   ) {}
 
   async ngOnInit() {
-    console.log(this.consultationId);
     this.userData = await this.authService.getUserData();
-    if (this.userData.userType === '1') {
-      this.isDoctor = false;
+    if (this.consulStage[0].visitType === 1) {
+      this.isUserTrack = true;
+      this.isDoctorTrack = false;
     } else {
-      this.isDoctor = true;
+      this.isUserTrack = false;
+      this.isDoctorTrack = true;
     }
     this.getLatLng();
   }
 
   getLatLng() {
-    this.trackSub = this.tracker.getLocation().subscribe({
-      next: (data) => {
-        this.source = { lat: data.sourceLat, lng: data.sourceLng };
-        if (!this.dest?.lat) {
-          this.dest = { lat: data.destLat, lng: data.destLng };
-          this.loadMap();
-        } else {
-          this.changeMarkerPosition(this.source);
-        }
-      },
-    });
+    if (this.isUserTrack) {
+      this.trackSub = this.liveTrackingDataService
+        .getLiveTrackUser(this.consulStage[0].consultationId)
+        .subscribe({
+          next: (data) => {
+            this.liveTracking = data;
+            this.tracking();
+            setTimeout(() => {
+              this.refreshData();
+            }, 5000);
+          },
+        });
 
-    if (this.isDoctor) {
-      this.geolocationSub = this.geolocationService.watchPosition(
-        (position) => {
-          this.tracker.updateSourceLocation(position);
-        }
-      );
+      if (this.userData.userType === '1') {
+        console.log('user');
+        this.geolocationSub = this.geolocationService.watchPosition(
+          async (position) => {
+            if (this.liveTracking?.liveTrackingId) {
+              try {
+                await this.update(this.liveTracking.liveTrackingId, position);
+              } catch (e) {
+                console.error('Error updating live tracking:', e);
+              }
+            }
+          }
+        );
+      }
     }
+
+    if (this.isDoctorTrack) {
+      this.trackSub = this.liveTrackingDataService
+        .getLiveTrackDoctor(this.consulStage[0].consultationId)
+        .subscribe({
+          next: (data) => {
+            this.liveTracking = data;
+            this.tracking();
+            setTimeout(() => {
+              this.refreshData();
+            }, 5000);
+          },
+        });
+
+      if (this.userData.userType === '2') {
+        console.log('doctor');
+        this.geolocationSub = this.geolocationService.watchPosition(
+          async (position) => {
+            if (this.liveTracking?.liveTrackingId) {
+              try {
+                await this.update(this.liveTracking.liveTrackingId, position);
+              } catch (e) {
+                console.error('Error updating live tracking:', e);
+              }
+            }
+          }
+        );
+      }
+    }
+  }
+
+  tracking() {
+    if (this.isUserTrack) {
+      this.source = {
+        lat: this.liveTracking?.userLat,
+        lng: this.liveTracking?.userLng,
+      };
+      if (!this.dest?.lat) {
+        this.dest = {
+          lat: this.liveTracking?.doctorLat,
+          lng: this.liveTracking?.doctorLng,
+        };
+        this.loadMap();
+      } else {
+        this.changeMarkerPosition(this.source);
+      }
+    }
+
+    if (this.isDoctorTrack) {
+      this.source = {
+        lat: this.liveTracking?.doctorLat,
+        lng: this.liveTracking?.doctorLng,
+      };
+      if (!this.dest?.lat) {
+        this.dest = {
+          lat: this.liveTracking?.userLat,
+          lng: this.liveTracking?.userLng,
+        };
+        this.loadMap();
+      } else {
+        this.changeMarkerPosition(this.source);
+      }
+    }
+  }
+
+  update(id: number, data: any) {
+    const locationData = {
+      lat: data.lat,
+      lng: data.lng,
+    };
+    this.liveTrackingDataService.updateLiveTrack(id, locationData).subscribe(
+      async () => {
+        await console.log('update success');
+      },
+      async (_) => {
+        await console.log('update fail');
+      }
+    );
+  }
+
+  refreshData() {
+    this.getLatLng();
   }
 
   changeMarkerPosition(data) {

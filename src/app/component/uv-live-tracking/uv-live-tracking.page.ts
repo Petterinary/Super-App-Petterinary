@@ -26,8 +26,6 @@ export class UvLiveTrackingPage implements OnInit {
 
   ngOnInit() {
     this.consultationId = Number(this.route.snapshot.paramMap.get('id'));
-    if (this.consultationId) {
-      this.getDetailConsul();
-    }
+    this.getDetailConsul();
   }
 }

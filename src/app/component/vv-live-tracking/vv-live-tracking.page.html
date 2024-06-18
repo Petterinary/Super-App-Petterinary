@@ -1,7 +1,9 @@
 <ion-content [fullscreen]="true" class="full-screen-content">
   <div class="contents">
     <div class="map-section">
-      <app-map [consultationId]="consultationId"></app-map>
+      <ng-container *ngIf="consulStage">
+        <app-map [consulStage]="consulStage"></app-map>
+      </ng-container>
       <div class="info-container">
         <ng-container *ngIf="consulStage">
           <ng-container *ngFor="let data of consulStage">

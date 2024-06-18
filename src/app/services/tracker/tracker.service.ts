@@ -1,32 +1,20 @@
 // tracker.service.ts
 import { Injectable } from '@angular/core';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-} from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { LiveTrackingDataService } from 'src/app/component/service/data/live-tracking.data.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TrackerService {
-  private docRef: AngularFirestoreDocument<any>;
+  constructor(private liveTrackingDataService: LiveTrackingDataService) {}
 
-  constructor(private afs: AngularFirestore) {
-    this.docRef = this.afs.doc('liveTracking/7bZdz2lWAIRKOG1Q9eAb');
-  }
-
-  getLocation(): Observable<any> {
-    return this.docRef.valueChanges();
-  }
-
-  async updateSourceLocation(source: any) {
+  async updateSourceLocation(id: number, source: any) {
     try {
       const userData = {
-        sourceLat: source.lat,
-        sourceLng: source.lng,
+        lat: source.lat,
+        lng: source.lng,
       };
-      await this.docRef.update(userData);
+      await this.liveTrackingDataService.updateLiveTrack(id, userData);
       return true;
     } catch (e) {
       throw e;

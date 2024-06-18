@@ -196,8 +196,8 @@ export class RegisterPage implements OnInit {
       address: formData.alamat,
       phoneNumber: formData.nomorTelepon,
       gender: formData.jenisKelamin,
-      lat: formData.latitude.toString(),
-      lng: formData.longitude.toString(),
+      lat: formData.latitude,
+      lng: formData.longitude,
     };
     try {
       await this.authService

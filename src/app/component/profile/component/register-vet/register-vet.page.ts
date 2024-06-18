@@ -111,8 +111,8 @@ export class RegisterVetPage implements OnInit {
       gender: formData.jenisKelamin,
       specialization: formData.specialisasiHewan,
       phoneNumber: formData.nomorTelepon,
-      lat: formData.latitude.toString(),
-      lng: formData.longitude.toString(),
+      lat: formData.latitude,
+      lng: formData.longitude,
     };
 
     try {
