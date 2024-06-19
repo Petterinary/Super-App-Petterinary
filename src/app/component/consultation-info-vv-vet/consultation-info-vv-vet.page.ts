@@ -5,6 +5,8 @@ import { AlertService } from '../service/alert-service';
 import { ConsultationDataService } from '../service/data/consultations.data.service';
 import { finalize } from 'rxjs';
 import * as moment from 'moment';
+import { RincianConsulVvComponent } from '../rincian-consul-vv/rincian-consul-vv.component';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-consultation-info-vv-vet',
@@ -21,6 +23,7 @@ export class ConsultationInfoVvVetPage implements OnInit {
     private router: Router,
     private loadingService: LoadingService,
     private alertService: AlertService,
+    private modalControler: ModalController,
     private consultationDataService: ConsultationDataService
   ) {}
 
@@ -41,7 +44,6 @@ export class ConsultationInfoVvVetPage implements OnInit {
     await this.loadingService.present();
     const data = {
       stageStatus: 4,
-      passStatus: 4,
       idUser: this.consulStage[0].userId,
       idDoctor: this.consulStage[0].doctorId,
       idRegistrationForm: this.consulStage[0].serviceRegistrationFormId,
@@ -70,7 +72,6 @@ export class ConsultationInfoVvVetPage implements OnInit {
     await this.loadingService.present();
     const data = {
       stageStatus: 1,
-      passStatus: 1,
       idUser: this.consulStage[0].userId,
       idDoctor: this.consulStage[0].doctorId,
       idRegistrationForm: this.consulStage[0].serviceRegistrationFormId,
@@ -99,7 +100,6 @@ export class ConsultationInfoVvVetPage implements OnInit {
     await this.loadingService.present();
     const data = {
       stageStatus: 2,
-      passStatus: 2,
       idUser: this.consulStage[0].userId,
       idDoctor: this.consulStage[0].doctorId,
       idRegistrationForm: this.consulStage[0].serviceRegistrationFormId,
@@ -124,6 +124,33 @@ export class ConsultationInfoVvVetPage implements OnInit {
       );
   }
 
+  async openRincian(id: number) {
+    const modal = await this.modalControler.create({
+      component: RincianConsulVvComponent,
+      componentProps: {
+        idRegisForm: id,
+      },
+    });
+
+    await modal.present();
+    const modalElement = await this.modalControler.getTop();
+    if (modalElement) {
+      this.applyCustomStyles(modalElement);
+    }
+  }
+
+  applyCustomStyles(modalElement: HTMLIonModalElement) {
+    const modalWrapper =
+      modalElement.shadowRoot?.querySelector('.modal-wrapper');
+
+    if (modalWrapper) {
+      modalWrapper.setAttribute(
+        'style',
+        'width: 90%; height: 60%; border-radius: 10px'
+      );
+    }
+  }
+
   public async toLTPage(id: number) {
     this.router.navigate([`/vv-live-tracking-vet/${id}`], {});
   }
@@ -140,15 +167,8 @@ export class ConsultationInfoVvVetPage implements OnInit {
     this.router.navigate([`/rekap-konsultasi-vv-vet`], {});
   }
 
-  public async toRincianKonsul() {
-    this.router.navigate(
-      [`/consultation-info-vv-vet/rincian-consul-vv-vet`],
-      {}
-    );
-  }
-
   public statusStage() {
-    if (this.consulStage[0].passStatus === 0) {
+    if (this.consulStage[0].stageStatus === 0) {
       this.status = [
         {
           statusInfo: 'Permohonan terkirim',
@@ -167,7 +187,7 @@ export class ConsultationInfoVvVetPage implements OnInit {
           passStatus: 3,
         },
       ];
-    } else if (this.consulStage[0].passStatus === 1) {
+    } else if (this.consulStage[0].stageStatus === 1) {
       this.status = [
         {
           statusInfo: 'Permohonan terkirim',
@@ -186,7 +206,7 @@ export class ConsultationInfoVvVetPage implements OnInit {
           passStatus: 3,
         },
       ];
-    } else if (this.consulStage[0].passStatus === 2) {
+    } else if (this.consulStage[0].stageStatus === 2) {
       this.status = [
         {
           statusInfo: 'Permohonan terkirim',
@@ -205,7 +225,7 @@ export class ConsultationInfoVvVetPage implements OnInit {
           passStatus: 0,
         },
       ];
-    } else if (this.consulStage[0].passStatus === 3) {
+    } else if (this.consulStage[0].stageStatus === 3) {
       this.status = [
         {
           statusInfo: 'Permohonan terkirim',
@@ -224,7 +244,7 @@ export class ConsultationInfoVvVetPage implements OnInit {
           passStatus: 1,
         },
       ];
-    } else if (this.consulStage[0].passStatus === 4) {
+    } else if (this.consulStage[0].stageStatus === 4) {
       this.status = [
         {
           statusInfo: 'Permohonan terkirim',
@@ -235,7 +255,7 @@ export class ConsultationInfoVvVetPage implements OnInit {
           passStatus: 2,
         },
       ];
-    } else if (this.consulStage[0].passStatus === 6) {
+    } else if (this.consulStage[0].stageStatus === 6) {
       this.status = [
         {
           statusInfo: 'Permohonan terkirim',

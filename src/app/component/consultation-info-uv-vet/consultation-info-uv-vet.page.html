@@ -18,7 +18,7 @@
             <button
               *ngIf="data.stageStatus !== 3 && data.stageStatus !==2"
               class="btn-rincian"
-              (click)="toRincianKonsul()"
+              (click)="openRincian(data.serviceRegistrationFormId)"
             >
               Rincian
             </button>
@@ -127,11 +127,20 @@
           </div>
         </ng-container>
         <ng-container *ngIf="data.stageStatus === 2">
-          <div class="byr-cont">
-            <ion-badge class="byr-button">
-              <ion-text>Menunggu pembayaran konsultasi</ion-text>
-            </ion-badge>
-          </div>
+          <ng-container *ngIf="data.paymentStatus === 0 else waitPayment">
+            <div class="byr-cont">
+              <ion-badge class="byr-button">
+                <ion-text>Berikan total pembayaran konsultasi</ion-text>
+              </ion-badge>
+            </div>
+          </ng-container>
+          <ng-template #waitPayment>
+            <div class="byr-cont">
+              <ion-badge class="byr-button">
+                <ion-text>Menunggu pembayaran konsultasi</ion-text>
+              </ion-badge>
+            </div>
+          </ng-template>
           <div (click)="toRecapKonsulUV()" class="catatan-cont">
             <ion-badge class="catatan-button">
               <ion-text>Lihat Catatan Konsultasi</ion-text>

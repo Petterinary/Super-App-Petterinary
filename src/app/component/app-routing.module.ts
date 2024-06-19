@@ -196,7 +196,11 @@ export const routes: Routes = [
       import('./vv-live-tracking-vet/vv-live-tracking-vet.module').then(
         (m) => m.VvLiveTrackingVetPageModule
       ),
+  },  {
+    path: 'form-payment-total',
+    loadChildren: () => import('./form-payment-total/form-payment-total.module').then( m => m.FormPaymentTotalPageModule)
   },
+
 
   // {
   //   path: 'global',

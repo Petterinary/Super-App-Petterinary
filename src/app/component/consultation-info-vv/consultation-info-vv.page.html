@@ -18,7 +18,7 @@
             <button
               *ngIf="data.stageStatus !== 3 && data.stageStatus !==2"
               class="btn-rincian"
-              (click)="toRincianKonsul()"
+              (click)="openRincian(data.serviceRegistrationFormId)"
             >
               Rincian
             </button>

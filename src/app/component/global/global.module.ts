@@ -7,6 +7,9 @@ import { BackButtonComponent } from './back-button/back-button.component';
 import { SuccessFailedComponentComponent } from './success-failed-component/success-failed-component.component';
 import { PaymentComponent } from './payment/payment.component';
 import { MapComponent } from './map/map.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RincianConsulUvComponent } from '../rincian-consul-uv/rincian-consul-uv.component';
+import { RincianConsulVvComponent } from '../rincian-consul-vv/rincian-consul-vv.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +19,10 @@ import { MapComponent } from './map/map.component';
     SuccessFailedComponentComponent,
     PaymentComponent,
     MapComponent,
+    RincianConsulUvComponent,
+    RincianConsulVvComponent,
   ],
-  imports: [IonicModule, CommonModule],
+  imports: [IonicModule, FormsModule, CommonModule, ReactiveFormsModule],
   exports: [
     HeaderBarComponent,
     BottomBarComponent,
@@ -25,6 +30,8 @@ import { MapComponent } from './map/map.component';
     SuccessFailedComponentComponent,
     PaymentComponent,
     MapComponent,
+    RincianConsulUvComponent,
+    RincianConsulVvComponent,
   ],
 })
 export class GlobalModule {}

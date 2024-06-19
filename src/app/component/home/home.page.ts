@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DoctorDataService } from '../service/data/doctor.data.serivce';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,12 @@ import { DoctorDataService } from '../service/data/doctor.data.serivce';
 })
 export class HomePage implements OnInit {
   public doctors: any;
+  private userData: any;
+  public distance: number;
 
   constructor(
     private router: Router,
+    private authService: AuthService,
     private doctorDataSerivice: DoctorDataService
   ) {}
 
@@ -25,7 +29,8 @@ export class HomePage implements OnInit {
     this.router.navigate([`/service-selection/${idVet}`], {});
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.userData = await this.authService.getUserData();
     this.getDoctor();
   }
 }

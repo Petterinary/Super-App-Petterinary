@@ -8,13 +8,6 @@ const routes: Routes = [
     path: '',
     component: ConsultationInfoUvPage,
   },
-  {
-    path: 'rincian-consul-uv',
-    loadChildren: () =>
-      import('./rincian-consul-uv/rincian-consul-uv.module').then(
-        (m) => m.RincianConsulUvPageModule
-      ),
-  },
 ];
 
 @NgModule({

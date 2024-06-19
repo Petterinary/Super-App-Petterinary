@@ -34,7 +34,6 @@ export class FormVetVisitPage implements OnInit {
     this.formGroup = this.formBuilder.group({
       namaHewan: ['', Validators.required],
       tipeHewan: ['', Validators.required],
-      noTelp: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       keluhan: ['', Validators.required],
     });
   }

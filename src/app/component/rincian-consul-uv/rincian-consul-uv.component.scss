@@ -1,13 +1,10 @@
 @import "src/global.scss";
 
-ion-content.white-space {
-  --color: #000;
-}
-
 .contents {
   height: 100%;
   display: flex;
   flex-direction: column;
+  margin: 20px;
 
   .form-type {
     display: flex;
@@ -16,7 +13,7 @@ ion-content.white-space {
     width: 100%;
 
     .form-title {
-      --background: #00ffff;
+      --background: #ffe600;
       padding: 5px 10px 5px 10px;
       ion-text {
         color: #000;
@@ -64,9 +61,24 @@ ion-content.white-space {
         min-height: 5vh;
       }
     }
-  }
 
-  .bottom-gap {
-    padding: 54px 0px 54px 0;
+    .send-button-cont {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+
+      width: 100%;
+
+      margin-bottom: 10px;
+
+      .send-button {
+        --background: #0b8585;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 10px 20px;
+        border-radius: 7px;
+        width: 100%;
+      }
+    }
   }
 }
