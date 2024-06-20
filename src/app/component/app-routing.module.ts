@@ -57,7 +57,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'uv-payment',
+    path: 'uv-payment/:id',
     loadChildren: () =>
       import('./uv-payment/uv-payment.module').then(
         (m) => m.UvPaymentPageModule
@@ -92,7 +92,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'vv-payment',
+    path: 'vv-payment/:id',
     loadChildren: () =>
       import('./vv-payment/vv-payment.module').then(
         (m) => m.VvPaymentPageModule
@@ -196,11 +196,21 @@ export const routes: Routes = [
       import('./vv-live-tracking-vet/vv-live-tracking-vet.module').then(
         (m) => m.VvLiveTrackingVetPageModule
       ),
-  },  {
-    path: 'form-payment-total',
-    loadChildren: () => import('./form-payment-total/form-payment-total.module').then( m => m.FormPaymentTotalPageModule)
   },
-
+  {
+    path: 'form-payment-total',
+    loadChildren: () =>
+      import('./form-payment-total/form-payment-total.module').then(
+        (m) => m.FormPaymentTotalPageModule
+      ),
+  },
+  {
+    path: 'rincian-profile',
+    loadChildren: () =>
+      import('./rincian-profile/rincian-profile.module').then(
+        (m) => m.RincianProfilePageModule
+      ),
+  },
 
   // {
   //   path: 'global',

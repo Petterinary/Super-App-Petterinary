@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { finalize } from 'rxjs';
 import { RincianConsulUvComponent } from '../rincian-consul-uv/rincian-consul-uv.component';
 import { ModalController } from '@ionic/angular';
+import { FormPaymentTotalPage } from '../form-payment-total/form-payment-total.page';
 
 @Component({
   selector: 'app-consultation-info-uv-vet',
@@ -44,7 +45,6 @@ export class ConsultationInfoUvVetPage implements OnInit {
     await this.loadingService.present();
     const data = {
       stageStatus: 4,
-      passStatus: 4,
       idUser: this.consulStage[0].userId,
       idDoctor: this.consulStage[0].doctorId,
       idRegistrationForm: this.consulStage[0].serviceRegistrationFormId,
@@ -73,7 +73,6 @@ export class ConsultationInfoUvVetPage implements OnInit {
     await this.loadingService.present();
     const data = {
       stageStatus: 1,
-      passStatus: 1,
       idUser: this.consulStage[0].userId,
       idDoctor: this.consulStage[0].doctorId,
       idRegistrationForm: this.consulStage[0].serviceRegistrationFormId,
@@ -102,7 +101,6 @@ export class ConsultationInfoUvVetPage implements OnInit {
     await this.loadingService.present();
     const data = {
       stageStatus: 2,
-      passStatus: 2,
       idUser: this.consulStage[0].userId,
       idDoctor: this.consulStage[0].doctorId,
       idRegistrationForm: this.consulStage[0].serviceRegistrationFormId,
@@ -127,15 +125,38 @@ export class ConsultationInfoUvVetPage implements OnInit {
       );
   }
 
+  async openInputPayment() {
+    const modal = await this.modalControler.create({
+      component: FormPaymentTotalPage,
+      componentProps: {
+        idPayment: this.consulStage[0].paymentId,
+      },
+    });
+
+    modal.onDidDismiss().then((res) => {
+      if (!res.data) {
+        return;
+      }
+
+      this.doneConsul(this.consulStage[0].consultationId);
+    });
+
+    await modal.present();
+    const modalElement = await this.modalControler.getTop();
+    if (modalElement) {
+      this.applyCustomStyles(modalElement);
+    }
+  }
+
   async openRincian(id: number) {
     const modal = await this.modalControler.create({
       component: RincianConsulUvComponent,
       componentProps: {
-        idRegisForm: id
-      }
-    })
+        idRegisForm: id,
+      },
+    });
 
-    await modal.present()
+    await modal.present();
     const modalElement = await this.modalControler.getTop();
     if (modalElement) {
       this.applyCustomStyles(modalElement);
@@ -143,10 +164,14 @@ export class ConsultationInfoUvVetPage implements OnInit {
   }
 
   applyCustomStyles(modalElement: HTMLIonModalElement) {
-    const modalWrapper = modalElement.shadowRoot?.querySelector('.modal-wrapper');
+    const modalWrapper =
+      modalElement.shadowRoot?.querySelector('.modal-wrapper');
 
     if (modalWrapper) {
-      modalWrapper.setAttribute('style', 'width: 90%; height: 60%; border-radius: 10px');
+      modalWrapper.setAttribute(
+        'style',
+        'width: 90%; height: 60%; border-radius: 10px'
+      );
     }
   }
 

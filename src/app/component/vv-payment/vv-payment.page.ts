@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-vv-payment',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./vv-payment.page.scss'],
 })
 export class VvPaymentPage implements OnInit {
+  public idPayment: number;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
+    this.idPayment = Number(this.route.snapshot.paramMap.get('id'));
   }
-
 }

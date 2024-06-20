@@ -12,6 +12,7 @@ export class HistoryPage implements OnInit {
   private userData: any;
 
   public consultation: any;
+  public consultationTemp: any;
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -22,8 +23,19 @@ export class HistoryPage implements OnInit {
     this.consultationDataService
       .getConsultationByUserId(this.userData.userId)
       .subscribe((res) => {
-        this.consultation = res;
+        this.consultation = this.consultationTemp = res;
       });
+  }
+
+  searchDoctorName(event: any) {
+    const text = event.detail.value.toLowerCase();
+    if (!text || text === '') {
+      this.getConsultation();
+    } else {
+      this.consultation = this.consultationTemp.filter((val) => {
+        return val?.doctorName?.toLowerCase().includes(text);
+      });
+    }
   }
 
   public async toRecapKonsulUV(id: number) {

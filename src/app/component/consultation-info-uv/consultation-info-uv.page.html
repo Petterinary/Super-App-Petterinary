@@ -112,7 +112,7 @@
         </ng-container>
         <ng-container *ngIf="data.stageStatus === 2">
           <div class="byr-cont">
-            <ion-badge (click)="toPayPage()" class="byr-button">
+            <ion-badge (click)="toPayPage(data.paymentId)" class="byr-button">
               <ion-text>Bayar Konsultasi</ion-text>
             </ion-badge>
           </div>

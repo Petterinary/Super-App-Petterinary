@@ -2,7 +2,10 @@
 <ion-content class="white-space" [fullscreen]="true">
   <div class="contents">
     <div class="search-container">
-      <ion-searchbar placeholder="Cari Nama Dokter"></ion-searchbar>
+      <ion-searchbar
+        placeholder="Cari Nama..."
+        (ionChange)="searchUserName($event)"
+      ></ion-searchbar>
     </div>
     <div class="container">
       <ng-container *ngIf="consultation">

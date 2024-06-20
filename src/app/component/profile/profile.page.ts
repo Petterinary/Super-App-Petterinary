@@ -38,15 +38,7 @@ export class ProfilePage implements OnInit {
   }
 
   public goRincianProfile() {
-    if (!this.isDokter) {
-      this.router.navigate(['profile/register'], {
-        queryParams: { type: 'lihat' },
-      });
-    } else {
-      this.router.navigate(['profile/register-vet'], {
-        queryParams: { type: 'lihat' },
-      });
-    }
+    this.router.navigate(['rincian-profile']);
   }
 
   private async checkLoginStatus() {

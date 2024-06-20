@@ -7,6 +7,7 @@ import { finalize } from 'rxjs';
 import * as moment from 'moment';
 import { RincianConsulVvComponent } from '../rincian-consul-vv/rincian-consul-vv.component';
 import { ModalController } from '@ionic/angular';
+import { FormPaymentTotalPage } from '../form-payment-total/form-payment-total.page';
 
 @Component({
   selector: 'app-consultation-info-vv-vet',
@@ -122,6 +123,29 @@ export class ConsultationInfoVvVetPage implements OnInit {
           );
         }
       );
+  }
+
+  async openInputPayment() {
+    const modal = await this.modalControler.create({
+      component: FormPaymentTotalPage,
+      componentProps: {
+        idPayment: this.consulStage[0].paymentId,
+      },
+    });
+
+    modal.onDidDismiss().then((res) => {
+      if (!res.data) {
+        return;
+      }
+
+      this.doneConsul(this.consulStage[0].consultationId);
+    });
+
+    await modal.present();
+    const modalElement = await this.modalControler.getTop();
+    if (modalElement) {
+      this.applyCustomStyles(modalElement);
+    }
   }
 
   async openRincian(id: number) {

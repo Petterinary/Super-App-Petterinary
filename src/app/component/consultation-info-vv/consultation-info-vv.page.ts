@@ -99,8 +99,8 @@ export class ConsultationInfoVvPage implements OnInit {
     this.router.navigate([`/vv-live-tracking/${id}`], {});
   }
 
-  public async toPayPage() {
-    this.router.navigate([`/vv-payment`], {});
+  public async toPayPage(id: number) {
+    this.router.navigate([`/vv-payment/${id}`], {});
   }
 
   public async toPayVVPage() {

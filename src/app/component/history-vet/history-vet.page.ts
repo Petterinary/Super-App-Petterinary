@@ -12,6 +12,7 @@ export class HistoryVetPage implements OnInit {
   private userData: any;
 
   public consultation: any;
+  public consultationTemp: any;
 
   constructor(
     private authService: AuthService,
@@ -23,8 +24,19 @@ export class HistoryVetPage implements OnInit {
     this.consultationDataService
       .getConsultationByDoctorId(this.userData.doctorId)
       .subscribe((res) => {
-        this.consultation = res;
+        this.consultation = this.consultationTemp = res;
       });
+  }
+
+  searchUserName(event: any) {
+    const text = event.detail.value.toLowerCase();
+    if (!text || text === '') {
+      this.getConsultation();
+    } else {
+      this.consultation = this.consultationTemp.filter((val) => {
+        return val?.userName?.toLowerCase().includes(text);
+      });
+    }
   }
 
   public async toRecapKonsulUV(id: number) {

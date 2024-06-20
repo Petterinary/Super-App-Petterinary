@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PaymentDataService } from '../../service/data/payment.data.service';
+import { LoadingService } from '../../service/loading.service';
+import { finalize } from 'rxjs';
+import { AlertService } from '../../service/alert-service';
 
 @Component({
   selector: 'app-payment',
@@ -7,49 +11,59 @@ import { Router } from '@angular/router';
   styleUrls: ['./payment.component.scss'],
 })
 export class PaymentComponent implements OnInit {
+  @Input() idPayment: number;
+
+  public paymentData: any;
+  public paymentMethod = 'Gopay';
+
   public isActive = 0;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private loadingService: LoadingService,
+    private alertService: AlertService,
+    private paymentDataService: PaymentDataService
+  ) {}
 
-  public test: any = [
-    {
-      totalTagihan: ' 275.000',
-      daftarHarga: [
-        {
-          konsul: 'Biaya Konsultasi',
-          harga: ' 25.000',
-        },
-        {
-          konsul: 'Biaya Transportasi',
-          harga: ' 250.000',
-        },
-      ],
-    },
-  ];
+  private getPaymentData() {
+    this.paymentDataService.getPaymentById(this.idPayment).subscribe((res) => {
+      this.paymentData = res;
+    });
+  }
 
   public setActive(index: number) {
     this.isActive = index;
     if (index === 0) {
-      // this.router.navigate([`/home`], {});
+      this.paymentMethod = 'Gopay';
     } else if (index === 1) {
-      //url
-      // this.router.navigate([`/history`], {});
-    } else if (index === 2) {
-      //url
-      // this.router.navigate([`/profile`], {});
+      this.paymentMethod = 'BCA';
     }
   }
 
-  public async toPaymentConfirm() {
-    this.router.navigate([`/confirmation-page-payment`], {});
+  public async payment() {
+    await this.loadingService.present();
+    const data = {
+      paymentMethod: this.paymentMethod,
+      paymentStatus: 2,
+    };
+
+    this.paymentDataService
+      .updatePayment(this.idPayment, data)
+      .pipe(finalize(async () => await this.loadingService.dismiss()))
+      .subscribe(
+        async () => {
+          await this.router.navigate([`/confirmation-page-payment`], {});
+        },
+        async (_) => {
+          await this.alertService.alert(
+            'Pendaftaran Konsultasi Gagal',
+            'Gagal'
+          );
+        }
+      );
   }
 
   ngOnInit() {
-    // this.router.events.subscribe((event) => {
-    //   if (event instanceof NavigationEnd) {
-    //     this.updateActiveIndex(event.urlAfterRedirects);
-    //   }
-    // });
-    // this.updateActiveIndex(this.router.url);
+    this.getPaymentData();
   }
 }

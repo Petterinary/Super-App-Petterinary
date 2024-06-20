@@ -40,11 +40,11 @@ export class ConsultationInfoUvPage implements OnInit {
     const modal = await this.modalControler.create({
       component: RincianConsulUvComponent,
       componentProps: {
-        idRegisForm: id
-      }
-    })
+        idRegisForm: id,
+      },
+    });
 
-    await modal.present()
+    await modal.present();
     const modalElement = await this.modalControler.getTop();
     if (modalElement) {
       this.applyCustomStyles(modalElement);
@@ -52,10 +52,14 @@ export class ConsultationInfoUvPage implements OnInit {
   }
 
   applyCustomStyles(modalElement: HTMLIonModalElement) {
-    const modalWrapper = modalElement.shadowRoot?.querySelector('.modal-wrapper');
+    const modalWrapper =
+      modalElement.shadowRoot?.querySelector('.modal-wrapper');
 
     if (modalWrapper) {
-      modalWrapper.setAttribute('style', 'width: 90%; height: 60%; border-radius: 10px');
+      modalWrapper.setAttribute(
+        'style',
+        'width: 90%; height: 60%; border-radius: 10px'
+      );
     }
   }
 
@@ -95,8 +99,8 @@ export class ConsultationInfoUvPage implements OnInit {
     this.router.navigate([`/uv-live-tracking/${id}`], {});
   }
 
-  public async toPayPage() {
-    this.router.navigate([`/uv-payment`], {});
+  public async toPayPage(id: number) {
+    this.router.navigate([`/uv-payment/${id}`], {});
   }
 
   public async toRecapKonsulUV() {

@@ -13,6 +13,7 @@ import { AuthService } from '../service/auth.service';
 })
 export class HomePage implements OnInit {
   public doctors: any;
+  public doctorsTemp: any;
   private userData: any;
   public distance: number;
   private userLocation: { lat: number; lng: number };
@@ -25,20 +26,26 @@ export class HomePage implements OnInit {
     private geolocation: Geolocation
   ) {}
 
-  // async ngOnInit() {
-
-  //   this.getDoctor();
-  // }
-
   async getDoctor() {
     this.doctorDataSerivice.getAllDoctors().subscribe((res) => {
-      this.doctors = res.map((doctor) => ({
+      this.doctors = this.doctorsTemp = res.map((doctor) => ({
         ...doctor,
         lat: parseFloat(doctor.lat),
         lng: parseFloat(doctor.lng),
       }));
       this.calculateDistances();
     });
+  }
+
+  searchDoctor(event: any) {
+    const text = event.detail.value.toLowerCase();
+    if (!text || text === '') {
+      this.getDoctor();
+    } else {
+      this.doctors = this.doctorsTemp.filter((val) => {
+        return val?.name?.toLowerCase().includes(text);
+      });
+    }
   }
 
   async getCurrentLocation() {

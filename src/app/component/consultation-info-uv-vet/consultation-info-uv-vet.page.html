@@ -118,29 +118,17 @@
             </ion-badge>
           </div>
           <div class="done-cont">
-            <ion-badge
-              (click)="doneConsul(data.consultationId)"
-              class="done-button"
-            >
+            <ion-badge (click)="openInputPayment()" class="done-button">
               <ion-text>Selesaikan Konsultasi</ion-text>
             </ion-badge>
           </div>
         </ng-container>
         <ng-container *ngIf="data.stageStatus === 2">
-          <ng-container *ngIf="data.paymentStatus === 0 else waitPayment">
-            <div class="byr-cont">
-              <ion-badge class="byr-button">
-                <ion-text>Berikan total pembayaran konsultasi</ion-text>
-              </ion-badge>
-            </div>
-          </ng-container>
-          <ng-template #waitPayment>
-            <div class="byr-cont">
-              <ion-badge class="byr-button">
-                <ion-text>Menunggu pembayaran konsultasi</ion-text>
-              </ion-badge>
-            </div>
-          </ng-template>
+          <div class="byr-cont">
+            <ion-badge class="byr-button">
+              <ion-text>Menunggu pembayaran konsultasi</ion-text>
+            </ion-badge>
+          </div>
           <div (click)="toRecapKonsulUV()" class="catatan-cont">
             <ion-badge class="catatan-button">
               <ion-text>Lihat Catatan Konsultasi</ion-text>
