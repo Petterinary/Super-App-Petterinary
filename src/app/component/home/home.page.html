@@ -20,9 +20,20 @@
                 </ng-template>
               </div>
               <div class="content-container">
-                <h1>{{data.name}}</h1>
-                <p>Spesialis: {{data.specialization}}</p>
-                <span>Pengalaman:<strong> {{data.experience}}</strong></span>
+                <div class="ingpo">
+                  <h1>{{data.name}}</h1>
+                  <p>Spesialis: {{data.specialization}}</p>
+                  <span>Pengalaman:<strong> {{data.experience}}</strong></span>
+                </div>
+                <div class="dist">
+                  <img
+                    class="loc-icon"
+                    src="../../../assets/icon/location.png"
+                  />
+                  <h1 class="dist-text">
+                    {{data.distance || 'Calculating...'}}
+                  </h1>
+                </div>
               </div>
             </div>
           </ion-card>
@@ -31,4 +42,3 @@
     </div>
   </div>
 </ion-content>
-<!-- <app-bottom-bar></app-bottom-bar> -->
