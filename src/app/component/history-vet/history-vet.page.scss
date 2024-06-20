@@ -28,6 +28,7 @@ ion-content.white-space {
         }
 
         .content-container {
+          flex: 1;
           color: #000;
           font-size: 14px;
 
@@ -75,6 +76,66 @@ ion-content.white-space {
             margin: 0;
           }
         }
+      }
+    }
+  }
+}
+
+.status-cont {
+  ion-badge {
+    padding: 10px;
+    border-radius: 10px;
+    white-space: normal; /* Allow line breaks */
+    word-wrap: break-word; /* Ensure long words break */
+    min-width: 95px;
+    max-width: 130px;
+
+    ion-text {
+      white-space: normal; /* Allow line breaks */
+      word-wrap: break-word; /* Ensure long words break */
+    }
+
+    &.stat-badge-yellow {
+      --background: #ffe600;
+
+      ion-text.status-text-hitam {
+        color: #000;
+      }
+      ion-text.status-text-putih {
+        color: #fff;
+      }
+    }
+    &.stat-badge-ijo {
+      --background: #23e712;
+
+      ion-text.status-text-hitam {
+        color: #000;
+      }
+      ion-text.status-text-putih {
+        color: #fff;
+      }
+    }
+    &.stat-badge-blue {
+      --background: #8791e5;
+
+      ion-text.status-text-hitam {
+        color: #000;
+      }
+      ion-text.status-text-putih {
+        color: #fff;
+      }
+    }
+    &.stat-badge-none {
+      --background: #8791e5;
+      opacity: 0;
+
+      ion-text.status-text-hitam {
+        color: #000;
+        opacity: 0;
+      }
+      ion-text.status-text-putih {
+        color: #fff;
+        opacity: 0;
       }
     }
   }
