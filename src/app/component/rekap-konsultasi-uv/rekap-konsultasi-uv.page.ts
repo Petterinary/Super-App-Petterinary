@@ -58,7 +58,6 @@ export class RekapKonsultasiUvPage implements OnInit {
       totalAmount: this.data.paymentData.totalAmount,
       paymentMethod: this.data.paymentData.paymentMethod,
     };
-    console.log(this.data);
   }
 
   ngOnInit() {
