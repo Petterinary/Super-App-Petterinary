@@ -104,16 +104,16 @@
         </div>
 
         <ion-item>
-          <ion-label position="stacked">Specialisasi Hewan</ion-label>
+          <ion-label position="stacked">Spesialisasi Hewan</ion-label>
           <ion-input
             formControlName="specialisasiHewan"
-            placeholder="Masukkan Specialisasi Hewan"
+            placeholder="Masukkan Spesialisasi Hewan"
           ></ion-input>
         </ion-item>
         <div
           *ngIf="registerForm.get('specialisasiHewan')?.invalid && (registerForm.get('specialisasiHewan')?.dirty || registerForm.get('specialisasiHewan')?.touched)"
         >
-          <small class="danger">Specialisasi hewan tidak boleh kosong.</small>
+          <small class="danger">Spesialisasi hewan tidak boleh kosong.</small>
         </div>
 
         <ion-item>

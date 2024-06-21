@@ -28,7 +28,7 @@ export class HomePage implements OnInit {
 
   async getDoctor() {
     this.doctorDataSerivice.getAllDoctors().subscribe((res) => {
-      this.doctors = this.doctorsTemp = res.map((doctor) => ({
+      this.doctors = res.map((doctor) => ({
         ...doctor,
         lat: parseFloat(doctor.lat),
         lng: parseFloat(doctor.lng),
@@ -71,16 +71,24 @@ export class HomePage implements OnInit {
           doctor.distance = result.distance;
         } catch (error) {
           console.error('Error calculating distance:', error);
+          doctor.distance = null;
         }
       }
     }
 
-    // Sort doctors by distance
-    this.doctors.sort((a, b) => {
-      if (!a.distance) return 1; // Push doctors without distance to the end
-      if (!b.distance) return -1; // Push doctors without distance to the end
-      return a.distance.localeCompare(b.distance); // Assuming distance is a string
-    });
+    this.doctors = this.doctors
+      .filter(
+        (doctor) => doctor.distance && this.parseDistance(doctor.distance) < 10
+      )
+      .sort(
+        (a, b) =>
+          this.parseDistance(a.distance) - this.parseDistance(b.distance)
+      );
+  }
+
+  parseDistance(distance: string): number {
+    const value = parseFloat(distance.replace(' km', ''));
+    return isNaN(value) ? Infinity : value;
   }
 
   public async toServiceSelect(idVet: number) {
