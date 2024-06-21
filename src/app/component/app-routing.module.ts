@@ -99,14 +99,14 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'rekap-konsultasi-vv',
+    path: 'rekap-konsultasi-vv/:id',
     loadChildren: () =>
       import('./rekap-konsultasi-vv/rekap-konsultasi-vv.module').then(
         (m) => m.RekapKonsultasiVvPageModule
       ),
   },
   {
-    path: 'rekap-konsultasi-uv',
+    path: 'rekap-konsultasi-uv/:id',
     loadChildren: () =>
       import('./rekap-konsultasi-uv/rekap-konsultasi-uv.module').then(
         (m) => m.RekapKonsultasiUvPageModule

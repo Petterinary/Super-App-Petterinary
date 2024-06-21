@@ -63,62 +63,6 @@ ion-content.white-space {
           }
         }
 
-        // .status-cont{
-        //   .stat-badge-yellow{
-        //     ion-text.status-text-hitam{
-        //       color: #000;
-        //     }
-        //     ion-text.status-text-putih{
-        //       color: #fff;
-        //     }
-        //   }
-        //   .stat-badge-ijo{
-        //     ion-text.status-text-hitam{
-        //       color: #000;
-        //     }
-        //     ion-text.status-text-putih{
-        //       color: #fff;
-        //     }
-
-        //   }
-        //   .stat-badge-red{
-        //     ion-text.status-text-hitam{
-        //       color: #000;
-        //     }
-        //     ion-text.status-text-putih{
-        //       color: #fff;
-        //     }
-        //   }
-        // }
-
-        // .status-cont{
-        //   .stat-badge-yellow{
-        //     ion-text.status-text-hitam{
-        //       color: #000;
-        //     }
-        //     ion-text.status-text-putih{
-        //       color: #fff;
-        //     }
-        //   }
-        //   .stat-badge-ijo{
-        //     ion-text.status-text-hitam{
-        //       color: #000;
-        //     }
-        //     ion-text.status-text-putih{
-        //       color: #fff;
-        //     }
-
-        //   }
-        //   .stat-badge-red{
-        //     ion-text.status-text-hitam{
-        //       color: #000;
-        //     }
-        //     ion-text.status-text-putih{
-        //       color: #fff;
-        //     }
-        //   }
-        // }
-
         .status-cont {
           ion-text.dist {
             font-weight: bold;
@@ -141,4 +85,30 @@ ion-content.white-space {
       }
     }
   }
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.spinner {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top: 2px solid rgba(0, 0, 0, 0.5);
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

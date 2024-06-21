@@ -187,8 +187,8 @@ export class ConsultationInfoVvVetPage implements OnInit {
     this.router.navigate([`/vv-payment`], {});
   }
 
-  public async toRecapKonsulVV() {
-    this.router.navigate([`/rekap-konsultasi-vv-vet`], {});
+  public async toRecapKonsulVV(id: number) {
+    this.router.navigate([`/rekap-konsultasi-vv/${id}`], {});
   }
 
   public statusStage() {

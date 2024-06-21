@@ -9,118 +9,106 @@
       </ion-badge>
     </div>
     <div class="form-body">
-      <div class="input-tile">
-        <!-- <p>Nama</p>
-        <input
-          placeholder="Silahkan masukan nama..."
-          class="test"
-          #input
-          type="text"
-        />
-        <p>Nomor yang bisa dihubungi</p>
-        <input
-          placeholder="Silahkan masukan nomor yang dapat dihubungi..."
-          class="test"
-          #input
-          type="text"
-        />
-        <p>Deskripsi Keluhan</p>
-        <textarea
-          placeholder="Deskripsikan keluhan hewan kamu..."
-          class="testarea"
-          #input
-        ></textarea> -->
-
-        <ng-container *ngFor="let data of test">
+      <ng-container *ngIf="data">
+        <div class="input-tile">
+          <ion-item>
+            <ion-label position="stacked"
+              >Tanggal Permohonan Konsultasi</ion-label
+            >
+            <ion-input disabled [(ngModel)]="data.registrationDate"></ion-input>
+          </ion-item>
           <ion-item>
             <ion-label position="stacked">Nama Pemohon</ion-label>
-            <ion-input [(ngModel)]="data.namaP"></ion-input>
+            <ion-input disabled [(ngModel)]="data.userName"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="stacked">Nomor yang bisa dihubungi</ion-label>
-            <ion-input [(ngModel)]="data.noTel"></ion-input>
+            <ion-input disabled [(ngModel)]="data.phoneNumber"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="stacked">Deskripsi Keluhan</ion-label>
-            <ion-textarea [(ngModel)]="data.deskripsiKeluhan"></ion-textarea>
+            <ion-textarea disabled [(ngModel)]="data.complaint"></ion-textarea>
+          </ion-item>
+        </div>
+
+        <hr />
+
+        <div class="input-tile">
+          <ion-title class="payment">Rincian Pembayaran</ion-title>
+          <ion-item>
+            <ion-label position="stacked">Biaya Konsultasi</ion-label>
+            <ion-input
+              disabled
+              [(ngModel)]="data.consultationAmount"
+            ></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked">Hasil Konsultasi</ion-label>
-            <ion-textarea [(ngModel)]="data.hasilKon"></ion-textarea>
+            <ion-label position="stacked">Biaya Transportasi</ion-label>
+            <ion-input disabled [(ngModel)]="data.transportAmount"></ion-input>
           </ion-item>
-        </ng-container>
-        <!-- vv Scroll overflow test -->
-        <!-- <p>Deskripsi Keluhan</p>
-        <textarea
-          placeholder="Deskripsikan keluhan hewan kamu..."
-          class="testarea"
-          #input
-        ></textarea>
-        <p>Deskripsi Keluhan</p>
-        <textarea
-          placeholder="Deskripsikan keluhan hewan kamu..."
-          class="testarea"
-          #input
-        ></textarea>
-        <p>Deskripsi Keluhan</p>
-        <textarea
-          placeholder="Deskripsikan keluhan hewan kamu..."
-          class="testarea"
-          #input
-        ></textarea>
-        <p>Deskripsi Keluhan</p>
-        <textarea
-          placeholder="Deskripsikan keluhan hewan kamu..."
-          class="testarea"
-          #input
-        ></textarea> -->
-      </div>
-      <ng-container *ngFor="let data of test">
-        <ng-container *ngIf="data.sudahDibayar === 1; else belumDibayar">
+          <ion-item>
+            <ion-label position="stacked">Biaya Admin</ion-label>
+            <ion-input disabled [(ngModel)]="data.serviceAmount"></ion-input>
+          </ion-item>
+        </div>
+
+        <ng-container *ngIf="data.paymentStatus === 2; else belumDibayar">
           <div class="total-price">
             <div class="paid">
               <div class="paid-by">
                 <ion-text class="text">Dibayar dengan</ion-text>
                 <ion-text class="payment-method-text"
-                  >{{data.bayarDengan}}</ion-text
+                  >{{data.paymentMethod === 'Gopay' ? 'Gopay' :
+                  'BCA'}}</ion-text
                 >
               </div>
-              <div class="img-cont">
-                <img
-                  class="gopay-icon"
-                  src="../../../assets/icon/payment/gopay-icon.png"
-                />
+              <ng-container
+                *ngIf="data.paymentMethod === 'Gopay'; else bayarBca"
+              >
+                <div class="img-cont">
+                  <img
+                    class="gopay-icon"
+                    src="../../../assets/icon/payment/gopay-icon.png"
+                  />
+                </div>
+              </ng-container>
+
+              <ng-template #bayarBca>
+                <div class="img-cont">
+                  <img
+                    class="bca-icon"
+                    src="../../../assets/icon/payment/bca-icon.png"
+                  />
+                </div>
+              </ng-template>
+            </div>
+
+            <div class="text-container">
+              <ion-text class="text-price">Total Biaya</ion-text>
+
+              <ion-text class="text-prices">Rp. {{data.totalAmount}}</ion-text>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-template #belumDibayar>
+          <div class="unpaid-total-price">
+            <div class="paid">
+              <div class="paid-by">
+                <ion-text class="text-blm-bayar"
+                  >Tagihan Belum Dibayar</ion-text
+                >
               </div>
             </div>
 
             <div class="text-container">
               <ion-text class="text-price">Total Biaya</ion-text>
-              <ng-container *ngFor="let data of test">
-                <ion-text class="text-prices"
-                  >Rp. {{data.totalTagihan}}</ion-text
-                >
-              </ng-container>
+
+              <ion-text class="text-prices">Rp. {{data.totalAmount}}</ion-text>
             </div>
           </div>
-        </ng-container>
+        </ng-template>
       </ng-container>
-
-      <ng-template #belumDibayar>
-        <div class="unpaid-total-price">
-          <div class="paid">
-            <div class="paid-by">
-              <ion-text class="text-blm-bayar">Tagihan Belum Dibayar</ion-text>
-            </div>
-          </div>
-
-          <div class="text-container">
-            <ion-text class="text-price">Total Biaya</ion-text>
-            <ng-container *ngFor="let data of test">
-              <ion-text class="text-prices">Rp. {{data.totalTagihan}}</ion-text>
-            </ng-container>
-          </div>
-        </div>
-      </ng-template>
     </div>
     <div class="bottom-gap"></div>
   </div>

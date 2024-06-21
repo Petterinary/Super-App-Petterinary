@@ -183,8 +183,8 @@ export class ConsultationInfoUvVetPage implements OnInit {
     this.router.navigate([`/uv-payment`], {});
   }
 
-  public async toRecapKonsulUV() {
-    this.router.navigate([`/rekap-konsultasi-uv-vet`], {});
+  public async toRecapKonsulUV(id: number) {
+    this.router.navigate([`/rekap-konsultasi-uv/${id}`], {});
   }
 
   public statusStage() {

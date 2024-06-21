@@ -103,8 +103,8 @@ export class ConsultationInfoUvPage implements OnInit {
     this.router.navigate([`/uv-payment/${id}`], {});
   }
 
-  public async toRecapKonsulUV() {
-    this.router.navigate([`/rekap-konsultasi-uv`], {});
+  public async toRecapKonsulUV(id: number) {
+    this.router.navigate([`/rekap-konsultasi-uv/${id}`], {});
   }
 
   public statusStage() {

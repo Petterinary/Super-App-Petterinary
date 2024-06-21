@@ -5,6 +5,7 @@ import { DoctorDataService } from '../service/data/doctor.data.serivce';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { DistanceService } from 'src/app/services/distance/distance.service';
 import { AuthService } from '../service/auth.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,7 @@ export class HomePage implements OnInit {
   private userData: any;
   public distance: number;
   private userLocation: { lat: number; lng: number };
+  public isLoading: boolean;
 
   constructor(
     private router: Router,
@@ -27,8 +29,11 @@ export class HomePage implements OnInit {
   ) {}
 
   async getDoctor() {
-    this.doctorDataSerivice.getAllDoctors().subscribe((res) => {
-      this.doctors = res.map((doctor) => ({
+    this.isLoading = true;
+    this.doctorDataSerivice.getAllDoctors()
+    .pipe(finalize(() => (this.isLoading = false)))
+    .subscribe((res) => {
+      this.doctors = this.doctorsTemp = res.map((doctor) => ({
         ...doctor,
         lat: parseFloat(doctor.lat),
         lng: parseFloat(doctor.lng),
@@ -76,23 +81,20 @@ export class HomePage implements OnInit {
       }
     }
 
-    this.doctors = this.doctors
-      .filter(
-        (doctor) => doctor.distance && this.parseDistance(doctor.distance) < 10
-      )
-      .sort(
-        (a, b) =>
-          this.parseDistance(a.distance) - this.parseDistance(b.distance)
-      );
-  }
-
-  parseDistance(distance: string): number {
-    const value = parseFloat(distance.replace(' km', ''));
-    return isNaN(value) ? Infinity : value;
+    this.doctors.sort((a, b) => {
+      if (!a.distance) return 1;
+      if (!b.distance) return -1;
+      return a.distance.localeCompare(b.distance);
+    });
   }
 
   public async toServiceSelect(idVet: number) {
     this.router.navigate([`/service-selection/${idVet}`], {});
+  }
+
+  handleRefresh(event) {
+    this.getDoctor();
+    event.target.complete();
   }
 
   async ngOnInit() {

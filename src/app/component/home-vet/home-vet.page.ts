@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConsultationDataService } from '../service/data/consultations.data.service';
 import { AuthService } from '../service/auth.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-home-vet',
@@ -12,6 +13,7 @@ export class HomeVetPage implements OnInit {
   private userData: any;
   public consultation: any;
   public consultationTemp: any;
+  public isLoading: boolean;
 
   constructor(
     private router: Router,
@@ -20,8 +22,10 @@ export class HomeVetPage implements OnInit {
   ) {}
 
   private getConsultation() {
+    this.isLoading = true;
     this.consultationDataService
       .getConsultationByDoctorId(this.userData.doctorId)
+      .pipe(finalize(() => (this.isLoading = false)))
       .subscribe((res) => {
         this.consultation = this.consultationTemp = res;
       });
@@ -36,6 +40,11 @@ export class HomeVetPage implements OnInit {
         return val?.userName?.toLowerCase().includes(text);
       });
     }
+  }
+
+  handleRefresh(event) {
+    this.getConsultation();
+    event.target.complete();
   }
 
   public async toQueueStatusPageUv(id: number) {

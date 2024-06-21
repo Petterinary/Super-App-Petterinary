@@ -1,4 +1,7 @@
 <ion-content class="white-space" [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <div class="contents">
     <div class="search-container">
       <ion-searchbar
@@ -6,42 +9,50 @@
         (ionChange)="searchDoctor($event)"
       ></ion-searchbar>
     </div>
-    <div class="container">
-      <ng-container *ngIf="doctors">
-        <ng-container *ngFor="let data of doctors">
-          <ion-card>
-            <div
-              class="item-container"
-              (click)="toServiceSelect(data.doctorId)"
-            >
-              <div class="docter-img">
-                <ng-container *ngIf="data.gender === 'Laki-laki'; else female">
-                  <img src="assets/icon/dokter-male.png" />
-                </ng-container>
-                <ng-template #female>
-                  <img src="assets/icon/dokter-female.png" />
-                </ng-template>
-              </div>
-              <div class="content-container">
-                <div class="ingpo">
-                  <h1>{{data.name}}</h1>
-                  <p>Spesialis: {{data.specialization}}</p>
-                  <span>Pengalaman:<strong> {{data.experience}}</strong></span>
+    <ng-container *ngIf="!isLoading; else loading">
+      <div class="container">
+        <ng-container *ngIf="doctors">
+          <ng-container *ngFor="let data of doctors">
+            <ion-card>
+              <div
+                class="item-container"
+                (click)="toServiceSelect(data.doctorId)"
+              >
+                <div class="docter-img">
+                  <ng-container *ngIf="data.gender === 'Laki-laki'; else female">
+                    <img src="assets/icon/dokter-male.png" />
+                  </ng-container>
+                  <ng-template #female>
+                    <img src="assets/icon/dokter-female.png" />
+                  </ng-template>
                 </div>
-                <div class="dist">
-                  <img
-                    class="loc-icon"
-                    src="../../../assets/icon/location.png"
-                  />
-                  <h1 class="dist-text">
-                    {{data.distance || 'Calculating...'}}
-                  </h1>
+                <div class="content-container">
+                  <div class="ingpo">
+                    <h1>{{data.name}}</h1>
+                    <p>Spesialis: {{data.specialization}}</p>
+                    <span>Pengalaman:<strong> {{data.experience}}</strong></span>
+                  </div>
+                  <div class="dist">
+                    <img
+                      class="loc-icon"
+                      src="../../../assets/icon/location.png"
+                    />
+                    <h1 class="dist-text">
+                      {{data.distance || 'Calculating...'}}
+                    </h1>
+                  </div>
                 </div>
               </div>
-            </div>
-          </ion-card>
+            </ion-card>
+          </ng-container>
         </ng-container>
-      </ng-container>
-    </div>
+      </div>
+    </ng-container>
+
+    <ng-template #loading>
+      <div class="loading-overlay">
+        <div class="spinner"></div>
+      </div>
+    </ng-template>
   </div>
 </ion-content>

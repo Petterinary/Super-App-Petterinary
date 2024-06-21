@@ -116,14 +116,20 @@
               <ion-text>Bayar Konsultasi</ion-text>
             </ion-badge>
           </div>
-          <div (click)="toRecapKonsulUV()" class="catatan-cont">
+          <div
+            (click)="toRecapKonsulUV(data.consultationId)"
+            class="catatan-cont"
+          >
             <ion-badge class="catatan-button">
               <ion-text>Lihat Catatan Konsultasi</ion-text>
             </ion-badge>
           </div>
         </ng-container>
         <ng-container *ngIf="data.stageStatus === 3">
-          <div (click)="toRecapKonsulUV()" class="catatan-cont1">
+          <div
+            (click)="toRecapKonsulUV(data.consultationId)"
+            class="catatan-cont1"
+          >
             <ion-badge class="catatan-button1">
               <ion-text>Lihat Catatan Konsultasi</ion-text>
             </ion-badge>

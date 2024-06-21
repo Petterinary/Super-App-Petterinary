@@ -166,14 +166,6 @@ ion-content.white-space {
             width: 35px;
           }
         }
-        .img-cont-bca {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          img {
-            width: 50px;
-          }
-        }
       }
 
       .text-container {
@@ -199,4 +191,14 @@ ion-content.white-space {
   .bottom-gap {
     padding: 54px 0px 54px 0;
   }
+}
+
+.bca-icon {
+  width: 50px;
+}
+
+.payment {
+  padding: 0;
+  font-weight: 600;
+  font-size: 14px;
 }
