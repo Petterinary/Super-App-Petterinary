@@ -1,4 +1,7 @@
 <ion-content class="white-space" [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <div class="contents">
     <div class="bb-icon">
       <app-back-button [pageTitle]="'Informasi Konsultasi'"></app-back-button>
@@ -157,10 +160,10 @@
               <h5 class="pesan-batal">
                 Mohon maaf permohonan anda tidak dapat diproses.
               </h5>
-              <h5 class="pesan-batal">Pesan dari Dokter:</h5>
+              <!-- <h5 class="pesan-batal">Pesan dari Dokter:</h5>
               <p class="main-note">{{data.alasanGagal}}</p>
               <br />
-              <p class="post-note">P.s {{data.drTujuan}}</p>
+              <p class="post-note">P.s {{data.drTujuan}}</p> -->
             </div>
           </div>
         </ng-container>

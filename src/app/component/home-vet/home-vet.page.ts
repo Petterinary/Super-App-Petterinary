@@ -28,6 +28,7 @@ export class HomeVetPage implements OnInit {
       .pipe(finalize(() => (this.isLoading = false)))
       .subscribe((res) => {
         this.consultation = this.consultationTemp = res;
+        this.checkNoData();
       });
   }
 
@@ -40,6 +41,7 @@ export class HomeVetPage implements OnInit {
         return val?.userName?.toLowerCase().includes(text);
       });
     }
+    this.checkNoData();
   }
 
   handleRefresh(event) {
@@ -58,5 +60,14 @@ export class HomeVetPage implements OnInit {
   async ngOnInit() {
     this.userData = await this.authService.getUserData();
     this.getConsultation();
+  }
+
+  private checkNoData() {
+    const noData = this.consultation.every(
+      (data) => data.stageStatus === 3 || data.stageStatus === 4
+    );
+    if (noData) {
+      this.consultation = null;
+    }
   }
 }

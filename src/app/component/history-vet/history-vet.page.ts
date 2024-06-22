@@ -12,9 +12,9 @@ import { finalize } from 'rxjs';
 export class HistoryVetPage implements OnInit {
   private userData: any;
   public isLoading: boolean;
-
   public consultation: any;
   public consultationTemp: any;
+  public hasCompletedConsultations: boolean;
 
   constructor(
     private authService: AuthService,
@@ -29,6 +29,7 @@ export class HistoryVetPage implements OnInit {
       .pipe(finalize(() => (this.isLoading = false)))
       .subscribe((res) => {
         this.consultation = this.consultationTemp = res;
+        this.checkCompletedConsultations();
       });
   }
 
@@ -40,6 +41,7 @@ export class HistoryVetPage implements OnInit {
       this.consultation = this.consultationTemp.filter((val) => {
         return val?.userName?.toLowerCase().includes(text);
       });
+      this.checkCompletedConsultations();
     }
   }
 
@@ -59,5 +61,11 @@ export class HistoryVetPage implements OnInit {
   async ngOnInit() {
     this.userData = await this.authService.getUserData();
     this.getConsultation();
+  }
+
+  private checkCompletedConsultations() {
+    this.hasCompletedConsultations = this.consultation.some(
+      (data) => data.stageStatus === 3
+    );
   }
 }

@@ -11,7 +11,7 @@
     </div>
     <ng-container *ngIf="!isLoading; else loading">
       <div class="container">
-        <ng-container *ngIf="doctors">
+        <ng-container *ngIf="doctors.length > 0; else noData">
           <ng-container *ngFor="let data of doctors">
             <ion-card>
               <div
@@ -19,7 +19,9 @@
                 (click)="toServiceSelect(data.doctorId)"
               >
                 <div class="docter-img">
-                  <ng-container *ngIf="data.gender === 'Laki-laki'; else female">
+                  <ng-container
+                    *ngIf="data.gender === 'Laki-laki'; else female"
+                  >
                     <img src="assets/icon/dokter-male.png" />
                   </ng-container>
                   <ng-template #female>
@@ -30,16 +32,25 @@
                   <div class="ingpo">
                     <h1>{{data.name}}</h1>
                     <p>Spesialis: {{data.specialization}}</p>
-                    <span>Pengalaman:<strong> {{data.experience}}</strong></span>
+                    <span
+                      >Pengalaman:<strong> {{data.experience}}</strong></span
+                    >
                   </div>
-                  <div class="dist">
-                    <img
-                      class="loc-icon"
-                      src="../../../assets/icon/location.png"
-                    />
-                    <h1 class="dist-text">
-                      {{data.distance || 'Calculating...'}}
-                    </h1>
+                  <div class="duration-distance">
+                    <div class="dist">
+                      <img
+                        class="loc-icon"
+                        src="../../../assets/icon/loc-red.png"
+                      />
+                      <h1 class="dist-text">{{data.distance || '...'}}</h1>
+                    </div>
+                    <div class="dur">
+                      <img
+                        class="clock-icon"
+                        src="../../../assets/icon/clock-icon.png"
+                      />
+                      <h1 class="dur-text">{{data.duration || '...'}}</h1>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -52,6 +63,12 @@
     <ng-template #loading>
       <div class="loading-overlay">
         <div class="spinner"></div>
+      </div>
+    </ng-template>
+
+    <ng-template #noData>
+      <div class="content">
+        <div class="no-data-text">Tidak ada lokasi dokter terdekat</div>
       </div>
     </ng-template>
   </div>

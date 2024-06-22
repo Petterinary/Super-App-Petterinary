@@ -30,16 +30,17 @@ export class HomePage implements OnInit {
 
   async getDoctor() {
     this.isLoading = true;
-    this.doctorDataSerivice.getAllDoctors()
-    .pipe(finalize(() => (this.isLoading = false)))
-    .subscribe((res) => {
-      this.doctors = this.doctorsTemp = res.map((doctor) => ({
-        ...doctor,
-        lat: parseFloat(doctor.lat),
-        lng: parseFloat(doctor.lng),
-      }));
-      this.calculateDistances();
-    });
+    this.doctorDataSerivice
+      .getAllDoctors()
+      .pipe(finalize(() => (this.isLoading = false)))
+      .subscribe((res) => {
+        this.doctors = this.doctorsTemp = res.map((doctor) => ({
+          ...doctor,
+          lat: parseFloat(doctor.lat),
+          lng: parseFloat(doctor.lng),
+        }));
+        this.calculateDistances();
+      });
   }
 
   searchDoctor(event: any) {
@@ -74,9 +75,11 @@ export class HomePage implements OnInit {
             { lat: parseFloat(doctor.lat), lng: parseFloat(doctor.lng) }
           );
           doctor.distance = result.distance;
+          doctor.duration = result.duration;
         } catch (error) {
           console.error('Error calculating distance:', error);
           doctor.distance = null;
+          doctor.duration = null;
         }
       }
     }

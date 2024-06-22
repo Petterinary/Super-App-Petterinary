@@ -209,6 +209,11 @@ export class ConsultationInfoUvPage implements OnInit {
     }
   }
 
+  handleRefresh(event) {
+    this.getDetailConsul();
+    event.target.complete();
+  }
+
   ngOnInit() {
     this.consultationId = Number(this.route.snapshot.paramMap.get('id'));
     if (this.consultationId) {

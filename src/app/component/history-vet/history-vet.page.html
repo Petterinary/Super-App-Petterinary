@@ -11,9 +11,11 @@
     </div>
     <ng-container *ngIf="!isLoading; else loading">
       <div class="container">
-        <ng-container *ngIf="consultation">
+        <ng-container *ngIf="hasCompletedConsultations; else noReq">
           <ng-container *ngFor="let data of consultation">
-            <ng-container *ngIf="data.stageStatus === 3">
+            <ng-container
+              *ngIf="data.stageStatus === 3 || data.stageStatus === 4"
+            >
               <ng-container *ngIf="data.visitType === 1; else toVetVisit">
                 <ion-card>
                   <div
@@ -41,17 +43,18 @@
                         </p>
                       </ion-badge>
                     </div>
-  
+
                     <div class="status-cont">
                       <ion-badge
-                        [ngClass]="data.stageStatus === 0 ? 'stat-badge-yellow' : data.stageStatus === 1 ? 'stat-badge-blue' :  data.stageStatus === 2 ? 'stat-badge-ijo' : data.stageStatus === 3 ? 'stat-badge-ijo' : 'stat-badge-none'"
+                        [ngClass]="data.stageStatus === 0 ? 'stat-badge-yellow' : data.stageStatus === 1 ? 'stat-badge-blue' :  data.stageStatus === 2 ? 'stat-badge-ijo' : data.stageStatus === 3 ? 'stat-badge-ijo' : 'stat-badge-red'"
                       >
                         <ion-text
                           [ngClass]="data.stageStatus === 0 ? 'status-text-hitam' : data.stageStatus === 1 ? 'status-text-putih' :  data.stageStatus === 2 ? 'status-text-hitam' :data.stageStatus === 3 ? 'status-text-hitam' : 'status-text-putih'"
-                          >{{data.stageStatus === 0 ? 'Menunggu konfirmasi dokter'
-                          : data.stageStatus === 1 ? 'Menunggu konsultasi' :
-                          data.stageStatus === 2 ? 'Menunggu pembayaran' :
-                          data.stageStatus === 3 ? 'Selesai' : ''}}</ion-text
+                          >{{data.stageStatus === 0 ? 'Menunggu konfirmasi
+                          dokter' : data.stageStatus === 1 ? 'Menunggu
+                          konsultasi' : data.stageStatus === 2 ? 'Menunggu
+                          pembayaran' : data.stageStatus === 3 ? 'Selesai' :
+                          'Konsultasi Gagal'}}</ion-text
                         >
                       </ion-badge>
                     </div>
@@ -85,17 +88,18 @@
                         </p>
                       </ion-badge>
                     </div>
-  
+
                     <div class="status-cont">
                       <ion-badge
-                        [ngClass]="data.stageStatus === 0 ? 'stat-badge-yellow' : data.stageStatus === 1 ? 'stat-badge-blue' :  data.stageStatus === 2 ? 'stat-badge-ijo' : data.stageStatus === 3 ? 'stat-badge-ijo' : 'stat-badge-none'"
+                        [ngClass]="data.stageStatus === 0 ? 'stat-badge-yellow' : data.stageStatus === 1 ? 'stat-badge-blue' :  data.stageStatus === 2 ? 'stat-badge-ijo' : data.stageStatus === 3 ? 'stat-badge-ijo' : 'stat-badge-red'"
                       >
                         <ion-text
                           [ngClass]="data.stageStatus === 0 ? 'status-text-hitam' : data.stageStatus === 1 ? 'status-text-putih' :  data.stageStatus === 2 ? 'status-text-hitam' :data.stageStatus === 3 ? 'status-text-hitam' : 'status-text-putih'"
-                          >{{data.stageStatus === 0 ? 'Menunggu konfirmasi dokter'
-                          : data.stageStatus === 1 ? 'Menunggu konsultasi' :
-                          data.stageStatus === 2 ? 'Menunggu pembayaran' :
-                          data.stageStatus === 3 ? 'Selesai' : ''}}</ion-text
+                          >{{data.stageStatus === 0 ? 'Menunggu konfirmasi
+                          dokter' : data.stageStatus === 1 ? 'Menunggu
+                          konsultasi' : data.stageStatus === 2 ? 'Menunggu
+                          pembayaran' : data.stageStatus === 3 ? 'Selesai' :
+                          'Konsultasi Gagal'}}</ion-text
                         >
                       </ion-badge>
                     </div>
@@ -107,6 +111,12 @@
         </ng-container>
       </div>
     </ng-container>
+
+    <ng-template #noReq>
+      <div class="content">
+        <div class="no-data-text">Tidak ada data riwayat konsultasi</div>
+      </div>
+    </ng-template>
 
     <ng-template #loading>
       <div class="loading-overlay">

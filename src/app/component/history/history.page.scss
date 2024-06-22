@@ -78,14 +78,26 @@ ion-content.white-space {
       }
     }
   }
+
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 176px);
+
+    .no-data-text {
+      font-size: 16px;
+      color: #000;
+    }
+  }
 }
 
 .status-cont {
   ion-badge {
     padding: 10px;
     border-radius: 10px;
-    white-space: normal; /* Allow line breaks */
-    word-wrap: break-word; /* Ensure long words break */
+    white-space: normal;
+    word-wrap: break-word;
     min-width: 95px;
     max-width: 130px;
 
@@ -124,17 +136,14 @@ ion-content.white-space {
         color: #fff;
       }
     }
-    &.stat-badge-none {
-      --background: #8791e5;
-      opacity: 0;
+    &.stat-badge-red {
+      --background: #ff0000;
 
       ion-text.status-text-hitam {
         color: #000;
-        opacity: 0;
       }
       ion-text.status-text-putih {
         color: #fff;
-        opacity: 0;
       }
     }
   }
@@ -162,6 +171,10 @@ ion-content.white-space {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

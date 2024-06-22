@@ -1,4 +1,7 @@
-2<ion-content class="white-space" [fullscreen]="true">
+<ion-content class="white-space" [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <div class="contents">
     <div class="bb-icon">
       <app-back-button [pageTitle]="'Informasi Konsultasi'"></app-back-button>
