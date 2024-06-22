@@ -81,11 +81,19 @@ export class HomePage implements OnInit {
       }
     }
 
-    this.doctors.sort((a, b) => {
-      if (!a.distance) return 1;
-      if (!b.distance) return -1;
-      return a.distance.localeCompare(b.distance);
-    });
+    this.doctors = this.doctors
+      .filter(
+        (doctor) => doctor.distance && this.parseDistance(doctor.distance) < 10
+      )
+      .sort(
+        (a, b) =>
+          this.parseDistance(a.distance) - this.parseDistance(b.distance)
+      );
+  }
+
+  parseDistance(distance: string): number {
+    const value = parseFloat(distance.replace(' km', ''));
+    return isNaN(value) ? Infinity : value;
   }
 
   public async toServiceSelect(idVet: number) {
