@@ -158,8 +158,8 @@ export class MapComponent implements OnInit, OnDestroy {
       };
       if (!this.dest?.lat) {
         this.dest = {
-          lat: this.liveTracking?.userLat,
-          lng: this.liveTracking?.userLng,
+          lat: parseFloat(this.liveTracking?.userLat),
+          lng: parseFloat(this.liveTracking?.userLng),
         };
         this.loadMap();
       } else {
@@ -270,6 +270,8 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   drawRoute() {
+    console.log(this.source);
+    console.log(this.dest);
     this.directionsService.route(
       {
         origin: this.source,
