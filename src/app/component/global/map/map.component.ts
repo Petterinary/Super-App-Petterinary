@@ -31,8 +31,9 @@ export class MapComponent implements OnInit, OnDestroy {
   public directionsDisplay: any;
   public source_marker: any;
   public destination_marker: any;
-  public trackSub: Subscription;
-  public geolocationSub: Subscription;
+
+  private subscriptions: Subscription = new Subscription();
+  private timeoutHandle: any;
 
   private userData: any;
   private isDoctorTrack: boolean;
@@ -62,62 +63,75 @@ export class MapComponent implements OnInit, OnDestroy {
 
   getLatLng() {
     if (this.isUserTrack) {
-      this.trackSub = this.liveTrackingDataService
+      const trackUserSub = this.liveTrackingDataService
         .getLiveTrackUser(this.consulStage[0].consultationId)
         .subscribe({
           next: (data) => {
             this.liveTracking = data;
             this.tracking();
-            setTimeout(() => {
-              this.refreshData();
-            }, 5000);
+            this.resetTimeout();
           },
         });
+      this.subscriptions.add(trackUserSub);
 
       if (this.userData.userType === '1') {
         console.log('user');
-        this.geolocationSub = this.geolocationService.watchPosition(
+        const geolocationSub = this.geolocationService.watchPosition(
           async (position) => {
             if (this.liveTracking?.liveTrackingId) {
               try {
-                await this.update(this.liveTracking.liveTrackingId, position);
+                if (position) {
+                  await this.update(this.liveTracking.liveTrackingId, position);
+                }
               } catch (e) {
                 console.error('Error updating live tracking:', e);
               }
             }
           }
         );
+        this.subscriptions.add(geolocationSub);
       }
     }
 
     if (this.isDoctorTrack) {
-      this.trackSub = this.liveTrackingDataService
+      const trackDoctorSub = this.liveTrackingDataService
         .getLiveTrackDoctor(this.consulStage[0].consultationId)
         .subscribe({
           next: (data) => {
             this.liveTracking = data;
             this.tracking();
-            setTimeout(() => {
-              this.refreshData();
-            }, 5000);
+            this.resetTimeout();
           },
         });
+      this.subscriptions.add(trackDoctorSub);
 
       if (this.userData.userType === '2') {
         console.log('doctor');
-        this.geolocationSub = this.geolocationService.watchPosition(
+        const geolocationSub = this.geolocationService.watchPosition(
           async (position) => {
             if (this.liveTracking?.liveTrackingId) {
               try {
-                await this.update(this.liveTracking.liveTrackingId, position);
+                if (position) {
+                  await this.update(this.liveTracking.liveTrackingId, position);
+                }
               } catch (e) {
                 console.error('Error updating live tracking:', e);
               }
             }
           }
         );
+        this.subscriptions.add(geolocationSub);
       }
     }
+  }
+
+  resetTimeout() {
+    if (this.timeoutHandle) {
+      clearTimeout(this.timeoutHandle);
+    }
+    this.timeoutHandle = setTimeout(() => {
+      this.refreshData();
+    }, 5000);
   }
 
   tracking() {
@@ -277,7 +291,9 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.trackSub) this.trackSub.unsubscribe();
-    if (this.geolocationSub) this.geolocationSub.unsubscribe();
+    if (this.timeoutHandle) {
+      clearTimeout(this.timeoutHandle);
+    }
+    this.subscriptions.unsubscribe();
   }
 }
