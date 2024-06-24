@@ -6,6 +6,8 @@ import {
   ViewChild,
   OnDestroy,
   Input,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { GmapService } from 'src/app/services/gmap/gmap.service';
@@ -22,6 +24,10 @@ import { LiveTrackingDataService } from '../../service/data/live-tracking.data.s
 export class MapComponent implements OnInit, OnDestroy {
   @ViewChild('map', { static: true }) mapElementRef: ElementRef;
   @Input() consulStage: any;
+  @Output() distanceDurationEvent = new EventEmitter<{
+    distance: string;
+    duration: string;
+  }>();
 
   public googleMaps: any;
   public source: any = {};
@@ -270,8 +276,6 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   drawRoute() {
-    console.log(this.source);
-    console.log(this.dest);
     this.directionsService.route(
       {
         origin: this.source,
@@ -285,6 +289,7 @@ export class MapComponent implements OnInit, OnDestroy {
           const directionsData = response.routes[0].legs[0];
           const distance = directionsData.distance.text;
           const duration = directionsData.duration.text;
+          this.distanceDurationEvent.emit({ distance, duration });
         } else {
           console.log(status);
         }

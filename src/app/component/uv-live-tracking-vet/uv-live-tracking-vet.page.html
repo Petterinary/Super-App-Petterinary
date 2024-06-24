@@ -3,7 +3,10 @@
   <div class="contents">
     <div class="map-section">
       <ng-container *ngIf="consulStage">
-        <app-map [consulStage]="consulStage"></app-map>
+        <app-map
+          [consulStage]="consulStage"
+          (distanceDurationEvent)="handleDistanceDurationEvent($event)"
+        ></app-map>
       </ng-container>
       <div class="info-container">
         <ng-container *ngIf="consulStage">
@@ -28,7 +31,8 @@
                     </ion-badge>
                   </div>
                   <div class="distance">
-                    <span><strong>{{data.dummyJarak}}</strong></span>
+                    <span><strong>{{distance}}</strong></span>
+                    <span><strong>{{duration}}</strong></span>
                   </div>
                 </div>
               </div>

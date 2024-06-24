@@ -10,6 +10,8 @@ import { ConsultationDataService } from '../service/data/consultations.data.serv
 export class VvLiveTrackingPage implements OnInit {
   public consulStage: any;
   public consultationId: number;
+  public distance: string;
+  public duration: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,6 +24,11 @@ export class VvLiveTrackingPage implements OnInit {
       .subscribe((res) => {
         this.consulStage = res;
       });
+  }
+
+  handleDistanceDurationEvent(event: { distance: string; duration: string }) {
+    this.distance = event.distance;
+    this.duration = event.duration;
   }
 
   ngOnInit() {
