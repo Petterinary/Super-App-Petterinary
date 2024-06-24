@@ -84,14 +84,26 @@ export class HomePage implements OnInit {
       }
     }
 
-    this.doctors = this.doctors
+    this.filterDoctor(10);
+  }
+
+  public filterDoctor(maxDistance: number) {
+    this.doctors = this.doctorsTemp
       .filter(
-        (doctor) => doctor.distance && this.parseDistance(doctor.distance) < 10
+        (doctor) =>
+          doctor.distance && this.parseDistance(doctor.distance) < maxDistance
       )
       .sort(
         (a, b) =>
           this.parseDistance(a.distance) - this.parseDistance(b.distance)
       );
+  }
+
+  filterDistance(ev: any) {
+    if (ev.detail.value) {
+      const maxDistance = parseInt(ev.detail.value);
+      return this.filterDoctor(maxDistance);
+    }
   }
 
   parseDistance(distance: string): number {

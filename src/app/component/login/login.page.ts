@@ -40,9 +40,9 @@ export class LoginPage implements OnInit {
         this.loadingService.dismiss();
         this.userData = await this.authService.getUserData();
         if (this.userData.userType === '1') {
-          this.router.navigate(['home']);
+          await this.router.navigate(['home']);
         } else {
-          this.router.navigate(['home-vet']);
+          await this.router.navigate(['home-vet']);
         }
       } catch (error) {
         this.loadingService.dismiss();

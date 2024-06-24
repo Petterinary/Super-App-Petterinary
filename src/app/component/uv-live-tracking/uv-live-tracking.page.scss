@@ -21,40 +21,6 @@ ion-list {
   }
 }
 
-// ::ng-deep app-back-button .head-cont {
-//   // opacity: 0.5; /* Set the desired transparency level */
-//   // margin-left: 10px;
-//   display: flex;
-
-//   flex-direction: row;
-//   justify-content: space-between;
-// }
-
-// .full-screen-content {
-//   height: 100%;
-//   width: 100%;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
-
-// .map-section {
-//   z-index: 0;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   height: 100%;
-//   width: 100%;
-//   position: relative;
-// }
-
-// .full-screen-image {
-//   height: 100%;
-//   width: 100%;
-//   object-fit: cover;
-// }
-
 .info-container {
   position: fixed;
   top: 78.5%;
@@ -68,7 +34,6 @@ ion-list {
     display: flex;
     align-items: center;
     padding: 10px;
-    // justify-content: space-between;
 
     .docter-img {
       padding: 1vh;
@@ -89,7 +54,6 @@ ion-list {
       .content-container {
         color: #000;
         font-size: 14px;
-        // width: 100%;
 
         word-wrap: break-word;
         text-overflow: ellipsis;
@@ -131,8 +95,6 @@ ion-list {
 @media (orientation: landscape) {
   .info-container {
     min-width: 0;
-
-    // height: 100%;
     top: 50%;
     width: auto;
     min-width: 120px;

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
-// import { AppComponent } from './app.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -211,12 +210,6 @@ export const routes: Routes = [
         (m) => m.RincianProfilePageModule
       ),
   },
-
-  // {
-  //   path: 'global',
-  //   loadChildren: () =>
-  //     import('./global/global.module').then((m) => m.GlobalModule),
-  // },
 ];
 
 @NgModule({

@@ -27,7 +27,6 @@ ion-content.white-space {
     flex: 1;
     display: flex;
     flex-direction: column;
-    // justify-content: space-between;
     margin-left: 10px;
     margin-right: 10px;
     margin-top: 10px;
@@ -65,7 +64,6 @@ ion-content.white-space {
           }
 
           textarea {
-            // width: 100%;
             max-width: 100%;
             min-width: 100%;
             max-height: 15vh;
@@ -80,11 +78,6 @@ ion-content.white-space {
           border-radius: 7px;
           height: 35px;
         }
-
-        //   input.testarea {
-        //     width: 100%;
-        //     height: 20px;
-        //   }
       }
     }
 
@@ -124,18 +117,8 @@ ion-content.white-space {
       }
 
       .status-pointer-sect {
-        // li {
-        //   margin-top: -20px;
-        //   margin-left: 10px;
-        // }
-        // li::marker {
-        //   color: #09a188;
-        //   // margin-top: 200px;
-        //   font-size: 50px;
-        // }
         .not-last-array-ul-kuning {
           list-style: none;
-          // margin: 0;
           padding: 0;
           position: relative;
 
@@ -144,7 +127,6 @@ ion-content.white-space {
             display: inline-block;
             width: 5px;
             background: #ffe600;
-            // padding-bottom: 20px;
             margin: 22.5px 0px 0px 0px;
             position: absolute;
             left: 20px;
@@ -231,7 +213,6 @@ ion-content.white-space {
 
         .not-last-array-ul-ijo {
           list-style: none;
-          // margin: 0;
           padding: 0;
           position: relative;
 
@@ -240,7 +221,6 @@ ion-content.white-space {
             display: inline-block;
             width: 5px;
             background: #23e712;
-            // padding-bottom: 20px;
             margin: 22.5px 0px 0px 0px;
             position: absolute;
             border-radius: 20px;
@@ -327,7 +307,6 @@ ion-content.white-space {
 
         .not-last-array-ul-merah {
           list-style: none;
-          // margin: 0;
           padding: 0;
           position: relative;
 
@@ -336,7 +315,6 @@ ion-content.white-space {
             display: inline-block;
             width: 5px;
             background: #ff0000;
-            // padding-bottom: 20px;
             margin: 22.5px 0px 0px 0px;
             border-radius: 20px;
             position: absolute;
@@ -423,7 +401,6 @@ ion-content.white-space {
 
         .not-last-array-ul-abu {
           list-style: none;
-          // margin: 0;
           padding: 0;
           position: relative;
 
@@ -432,7 +409,6 @@ ion-content.white-space {
             display: inline-block;
             width: 5px;
             background: #7a7a7a;
-            // padding-bottom: 20px;
             margin: 22.5px 0px 0px 0px;
             border-radius: 20px;
             position: absolute;
@@ -516,53 +492,6 @@ ion-content.white-space {
             }
           }
         }
-
-        // .last-array-ul {
-        //   list-style: none;
-        //   margin: 0;
-        //   padding: 0;
-        //   position: relative;
-
-        //   &:before {
-        //     content: "";
-        //     display: inline-block;
-        //     width: 5px;
-
-        //     padding-bottom: 20px;
-        //     position: absolute;
-        //     left: 10px;
-        //     top: 5px;
-        //     height: calc(100% - 10px);
-        //   }
-
-        //   .last-array-li {
-        //     position: relative;
-        //     padding-left: 25px;
-        //     // margin-bottom: 15px;
-        //     &:after {
-        //       content: "";
-        //       display: inline-block;
-        //       width: 25px;
-        //       height: 25px;
-        //       background: #09a188;
-        //       position: absolute;
-        //       left: 10px;
-        //       top: -5px;
-        //       border-radius: 50%;
-        //     }
-
-        //     .act-contents1 {
-        //       margin-left: 20px;
-        //       margin-right: 20px;
-        //       .font-smaller1 {
-        //         opacity: 0.55;
-        //         font-size: 16px;
-        //         line-height: 18px;
-        //         line-break: anywhere;
-        //       }
-        //     }
-        //   }
-        // }
       }
     }
 
@@ -616,7 +545,6 @@ ion-content.white-space {
       display: flex;
       justify-content: center;
       align-items: flex-end;
-      // flex: 1;
       width: 100%;
 
       margin-bottom: 10px;
@@ -662,7 +590,6 @@ ion-content.white-space {
       display: flex;
       justify-content: center;
       align-items: flex-end;
-      // flex: 1;
       width: 100%;
 
       margin-bottom: 10px;
@@ -703,10 +630,8 @@ ion-content.white-space {
     }
 
     .dr-gbs-cont {
-      // flex: 1;
       display: flex;
       flex-direction: column;
-      // justify-content: space-between;
       margin: 10px;
       border-radius: 20px;
       border: solid #9c9c9c 1px;
@@ -731,10 +656,8 @@ ion-content.white-space {
     }
 
     .byr-gagal-cont {
-      // flex: 1;
       display: flex;
       flex-direction: column;
-      // justify-content: space-between;
       margin: 10px;
       border-radius: 20px;
       border: solid #9c9c9c 1px;

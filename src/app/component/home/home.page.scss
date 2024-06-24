@@ -1,3 +1,5 @@
+@import "src/global.scss";
+
 ion-content.white-space {
   --ion-background-color: #fff;
   --color: #000;
@@ -8,9 +10,6 @@ ion-content.white-space {
   margin-bottom: 108px;
 
   .container {
-    // display: grid;
-    // grid-template-columns: auto auto;
-
     ion-card {
       box-shadow: 0px 2px 12px 0px rgb(151 151 151 / 50%);
       padding: 10px;
@@ -18,7 +17,6 @@ ion-content.white-space {
       .item-container {
         display: flex;
         align-items: center;
-        // gap: 20px;
 
         .docter-img {
           padding: 1vh;
@@ -59,10 +57,8 @@ ion-content.white-space {
               justify-content: space-between;
               img.loc-icon {
                 width: 25px;
-                // margin-right: 10px;
               }
               h1.dist-text {
-                // margin-left: 10px;
                 margin: 0px 0px 0px 10px;
               }
             }
@@ -72,10 +68,8 @@ ion-content.white-space {
               justify-content: space-between;
               img.clock-icon {
                 width: 25px;
-                // margin-right: 10px;
               }
               h1.dur-text {
-                // margin-left: 10px;
                 margin: 0px 0px 0px 10px;
               }
             }
@@ -146,4 +140,8 @@ ion-content.white-space {
   100% {
     transform: rotate(360deg);
   }
+}
+
+ion-item {
+  margin: 10px;
 }

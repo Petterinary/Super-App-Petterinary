@@ -10,27 +10,6 @@
     </div>
     <div class="form-body">
       <div class="input-tile">
-        <!-- <p>Nama</p>
-        <input
-          placeholder="Silahkan masukan nama..."
-          class="test"
-          #input
-          type="text"
-        />
-        <p>Nomor yang bisa dihubungi</p>
-        <input
-          placeholder="Silahkan masukan nomor yang dapat dihubungi..."
-          class="test"
-          #input
-          type="text"
-        />
-        <p>Deskripsi Keluhan</p>
-        <textarea
-          placeholder="Deskripsikan keluhan hewan kamu..."
-          class="testarea"
-          #input
-        ></textarea> -->
-
         <ng-container *ngFor="let data of test">
           <ion-item>
             <ion-label position="stacked">Nama Pemohon</ion-label>
@@ -49,31 +28,6 @@
             <ion-textarea [(ngModel)]="data.hasilKon"></ion-textarea>
           </ion-item>
         </ng-container>
-        <!-- vv Scroll overflow test -->
-        <!-- <p>Deskripsi Keluhan</p>
-        <textarea
-          placeholder="Deskripsikan keluhan hewan kamu..."
-          class="testarea"
-          #input
-        ></textarea>
-        <p>Deskripsi Keluhan</p>
-        <textarea
-          placeholder="Deskripsikan keluhan hewan kamu..."
-          class="testarea"
-          #input
-        ></textarea>
-        <p>Deskripsi Keluhan</p>
-        <textarea
-          placeholder="Deskripsikan keluhan hewan kamu..."
-          class="testarea"
-          #input
-        ></textarea>
-        <p>Deskripsi Keluhan</p>
-        <textarea
-          placeholder="Deskripsikan keluhan hewan kamu..."
-          class="testarea"
-          #input
-        ></textarea> -->
       </div>
       <ng-container *ngFor="let data of test">
         <ng-container *ngIf="data.sudahDibayar === 1; else belumDibayar">

@@ -5,12 +5,9 @@ ion-header {
   z-index: 1000;
   margin-top: 48px;
 
-  // position: fixed;
-  // top: 0;
   ion-item {
     .head-cont {
       display: flex;
-      // position: relative;
       width: 100%;
 
       .logo-cont {
@@ -41,7 +38,6 @@ ion-header {
         .side-menu-icon {
           font-size: 40px;
           display: flex;
-          // position: absolute;
           top: 50%;
           right: 0px;
           transform: translateY(-50%);

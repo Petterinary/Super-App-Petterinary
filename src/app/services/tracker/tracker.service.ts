@@ -1,4 +1,3 @@
-// tracker.service.ts
 import { Injectable } from '@angular/core';
 import { LiveTrackingDataService } from 'src/app/component/service/data/live-tracking.data.service';
 
