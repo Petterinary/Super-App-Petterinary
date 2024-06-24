@@ -110,6 +110,8 @@
         (click)="submitRegister()"
         class="btn-aksi register"
         type="submit"
+        [disabled]="registerForm.get('latitude')?.value === '' || registerForm.get('longitude')?.value === ''"
+        [ngClass]="{'disabled-button': registerForm.get('latitude')?.value === '' || registerForm.get('longitude')?.value === ''}"
       >
         Register
       </button>

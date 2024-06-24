@@ -48,3 +48,10 @@
     }
   }
 }
+
+.disabled-button {
+  background-color: gray;
+  cursor: not-allowed;
+  color: #fff;
+  opacity: 0.6;
+}
