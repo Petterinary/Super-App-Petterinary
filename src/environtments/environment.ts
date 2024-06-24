@@ -2,7 +2,7 @@ export const environment = {
   production: false,
   // googleMapsApiKey: 'AIzaSyAT2BSJnYwn9CTMhqu9Xx8xpVE8TC3JxI0',
   googleMapsApiKey: '',
-  apiUrl: 'https://petterinary.onrender.com',
+  apiUrl: 'http://localhost:4000',
   firebase: {
     apiKey: 'AIzaSyD9w1VyW4ZlP9fbiRnpgGT7QUA3WDLDVpQ',
     authDomain: 'petterinary-d431b.firebaseapp.com',
