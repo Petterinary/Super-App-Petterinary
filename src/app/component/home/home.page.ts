@@ -84,7 +84,7 @@ export class HomePage implements OnInit {
       }
     }
 
-    this.filterDoctor(10);
+    this.filterDoctor(3);
   }
 
   public filterDoctor(maxDistance: number) {
