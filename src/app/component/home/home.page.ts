@@ -17,7 +17,6 @@ export class HomePage implements OnInit {
   public doctorsTemp: any;
   private userData: any;
   public distance: number;
-  private userLocation: { lat: number; lng: number };
   public isLoading: boolean;
 
   constructor(
@@ -54,24 +53,15 @@ export class HomePage implements OnInit {
     }
   }
 
-  async getCurrentLocation() {
-    try {
-      const position = await this.geolocation.getCurrentPosition();
-      this.userLocation = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      };
-    } catch (error) {
-      console.error('Error getting user location:', error);
-    }
-  }
-
   async calculateDistances() {
     for (let doctor of this.doctors) {
       if (doctor.lat && doctor.lng) {
         try {
           const result = await this.distanceService.calculateDistance(
-            { lat: this.userLocation.lat, lng: this.userLocation.lng },
+            {
+              lat: parseFloat(this.userData.lat),
+              lng: parseFloat(this.userData.lng),
+            },
             { lat: parseFloat(doctor.lat), lng: parseFloat(doctor.lng) }
           );
           doctor.distance = result.distance;
@@ -122,7 +112,6 @@ export class HomePage implements OnInit {
 
   async ngOnInit() {
     this.userData = await this.authService.getUserData();
-    await this.getCurrentLocation();
     this.getDoctor();
   }
 }
