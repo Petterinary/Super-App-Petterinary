@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DoctorDataService } from '../service/data/doctor.data.serivce';
-
-import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { DistanceService } from 'src/app/services/distance/distance.service';
 import { AuthService } from '../service/auth.service';
 import { finalize } from 'rxjs';
 
@@ -22,9 +19,7 @@ export class HomePage implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private doctorDataSerivice: DoctorDataService,
-    private distanceService: DistanceService,
-    private geolocation: Geolocation
+    private doctorDataSerivice: DoctorDataService
   ) {}
 
   async getDoctor() {
@@ -33,12 +28,8 @@ export class HomePage implements OnInit {
       .getAllDoctors()
       .pipe(finalize(() => (this.isLoading = false)))
       .subscribe((res) => {
-        this.doctors = this.doctorsTemp = res.map((doctor) => ({
-          ...doctor,
-          lat: parseFloat(doctor.lat),
-          lng: parseFloat(doctor.lng),
-        }));
-        this.calculateDistances();
+        this.doctors = this.doctorsTemp = res;
+        this.filterDoctor(3);
       });
   }
 
@@ -53,40 +44,10 @@ export class HomePage implements OnInit {
     }
   }
 
-  async calculateDistances() {
-    for (let doctor of this.doctors) {
-      if (doctor.lat && doctor.lng) {
-        try {
-          const result = await this.distanceService.calculateDistance(
-            {
-              lat: parseFloat(this.userData.lat),
-              lng: parseFloat(this.userData.lng),
-            },
-            { lat: parseFloat(doctor.lat), lng: parseFloat(doctor.lng) }
-          );
-          doctor.distance = result.distance;
-          doctor.duration = result.duration;
-        } catch (error) {
-          console.error('Error calculating distance:', error);
-          doctor.distance = null;
-          doctor.duration = null;
-        }
-      }
-    }
-
-    this.filterDoctor(3);
-  }
-
   public filterDoctor(maxDistance: number) {
     this.doctors = this.doctorsTemp
-      .filter(
-        (doctor) =>
-          doctor.distance && this.parseDistance(doctor.distance) < maxDistance
-      )
-      .sort(
-        (a, b) =>
-          this.parseDistance(a.distance) - this.parseDistance(b.distance)
-      );
+      .filter((doctor) => doctor.distance && doctor.distance < maxDistance)
+      .sort((a, b) => a.distance - b.distance);
   }
 
   filterDistance(ev: any) {
@@ -94,11 +55,6 @@ export class HomePage implements OnInit {
       const maxDistance = parseInt(ev.detail.value);
       return this.filterDoctor(maxDistance);
     }
-  }
-
-  parseDistance(distance: string): number {
-    const value = parseFloat(distance.replace(' km', ''));
-    return isNaN(value) ? Infinity : value;
   }
 
   public async toServiceSelect(idVet: number) {
