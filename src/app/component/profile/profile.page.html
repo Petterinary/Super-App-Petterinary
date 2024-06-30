@@ -1,0 +1,38 @@
+<ion-content class="white-space" [fullscreen]="true">
+  <div class="container">
+    <ng-container>
+      <div class="profile-card">
+        <div class="profile-img">
+          <ng-container *ngIf="!isDokter; else dokter">
+            <img src="assets/icon/user.png" />
+          </ng-container>
+          <ng-template #dokter>
+            <img src="assets/icon/dokter-female.png" />
+          </ng-template>
+        </div>
+        <div class="item-container">
+          <h1>{{userData.username}}</h1>
+          <div class="list-item">
+            <p>Nomor Telepon: {{userData.phoneNumber}}</p>
+            <p>Email: {{userData.email}}</p>
+            <p>Alamat: {{userData.address}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="aksi-container" (click)="goRincianProfile()">
+          <div class="icon-aksi">
+            <img src="assets/icon/Rincian-Profil.png" />
+          </div>
+          <p>Rincian Profile</p>
+        </div>
+        <div class="aksi-container" (click)="submitLogout()">
+          <div class="icon-aksi">
+            <img src="assets/icon/logout.png" />
+          </div>
+          <p>Log Out</p>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ion-content>

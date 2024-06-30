@@ -1,0 +1,721 @@
+ion-content.white-space {
+  --color: #000;
+}
+
+.contents {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .form-type {
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+
+    .form-title {
+      --background: #ffe600;
+      padding: 5px 10px 5px 10px;
+      ion-text {
+        color: #000;
+        font-size: 2vh;
+      }
+    }
+  }
+
+  .form-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    border-radius: 20px;
+    border: solid #9c9c9c 1px;
+
+    .bottom-border {
+      border-bottom: solid 1px #9c9c9c;
+      .status-info {
+        margin: 10px;
+        display: flex;
+
+        .info {
+          flex: 1;
+          p {
+            margin: 5px 0px 5px 0px;
+          }
+
+          h5 {
+            color: #888;
+            margin: 0px;
+          }
+
+          input,
+          textarea {
+            width: 100%;
+            border: solid #9c9c9c 1px;
+            border-radius: 5px;
+
+            &::placeholder {
+              color: #888;
+              font-style: italic;
+              font-size: 1.8vh;
+            }
+          }
+
+          textarea {
+            max-width: 100%;
+            min-width: 100%;
+            max-height: 15vh;
+            min-height: 5vh;
+          }
+        }
+
+        .btn-rincian {
+          padding: 10px 20px;
+          color: #fff;
+          background-color: var(--ion-color-primary);
+          border-radius: 7px;
+          height: 35px;
+        }
+      }
+    }
+
+    .status-stage-section {
+      margin: 10px;
+      flex: 1;
+
+      .status-heading {
+        margin: 5px 0px 5px 0px;
+        color: #888;
+        font-weight: bold;
+      }
+
+      .banner-sect {
+        .status-banner-kuning {
+          --background: #ffe600;
+          padding: 10px;
+          border-radius: 10px;
+        }
+        .status-banner-ijo {
+          --background: #23e712;
+          padding: 10px;
+          border-radius: 10px;
+        }
+        .status-banner-merah {
+          --background: #ff0000;
+          padding: 10px;
+          border-radius: 10px;
+        }
+
+        .status-text-hitam {
+          color: #000;
+        }
+        .status-text-putih {
+          color: #ffffff;
+        }
+      }
+
+      .status-pointer-sect {
+        .not-last-array-ul-kuning {
+          list-style: none;
+          padding: 0;
+          position: relative;
+
+          &:before {
+            content: "";
+            display: inline-block;
+            width: 5px;
+            background: #ffe600;
+            margin: 22.5px 0px 0px 0px;
+            position: absolute;
+            left: 20px;
+            border-radius: 20px;
+            top: 5px;
+            height: calc(100% - 20px);
+          }
+
+          .not-last-array-li-kuning {
+            position: relative;
+            padding-left: 25px;
+            display: flex;
+            margin-bottom: 20px;
+            &:after {
+              content: "";
+              display: inline-block;
+              width: 25px;
+              height: 25px;
+              background: #ffe600;
+              position: absolute;
+              left: 10px;
+              top: -5px;
+              border-radius: 50%;
+            }
+
+            .act-contents {
+              margin-left: 20px;
+              margin-right: 20px;
+              width: 100%;
+              .font-smaller {
+                opacity: 0.55;
+                margin-top: 15px;
+                font-size: 16px;
+                line-height: 18px;
+                line-break: anywhere;
+              }
+            }
+
+            .status-icon {
+              .font-smaller {
+                opacity: 0.55;
+                margin-top: 0px;
+              }
+
+              .badge-kuning {
+                justify-content: center;
+                display: flex;
+                border-radius: 10px;
+                background-color: #ffe600;
+              }
+              .badge-ijo {
+                justify-content: center;
+                display: flex;
+                border-radius: 10px;
+                background-color: #23e712;
+              }
+              .badge-merah {
+                justify-content: center;
+                display: flex;
+                border-radius: 10px;
+                background-color: #ff0000;
+              }
+              .badge-non-exist {
+                justify-content: center;
+                display: flex;
+                border-radius: 10px;
+                opacity: 0;
+              }
+              .hourglass-icon {
+                color: #000;
+                font-size: 15px;
+              }
+              .check-icon {
+                color: #000;
+                font-size: 15px;
+              }
+              .failed-icon {
+                color: #000;
+                font-size: 15px;
+              }
+            }
+          }
+        }
+
+        .not-last-array-ul-ijo {
+          list-style: none;
+          padding: 0;
+          position: relative;
+
+          &:before {
+            content: "";
+            display: inline-block;
+            width: 5px;
+            background: #23e712;
+            margin: 22.5px 0px 0px 0px;
+            position: absolute;
+            border-radius: 20px;
+            left: 20px;
+            top: 5px;
+            height: calc(100% - 20px);
+          }
+
+          .not-last-array-li-ijo {
+            position: relative;
+            padding-left: 25px;
+            display: flex;
+            margin-bottom: 20px;
+            &:after {
+              content: "";
+              display: inline-block;
+              width: 25px;
+              height: 25px;
+              background: #23e712;
+              position: absolute;
+              left: 10px;
+              top: -5px;
+              border-radius: 50%;
+            }
+
+            .act-contents {
+              margin-left: 20px;
+              margin-right: 20px;
+              width: 100%;
+              .font-smaller {
+                opacity: 0.55;
+                margin-top: 15px;
+                font-size: 16px;
+                line-height: 18px;
+                line-break: anywhere;
+              }
+            }
+
+            .status-icon {
+              .font-smaller {
+                opacity: 0.55;
+                margin-top: 0px;
+              }
+
+              .badge-kuning {
+                justify-content: center;
+                display: flex;
+                border-radius: 10px;
+                background-color: #ffe600;
+              }
+              .badge-ijo {
+                justify-content: center;
+                display: flex;
+                border-radius: 10px;
+                background-color: #23e712;
+              }
+              .badge-merah {
+                justify-content: center;
+                display: flex;
+                border-radius: 10px;
+                background-color: #ff0000;
+              }
+              .badge-non-exist {
+                justify-content: center;
+                display: flex;
+                border-radius: 10px;
+                opacity: 0;
+              }
+              .hourglass-icon {
+                color: #000;
+                font-size: 15px;
+              }
+              .check-icon {
+                color: #000;
+                font-size: 15px;
+              }
+              .failed-icon {
+                color: #000;
+                font-size: 15px;
+              }
+            }
+          }
+        }
+
+        .not-last-array-ul-merah {
+          list-style: none;
+          padding: 0;
+          position: relative;
+
+          &:before {
+            content: "";
+            display: inline-block;
+            width: 5px;
+            background: #ff0000;
+            margin: 22.5px 0px 0px 0px;
+            border-radius: 20px;
+            position: absolute;
+            left: 20px;
+            top: 5px;
+            height: calc(100% - 20px);
+          }
+
+          .not-last-array-li-merah {
+            position: relative;
+            padding-left: 25px;
+            display: flex;
+            margin-bottom: 20px;
+            &:after {
+              content: "";
+              display: inline-block;
+              width: 25px;
+              height: 25px;
+              background: #ff0000;
+              position: absolute;
+              left: 10px;
+              top: -5px;
+              border-radius: 50%;
+            }
+
+            .act-contents {
+              margin-left: 20px;
+              margin-right: 20px;
+              width: 100%;
+              .font-smaller {
+                opacity: 0.55;
+                margin-top: 15px;
+                font-size: 16px;
+                line-height: 18px;
+                line-break: anywhere;
+              }
+            }
+
+            .status-icon {
+              .font-smaller {
+                opacity: 0.55;
+                margin-top: 0px;
+              }
+
+              .badge-kuning {
+                justify-content: center;
+                display: flex;
+                border-radius: 10px;
+                background-color: #ffe600;
+              }
+              .badge-ijo {
+                justify-content: center;
+                display: flex;
+                border-radius: 10px;
+                background-color: #23e712;
+              }
+              .badge-merah {
+                justify-content: center;
+                display: flex;
+                border-radius: 10px;
+                background-color: #ff0000;
+              }
+              .badge-non-exist {
+                justify-content: center;
+                display: flex;
+                border-radius: 10px;
+                opacity: 0;
+              }
+              .hourglass-icon {
+                color: #000;
+                font-size: 15px;
+              }
+              .check-icon {
+                color: #000;
+                font-size: 15px;
+              }
+              .failed-icon {
+                color: #000;
+                font-size: 15px;
+              }
+            }
+          }
+        }
+
+        .not-last-array-ul-abu {
+          list-style: none;
+          padding: 0;
+          position: relative;
+
+          &:before {
+            content: "";
+            display: inline-block;
+            width: 5px;
+            background: #7a7a7a;
+            margin: 22.5px 0px 0px 0px;
+            border-radius: 20px;
+            position: absolute;
+            left: 20px;
+            top: 5px;
+            height: calc(100% - 20px);
+          }
+
+          .not-last-array-li-abu {
+            position: relative;
+            padding-left: 25px;
+            display: flex;
+            margin-bottom: 20px;
+            &:after {
+              content: "";
+              display: inline-block;
+              width: 25px;
+              height: 25px;
+              background: #7a7a7a;
+              position: absolute;
+              left: 10px;
+              top: -5px;
+              border-radius: 50%;
+            }
+
+            .act-contents {
+              margin-left: 20px;
+              margin-right: 20px;
+              width: 100%;
+              .font-smaller {
+                opacity: 0.55;
+                margin-top: 15px;
+                font-size: 16px;
+                line-height: 18px;
+                line-break: anywhere;
+              }
+            }
+
+            .status-icon {
+              .font-smaller {
+                opacity: 0.55;
+                margin-top: 0px;
+              }
+
+              .badge-kuning {
+                justify-content: center;
+                display: flex;
+                border-radius: 10px;
+                background-color: #ffe600;
+              }
+              .badge-ijo {
+                justify-content: center;
+                display: flex;
+                border-radius: 10px;
+                background-color: #23e712;
+              }
+              .badge-merah {
+                justify-content: center;
+                display: flex;
+                border-radius: 10px;
+                background-color: #ff0000;
+              }
+              .badge-non-exist {
+                justify-content: center;
+                display: flex;
+                border-radius: 10px;
+                opacity: 0;
+              }
+              .hourglass-icon {
+                color: #000;
+                font-size: 15px;
+              }
+              .check-icon {
+                color: #000;
+                font-size: 15px;
+              }
+              .failed-icon {
+                color: #000;
+                font-size: 15px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .cancel-cont {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      flex: 1;
+      width: 100%;
+
+      margin-bottom: 10px;
+
+      .cancel-button {
+        --background: #ff0000;
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+
+        ion-text {
+          color: #ffffff;
+        }
+      }
+    }
+
+    .accept-cont {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      width: 100%;
+
+      margin-bottom: 10px;
+
+      .accept-button {
+        --background: #23e712;
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+
+        ion-text {
+          color: #000;
+        }
+      }
+    }
+
+    .lt-cont {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      flex: 1;
+      width: 100%;
+
+      margin-bottom: 10px;
+
+      .lt-button {
+        --background: #ffe600;
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+
+        ion-text {
+          color: #000;
+        }
+      }
+    }
+
+    .done-cont {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      width: 100%;
+
+      margin-bottom: 10px;
+
+      .done-button {
+        --background: #8791e5;
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+
+        ion-text {
+          color: #000;
+        }
+      }
+    }
+
+    .byr-cont {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      flex: 1;
+      width: 100%;
+
+      margin-bottom: 10px;
+
+      .byr-button {
+        --background: #fff;
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        border: solid #23e712 1px;
+
+        ion-text {
+          color: #000;
+        }
+      }
+    }
+
+    .catatan-cont {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      width: 100%;
+
+      margin-bottom: 10px;
+
+      .catatan-button {
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+
+        ion-text {
+          color: #000;
+        }
+      }
+    }
+
+    .catatan-cont1 {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      flex: 1;
+      width: 100%;
+
+      margin-bottom: 10px;
+
+      .catatan-button1 {
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+
+        ion-text {
+          color: #000;
+        }
+      }
+    }
+
+    .dr-gbs-cont {
+      display: flex;
+      flex-direction: column;
+      margin: 10px;
+      border-radius: 20px;
+      border: solid #9c9c9c 1px;
+      .tab-header {
+        display: flex;
+        justify-content: center;
+        background-color: #ff9900;
+        border-bottom: solid 1px #9c9c9c;
+        border-radius: 20px 20px 0px 0px;
+      }
+
+      .content-box {
+        margin: 10px;
+
+        .main-note {
+          color: #888;
+        }
+        .post-note {
+          color: #888;
+        }
+      }
+    }
+
+    .byr-gagal-cont {
+      display: flex;
+      flex-direction: column;
+      margin: 10px;
+      border-radius: 20px;
+      border: solid #9c9c9c 1px;
+      .tab-header {
+        display: flex;
+        justify-content: center;
+        background-color: #ff9900;
+        border-bottom: solid 1px #9c9c9c;
+        border-radius: 20px 20px 0px 0px;
+      }
+
+      .content-box {
+        margin: 10px;
+
+        .pesan-batal {
+          text-align: center;
+        }
+
+        .main-note {
+          color: #888;
+          text-align: center;
+        }
+        .post-note {
+          color: #888;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .line {
+    border: solid black 1px;
+  }
+
+  .bottom-gap {
+    padding: 54px 0px 54px 0;
+  }
+}

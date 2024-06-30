@@ -1,0 +1,45 @@
+<app-back-button class="uv-livetrack-bb"></app-back-button>
+<ion-content [fullscreen]="true" class="full-screen-content">
+  <div class="contents">
+    <div class="map-section">
+      <ng-container *ngIf="consulStage">
+        <app-map
+          [consulStage]="consulStage"
+          (distanceDurationEvent)="handleDistanceDurationEvent($event)"
+        ></app-map>
+      </ng-container>
+      <div class="info-container">
+        <ng-container *ngIf="consulStage">
+          <ng-container *ngFor="let data of consulStage">
+            <ion-card>
+              <div class="container">
+                <div class="docter-img">
+                  <ng-container
+                    *ngIf="data.jenisKelamin === 'Laki-laki'; else female"
+                  >
+                    <img class="doc-prof" src="assets/icon/dokter-male.png" />
+                  </ng-container>
+                  <ng-template #female>
+                    <img class="doc-prof" src="assets/icon/dokter-female.png" />
+                  </ng-template>
+                </div>
+                <div class="testo">
+                  <div class="content-container">
+                    <h1>{{data.doctorName}}</h1>
+                    <ion-badge class="badge-blue">
+                      <p>Vet Visit</p>
+                    </ion-badge>
+                  </div>
+                  <div class="distance">
+                    <span><strong>{{distance}}</strong></span>
+                    <span><strong>{{duration}}</strong></span>
+                  </div>
+                </div>
+              </div>
+            </ion-card>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</ion-content>

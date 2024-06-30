@@ -1,0 +1,115 @@
+<ion-content class="white-space" [fullscreen]="true">
+  <div class="contents">
+    <div class="bb-icon">
+      <app-back-button [pageTitle]="'Rekap Konsultasi'"></app-back-button>
+    </div>
+    <div class="form-type">
+      <ion-badge class="form-title">
+        <ion-text>User Visit</ion-text>
+      </ion-badge>
+    </div>
+    <div class="form-body">
+      <ng-container *ngIf="data">
+        <div class="input-tile">
+          <ion-item>
+            <ion-label position="stacked"
+              >Tanggal Permohonan Konsultasi</ion-label
+            >
+            <ion-input disabled [(ngModel)]="data.registrationDate"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Nama Pemohon</ion-label>
+            <ion-input disabled [(ngModel)]="data.userName"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Nomor yang bisa dihubungi</ion-label>
+            <ion-input disabled [(ngModel)]="data.phoneNumber"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Deskripsi Keluhan</ion-label>
+            <ion-textarea disabled [(ngModel)]="data.complaint"></ion-textarea>
+          </ion-item>
+        </div>
+
+        <hr />
+
+        <div class="input-tile">
+          <ion-title class="payment">Rincian Pembayaran</ion-title>
+          <ion-item>
+            <ion-label position="stacked">Biaya Konsultasi</ion-label>
+            <ion-input
+              disabled
+              [(ngModel)]="data.consultationAmount"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Biaya Transportasi</ion-label>
+            <ion-input disabled [(ngModel)]="data.transportAmount"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Biaya Admin</ion-label>
+            <ion-input disabled [(ngModel)]="data.serviceAmount"></ion-input>
+          </ion-item>
+        </div>
+
+        <ng-container *ngIf="data.paymentStatus === 2; else belumDibayar">
+          <div class="total-price">
+            <div class="paid">
+              <div class="paid-by">
+                <ion-text class="text">Dibayar dengan</ion-text>
+                <ion-text class="payment-method-text"
+                  >{{data.paymentMethod === 'Gopay' ? 'Gopay' :
+                  'BCA'}}</ion-text
+                >
+              </div>
+              <ng-container
+                *ngIf="data.paymentMethod === 'Gopay'; else bayarBca"
+              >
+                <div class="img-cont">
+                  <img
+                    class="gopay-icon"
+                    src="../../../assets/icon/payment/gopay-icon.png"
+                  />
+                </div>
+              </ng-container>
+
+              <ng-template #bayarBca>
+                <div class="img-cont">
+                  <img
+                    class="bca-icon"
+                    src="../../../assets/icon/payment/bca-icon.png"
+                  />
+                </div>
+              </ng-template>
+            </div>
+
+            <div class="text-container">
+              <ion-text class="text-price">Total Biaya</ion-text>
+
+              <ion-text class="text-prices">Rp. {{data.totalAmount}}</ion-text>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-template #belumDibayar>
+          <div class="unpaid-total-price">
+            <div class="paid">
+              <div class="paid-by">
+                <ion-text class="text-blm-bayar"
+                  >Tagihan Belum Dibayar</ion-text
+                >
+              </div>
+            </div>
+
+            <div class="text-container">
+              <ion-text class="text-price">Total Biaya</ion-text>
+
+              <ion-text class="text-prices">Rp. {{data.totalAmount}}</ion-text>
+            </div>
+          </div>
+        </ng-template>
+      </ng-container>
+    </div>
+    <div class="bottom-gap"></div>
+  </div>
+</ion-content>

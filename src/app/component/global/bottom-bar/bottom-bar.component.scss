@@ -1,10 +1,13 @@
 ion-footer {
+  position: fixed;
+  bottom: 0;
+  background-color: #ff9900;
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
-
-  // border-top-right-radius: 100px;
-  // border-top-left-radius: 100px;
+  z-index: 1000;
   ion-item {
+    --padding-start: 0;
+    --inner-padding-end: 0;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
     .bot-cont {
@@ -12,8 +15,13 @@ ion-footer {
       position: relative;
       width: 100%;
       margin: 20px;
+      margin-top: 0;
       align-items: end;
       justify-content: center;
+      button {
+        background-color: var(--ion-color-primary);
+        width: 60px;
+      }
       .home-cont {
         margin-right: 20px;
         margin-left: 20px;
@@ -26,11 +34,12 @@ ion-footer {
 
           img {
             width: 35px;
+            height: 35px;
           }
         }
         .icon-desc {
           .logo-info {
-            font-size: 20px;
+            font-size: 15px;
             color: #fff;
           }
         }
@@ -46,11 +55,12 @@ ion-footer {
 
           img {
             width: 35px;
+            height: 35px;
           }
         }
         .icon-desc {
           .logo-info {
-            font-size: 20px;
+            font-size: 15px;
             color: #fff;
           }
         }
@@ -66,12 +76,13 @@ ion-footer {
 
           img {
             width: 35px;
-            margin-left: 5px;
+            height: 35px;
+            margin-left: 5.5px;
           }
         }
         .icon-desc {
           .logo-info {
-            font-size: 20px;
+            font-size: 15px;
             color: #fff;
           }
         }
@@ -91,4 +102,21 @@ ion-footer {
       }
     }
   }
+}
+
+.active,
+.inactive {
+  height: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  transition: transform 0.3s ease;
+  transform-origin: center; /* Ensure the scale transformation happens from the center */
+}
+
+.active {
+  transform: scaleX(1); /* Scale to full width when active */
+}
+
+.inactive {
+  transform: scaleX(0); /* Scale to zero width when inactive */
 }

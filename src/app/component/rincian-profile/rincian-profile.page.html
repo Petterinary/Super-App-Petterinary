@@ -1,0 +1,73 @@
+<div class="contents">
+  <div class="form-type">
+    <ion-badge class="form-title">
+      <ion-text>Rincian Profile</ion-text>
+    </ion-badge>
+  </div>
+  <div class="form-body">
+    <div class="input-tile">
+      <ng-container *ngIf="userData">
+        <ion-item>
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input disabled [(ngModel)]="userData.email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Username</ion-label>
+          <ion-input disabled [(ngModel)]="userData.username"></ion-input>
+        </ion-item>
+        <ng-container *ngIf="userData.userType === '1'">
+          <ion-item>
+            <ion-label position="stacked">Alamat</ion-label>
+            <ion-input disabled [(ngModel)]="userData.address"></ion-input>
+          </ion-item>
+        </ng-container>
+        <ion-item>
+          <ion-label position="stacked">Nomor Telepon</ion-label>
+          <ion-textarea
+            disabled
+            [(ngModel)]="userData.phoneNumber"
+          ></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Jenis kelamin</ion-label>
+          <ion-textarea disabled [(ngModel)]="userData.gender"></ion-textarea>
+        </ion-item>
+        <ng-container *ngIf="userData.userType === '2' && doctorData">
+          <ion-item>
+            <ion-label position="stacked">Tempat Praktik</ion-label>
+            <ion-textarea
+              disabled
+              [(ngModel)]="doctorData.address"
+            ></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Jadwal Praktik</ion-label>
+            <ion-textarea
+              disabled
+              [(ngModel)]="doctorData.doctorSchedule"
+            ></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Lama Pengalaman Praktik</ion-label>
+            <ion-textarea
+              disabled
+              [(ngModel)]="doctorData.experience"
+            ></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Specialisasi Hewan</ion-label>
+            <ion-textarea
+              disabled
+              [(ngModel)]="doctorData.specialization"
+            ></ion-textarea>
+          </ion-item>
+        </ng-container>
+      </ng-container>
+    </div>
+    <div class="send-button-cont">
+      <ion-badge (click)="goProfile()" class="send-button">
+        <ion-text>Kembali</ion-text>
+      </ion-badge>
+    </div>
+  </div>
+</div>

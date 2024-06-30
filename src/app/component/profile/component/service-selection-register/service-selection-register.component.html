@@ -1,0 +1,32 @@
+<ion-content class="white-space" [fullscreen]="true">
+  <div class="bb-icon">
+    <app-back-button></app-back-button>
+  </div>
+  <div class="contents">
+    <div class="container">
+      <h1>Register Sebagai...</h1>
+    </div>
+    <div class="gap"></div>
+    <div class="option-container">
+      <div class="user-cont">
+        <span class="circle1" (click)="toServiceSelect(1)">
+          <img
+            class="info-icon-pict"
+            src="../../../assets/icon/service-selection/Icon User.png"
+          />
+          <p>User</p>
+        </span>
+      </div>
+      <div class="gap"></div>
+      <div class="vet-cont">
+        <span class="circle2" (click)="toServiceSelect(2)">
+          <img
+            class="info-icon-pict"
+            src="../../../assets/icon/service-selection/Icon Vet.png"
+          />
+          <p>Veterinarian</p>
+        </span>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,45 @@
+<ion-content class="white-space" [fullscreen]="true">
+  <div class="contents">
+    <div class="bb-icon">
+      <app-back-button [pageTitle]="'Form Pendaftaran'"></app-back-button>
+    </div>
+    <div class="form-type">
+      <ion-badge class="form-title">
+        <ion-text>User Visit</ion-text>
+      </ion-badge>
+    </div>
+    <div class="form-body">
+      <form [formGroup]="formGroup">
+        <div class="input-tile">
+          <ion-item>
+            <ion-label position="stacked">Nama Hewan</ion-label>
+            <ion-input
+              formControlName="namaHewan"
+              placeholder="Silahkan masukan nama hewan..."
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Tipe Hewan</ion-label>
+            <ion-input
+              formControlName="tipeHewan"
+              placeholder="Silahkan masukan tipe hewan..."
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Deskripsi Keluhan</ion-label>
+            <ion-textarea
+              formControlName="keluhan"
+              placeholder="Deskripsikan keluhan hewan kamu..."
+            ></ion-textarea>
+          </ion-item>
+        </div>
+      </form>
+      <div class="send-button-cont">
+        <ion-badge (click)="save()" class="send-button">
+          <ion-text>Kirim Permohonan Konsultasi</ion-text>
+        </ion-badge>
+      </div>
+    </div>
+    <div class="bottom-gap"></div>
+  </div>
+</ion-content>

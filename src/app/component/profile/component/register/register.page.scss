@@ -1,0 +1,52 @@
+@import "src/global.scss";
+
+.container {
+  overflow: auto;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.bottom-gap {
+  padding: 54px 0px 54px 0;
+}
+
+.form-register {
+  padding: 10px;
+  border: 1px solid #9c9c9c;
+  border-radius: 20px;
+  width: 100%;
+
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .form-aksi {
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+
+    .btn-location {
+      background-color: var(--ion-color-primary);
+    }
+
+    .register {
+      background-color: #8791e5;
+    }
+  }
+}
+
+.disabled-button {
+  background-color: gray;
+  cursor: not-allowed;
+  color: #fff;
+  opacity: 0.6;
+}
