@@ -1,0 +1,126 @@
+<ion-content class="white-space" [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="contents">
+    <div class="search-container">
+      <ion-searchbar
+        placeholder="Cari Nama..."
+        (ionChange)="searchUserName($event)"
+      ></ion-searchbar>
+    </div>
+    <ng-container *ngIf="!isLoading; else loading">
+      <div class="container">
+        <ng-container *ngIf="consultation && consultation.length; else noReq">
+          <ng-container *ngFor="let data of consultation">
+            <ng-container
+              *ngIf="data.stageStatus !== 3 && data.stageStatus !== 4; else doneAntrian"
+            >
+              <ion-card>
+                <ng-container *ngIf="data.visitType === 1; else toVvStatusPage">
+                  <div
+                    class="item-container"
+                    (click)="toQueueStatusPageUv(data.consultationId)"
+                  >
+                    <div class="docter-img">
+                      <ng-container
+                        *ngIf="data.jenisKelamin === 'Laki-laki'; else female"
+                      >
+                        <img src="../../../assets/icon/user-male.png" />
+                      </ng-container>
+                      <ng-template #female>
+                        <img src="../../../assets/icon/user.png" />
+                      </ng-template>
+                    </div>
+                    <div class="content-container">
+                      <h1>{{data.userName}}</h1>
+                      <p>Keluhan: {{data.complaint}}</p>
+                      <ion-badge
+                        [ngClass]="data.visitType === 1 ? 'badge-yellow' : 'badge-blue'"
+                      >
+                        <p>
+                          {{data.visitType == 1 ? 'User Visit' : 'Vet Visit'}}
+                        </p>
+                      </ion-badge>
+                    </div>
+
+                    <div class="status-cont">
+                      <ion-badge
+                        [ngClass]="data.stageStatus === 0 ? 'stat-badge-yellow' : data.stageStatus === 1 ? 'stat-badge-blue' :  data.stageStatus === 2 ? 'stat-badge-ijo' : data.stageStatus === 3 ? 'stat-badge-ijo' : 'stat-badge-none'"
+                      >
+                        <ion-text
+                          [ngClass]="data.stageStatus === 0 ? 'status-text-hitam' : data.stageStatus === 1 ? 'status-text-putih' :  data.stageStatus === 2 ? 'status-text-hitam' :data.stageStatus === 3 ? 'status-text-hitam' : 'status-text-putih'"
+                          >{{data.stageStatus === 0 ? 'Menunggu konfirmasi
+                          dokter' : data.stageStatus === 1 ? 'Menunggu
+                          konsultasi' : data.stageStatus === 2 ? 'Menunggu
+                          pembayaran' : data.stageStatus === 3 ? 'Selesai' :
+                          ''}}</ion-text
+                        >
+                      </ion-badge>
+                    </div>
+                  </div>
+                </ng-container>
+                <ng-template #toVvStatusPage>
+                  <div
+                    class="item-container"
+                    (click)="toQueueStatusPageVv(data.consultationId)"
+                  >
+                    <div class="docter-img">
+                      <ng-container
+                        *ngIf="data.jenisKelamin === 'Laki-laki'; else female"
+                      >
+                        <img src="../../../assets/icon/user-male.png" />
+                      </ng-container>
+                      <ng-template #female>
+                        <img src="../../../assets/icon/user.png" />
+                      </ng-template>
+                    </div>
+                    <div class="content-container">
+                      <h1>{{data.userName}}</h1>
+                      <p>Keluhan: {{data.complaint}}</p>
+                      <ion-badge
+                        [ngClass]="data.visitType === 1 ? 'badge-yellow' : 'badge-blue'"
+                      >
+                        <p>
+                          {{data.visitType == 1 ? 'User Visit' : 'Vet Visit'}}
+                        </p>
+                      </ion-badge>
+                    </div>
+
+                    <div class="status-cont">
+                      <ion-badge
+                        [ngClass]="data.stageStatus === 0 ? 'stat-badge-yellow' : data.stageStatus === 1 ? 'stat-badge-blue' :  data.stageStatus === 2 ? 'stat-badge-ijo' : data.stageStatus === 3 ? 'stat-badge-ijo' : 'stat-badge-none'"
+                      >
+                        <ion-text
+                          [ngClass]="data.stageStatus === 0 ? 'status-text-hitam' : data.stageStatus === 1 ? 'status-text-putih' :  data.stageStatus === 2 ? 'status-text-hitam' :data.stageStatus === 3 ? 'status-text-hitam' : 'status-text-putih'"
+                          >{{data.stageStatus === 0 ? 'Menunggu konfirmasi
+                          dokter' : data.stageStatus === 1 ? 'Menunggu
+                          konsultasi' : data.stageStatus === 2 ? 'Menunggu
+                          pembayaran' : data.stageStatus === 3 ? 'Selesai' :
+                          ''}}</ion-text
+                        >
+                      </ion-badge>
+                    </div>
+                  </div>
+                </ng-template>
+              </ion-card>
+            </ng-container>
+            <ng-template #doneAntrian> </ng-template>
+          </ng-container>
+        </ng-container>
+      </div>
+    </ng-container>
+
+    <ng-template #noReq>
+      <div class="content">
+        <div class="no-data-text">Tidak ada permintaan konsultasi</div>
+      </div>
+    </ng-template>
+
+    <ng-template #loading>
+      <div class="loading-overlay">
+        <div class="spinner"></div>
+      </div>
+    </ng-template>
+  </div>
+</ion-content>

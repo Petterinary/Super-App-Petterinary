@@ -1,0 +1,167 @@
+<div class="container">
+  <div class="bb-icon">
+    <app-back-button [pageTitle]="title"></app-back-button>
+  </div>
+  <div class="form-register">
+    <form [formGroup]="registerForm">
+      <div class="input-fields">
+        <ion-item>
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input
+            formControlName="email"
+            placeholder="Masukkan Email"
+          ></ion-input>
+        </ion-item>
+        <div
+          *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)"
+        >
+          <small class="danger"
+            >Email tidak boleh kosong dan harus format email.</small
+          >
+        </div>
+
+        <ion-item>
+          <ion-label position="stacked">Username</ion-label>
+          <ion-input
+            formControlName="username"
+            placeholder="Masukkan Username"
+          ></ion-input>
+        </ion-item>
+        <div
+          *ngIf="registerForm.get('username')?.invalid && (registerForm.get('username')?.dirty || registerForm.get('username')?.touched)"
+        >
+          <small class="danger">Username tidak boleh kosong.</small>
+        </div>
+
+        <ion-item>
+          <ion-label position="stacked">Nomor Telepon</ion-label>
+          <ion-input
+            formControlName="nomorTelepon"
+            placeholder="Masukkan Nomor Telepon"
+          ></ion-input>
+        </ion-item>
+        <div
+          *ngIf="registerForm.get('nomorTelepon')?.invalid && (registerForm.get('nomorTelepon')?.dirty || registerForm.get('nomorTelepon')?.touched)"
+        >
+          <small class="danger">Nomor telepon tidak boleh kosong.</small>
+        </div>
+
+        <ion-item>
+          <ion-label position="stacked">Jenis kelamin</ion-label>
+          <ion-select
+            formControlName="jenisKelamin"
+            placeholder="Pilih jenis kelamin"
+          >
+            <ion-select-option value="Laki-laki">Laki-laki</ion-select-option>
+            <ion-select-option value="Perempuan">Perempuan</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div
+          *ngIf="registerForm.get('jenisKelamin')?.invalid && (registerForm.get('jenisKelamin')?.dirty || registerForm.get('jenisKelamin')?.touched)"
+        >
+          <small class="danger">Jenis kelamin tidak boleh kosong.</small>
+        </div>
+
+        <ion-item>
+          <ion-label position="stacked">Tempat Praktik</ion-label>
+          <ion-textarea
+            formControlName="tempatPraktik"
+            placeholder="Masukkan Alamat"
+          ></ion-textarea>
+        </ion-item>
+        <div
+          *ngIf="registerForm.get('tempatPraktik')?.invalid && (registerForm.get('tempatPraktik')?.dirty || registerForm.get('tempatPraktik')?.touched)"
+        >
+          <small class="danger">Tempat praktik tidak boleh kosong.</small>
+        </div>
+
+        <ion-item>
+          <ion-label position="stacked">Jadwal Praktik</ion-label>
+          <ion-textarea
+            formControlName="jadwalPraktik"
+            placeholder="Masukkan Jadwal Praktik"
+          ></ion-textarea>
+        </ion-item>
+        <div
+          *ngIf="registerForm.get('jadwalPraktik')?.invalid && (registerForm.get('jadwalPraktik')?.dirty || registerForm.get('jadwalPraktik')?.touched)"
+        >
+          <small class="danger">Jadwal praktik tidak boleh kosong.</small>
+        </div>
+
+        <ion-item>
+          <ion-label position="stacked">Lama Pengalaman Praktik</ion-label>
+          <ion-input
+            formControlName="lamaPengalaman"
+            placeholder="Masukkan Lama Pengalaman"
+          ></ion-input>
+        </ion-item>
+        <div
+          *ngIf="registerForm.get('lamaPengalaman')?.invalid && (registerForm.get('lamaPengalaman')?.dirty || registerForm.get('lamaPengalaman')?.touched)"
+        >
+          <small class="danger"
+            >Lama pengalaman praktik tidak boleh kosong.</small
+          >
+        </div>
+
+        <ion-item>
+          <ion-label position="stacked">Spesialisasi Hewan</ion-label>
+          <ion-input
+            formControlName="specialisasiHewan"
+            placeholder="Masukkan Spesialisasi Hewan"
+          ></ion-input>
+        </ion-item>
+        <div
+          *ngIf="registerForm.get('specialisasiHewan')?.invalid && (registerForm.get('specialisasiHewan')?.dirty || registerForm.get('specialisasiHewan')?.touched)"
+        >
+          <small class="danger">Spesialisasi hewan tidak boleh kosong.</small>
+        </div>
+
+        <ion-item>
+          <ion-label position="stacked">Password</ion-label>
+          <ion-input
+            formControlName="password"
+            type="password"
+            placeholder="Masukkan Password"
+          ></ion-input>
+        </ion-item>
+        <div
+          *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)"
+        >
+          <small class="danger"
+            >Password tidak boleh kosong dan harus 6 huruf.</small
+          >
+        </div>
+
+        <ion-item>
+          <ion-label position="stacked">Konfirmasi Password</ion-label>
+          <ion-input
+            formControlName="confirmPassword"
+            type="password"
+            placeholder="Masukkan Konfirmasi Password"
+          ></ion-input>
+        </ion-item>
+        <div
+          *ngIf="registerForm.get('confirmPassword')?.invalid && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched)"
+        >
+          <small class="danger"
+            >Konfirmasi password kosong atau tidak cocok.</small
+          >
+        </div>
+      </div>
+    </form>
+    <div class="form-aksi">
+      <button (click)="getLocation()" class="btn-aksi btn-location">
+        Get Location
+      </button>
+      <button
+        (click)="submitRegister()"
+        class="btn-aksi register"
+        [disabled]="registerForm.get('latitude')?.value === '' || registerForm.get('longitude')?.value === ''"
+        [ngClass]="{'disabled-button': registerForm.get('latitude')?.value === '' || registerForm.get('longitude')?.value === ''}"
+        type="submit"
+      >
+        Register
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+ion-content.white-space {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.overall-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  padding-bottom: 68px;
+  height: 100%;
+
+  .sf-icon {
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: 50%;
+    }
+  }
+
+  .caption {
+    h1 {
+      text-align: center;
+    }
+  }
+
+  .button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    .button-back {
+      padding: 15px 10vw 15px 10vw;
+
+      border-radius: 15px;
+      ion-text {
+        justify-content: center;
+        display: flex;
+      }
+    }
+  }
+}

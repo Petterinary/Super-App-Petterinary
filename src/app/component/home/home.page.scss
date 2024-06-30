@@ -1,4 +1,147 @@
+@import "src/global.scss";
+
 ion-content.white-space {
   --ion-background-color: #fff;
   --color: #000;
+}
+
+.contents {
+  margin-top: 68px;
+  margin-bottom: 108px;
+
+  .container {
+    ion-card {
+      box-shadow: 0px 2px 12px 0px rgb(151 151 151 / 50%);
+      padding: 10px;
+
+      .item-container {
+        display: flex;
+        align-items: center;
+
+        .docter-img {
+          padding: 1vh;
+          background-color: var(--ion-color-primary);
+          border-radius: 100%;
+          margin-right: 20px;
+
+          img {
+            width: 50px;
+          }
+        }
+
+        .content-container {
+          color: #000;
+          font-size: 14px;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+
+          h1 {
+            margin: 2px 0;
+            font-size: 16px;
+            font-weight: 600;
+          }
+
+          p {
+            margin: 0;
+            font-weight: 400;
+          }
+
+          .duration-distance {
+            gap: 5px;
+            display: flex;
+            flex-direction: column;
+            .dist {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              img.loc-icon {
+                width: 25px;
+              }
+              h1.dist-text {
+                margin: 0px 0px 0px 10px;
+              }
+            }
+            .dur {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              img.clock-icon {
+                width: 25px;
+              }
+              h1.dur-text {
+                margin: 0px 0px 0px 10px;
+              }
+            }
+          }
+        }
+
+        .status-cont {
+          ion-text.dist {
+            font-weight: bold;
+          }
+        }
+
+        .rate {
+          display: flex;
+          align-items: center;
+          gap: 2px;
+
+          img {
+            width: 7.5px;
+          }
+
+          p {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 176px);
+
+    .no-data-text {
+      font-size: 16px;
+      color: #000;
+    }
+  }
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.spinner {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top: 2px solid rgba(0, 0, 0, 0.5);
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+ion-item {
+  margin: 10px;
 }

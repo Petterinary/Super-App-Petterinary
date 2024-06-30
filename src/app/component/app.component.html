@@ -1,9 +1,15 @@
 <ion-app>
-  <ion-content class="landing-page" fullscreen>
-    <div *ngIf="showLandingPage" class="container">
-      <img src="assets\logo\logo-1.png" alt="Logo" />
-      <h1>Petterinary</h1>
-    </div>
-    <router-outlet *ngIf="!showLandingPage"></router-outlet>
-  </ion-content>
+  <div *ngIf="showLandingPage" @fadeInOut>
+    <app-landing-page></app-landing-page>
+  </div>
+  <div *ngIf="!showLandingPage" @fadeInOut>
+    <ng-container *ngIf="!hideHeaderFooter; else notLoginOrLanding">
+      <app-header-bar></app-header-bar>
+      <ion-router-outlet></ion-router-outlet>
+      <app-bottom-bar></app-bottom-bar>
+    </ng-container>
+    <ng-template #notLoginOrLanding>
+      <ion-router-outlet></ion-router-outlet>
+    </ng-template>
+  </div>
 </ion-app>

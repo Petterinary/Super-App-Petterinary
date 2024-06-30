@@ -1,20 +1,13 @@
-ion-content.landing-page {
+app-header-bar {
   --ion-background-color: #ff9900;
-  --color: #000;
+  background-color: #ff9900;
 }
 
-.container {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+app-bottom-bar {
+  --ion-background-color: #ff9900;
+  background-color: #ff9900;
+}
 
-  img {
-    width: 250px;
-  }
-
-  h1 {
-    font-size: 50px;
-  }
+app-landing-page {
+  display: block;
 }

@@ -1,32 +1,68 @@
 <ion-footer>
   <ion-item lines="none">
     <div class="bot-cont">
-      <div class="home-cont">
+      <button (click)="setActive(0)" class="home-cont">
+        <div
+          [ngClass]="{ active: isActive === 0, inactive: isActive !== 0 }"
+        ></div>
         <div class="menu-icon">
-          <img src="../../../../assets/logo/bottom-bar/Icon Home.png" />
+          <ng-container *ngIf="isActive === 0; else notSelected" class="active">
+            <img
+              src="../../../../assets/logo/bottom-bar/selected/Icon Home.png"
+            />
+          </ng-container>
+          <ng-template #notSelected>
+            <img src="../../../../assets/logo/bottom-bar/Icon Home.png" />
+          </ng-template>
         </div>
         <div class="icon-desc">
           <label class="logo-info">Home</label>
         </div>
-      </div>
+      </button>
       <div class="gap"></div>
-      <div class="note-cont">
+      <button (click)="setActive(1)" class="note-cont">
+        <div
+          [ngClass]="{ active: isActive === 1, inactive: isActive !== 1 }"
+        ></div>
         <div class="menu-icon">
-          <img src="../../../../assets/logo/bottom-bar/Icon Catatan.png" />
+          <ng-container
+            *ngIf="isActive === 1; else notSelected1"
+            class="active"
+          >
+            <img
+              src="../../../../assets/logo/bottom-bar/selected/Icon Notes.png"
+            />
+          </ng-container>
+          <ng-template #notSelected1>
+            <img src="../../../../assets/logo/bottom-bar/Icon Catatan.png" />
+          </ng-template>
         </div>
         <div class="icon-desc">
-          <label class="logo-info">Catatan</label>
+          <label class="logo-info">Riwayat</label>
         </div>
-      </div>
+      </button>
       <div class="gap"></div>
-      <div class="profile-cont">
+      <button (click)="setActive(2)" class="profile-cont">
+        <div
+          [ngClass]="{ active: isActive === 2, inactive: isActive !== 2 }"
+        ></div>
         <div class="menu-icon">
-          <img src="../../../../assets/logo/bottom-bar/Icon Profil.png" />
+          <ng-container
+            *ngIf="isActive === 2; else notSelected2"
+            class="active"
+          >
+            <img
+              src="../../../../assets/logo/bottom-bar/selected/Icon Profil.png"
+            />
+          </ng-container>
+          <ng-template #notSelected2>
+            <img src="../../../../assets/logo/bottom-bar/Icon Profil.png" />
+          </ng-template>
         </div>
         <div class="icon-desc">
           <label class="logo-info">Profil</label>
         </div>
-      </div>
+      </button>
     </div>
   </ion-item>
 </ion-footer>

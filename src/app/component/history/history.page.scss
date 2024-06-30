@@ -1,0 +1,180 @@
+ion-content.white-space {
+  --ion-background-color: #fff;
+  --color: #000;
+}
+
+.contents {
+  margin-top: 68px;
+  margin-bottom: 108px;
+
+  .container {
+    ion-card {
+      box-shadow: 0px 2px 12px 0px rgb(151 151 151 / 50%);
+      padding: 10px;
+
+      .item-container {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        .docter-img {
+          padding: 10px;
+          background-color: var(--ion-color-primary);
+          border-radius: 100%;
+
+          img {
+            width: 50px;
+          }
+        }
+
+        .content-container {
+          flex: 1;
+          color: #000;
+          font-size: 14px;
+
+          h1 {
+            margin: 2px 0;
+            font-size: 16px;
+            font-weight: 600;
+          }
+
+          p {
+            margin: 0;
+            font-weight: 400;
+          }
+          ion-badge.badge-yellow {
+            background: #ffe600;
+            margin-top: 5px;
+            p {
+              margin: 0;
+              font-weight: 400;
+              color: #000;
+            }
+          }
+          ion-badge.badge-blue {
+            background: #00ffff;
+            margin-top: 5px;
+            p {
+              margin: 0;
+              font-weight: 400;
+              color: #000;
+            }
+          }
+        }
+
+        .rate {
+          display: flex;
+          align-items: center;
+          gap: 2px;
+
+          img {
+            width: 7.5px;
+          }
+
+          p {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 176px);
+
+    .no-data-text {
+      font-size: 16px;
+      color: #000;
+    }
+  }
+}
+
+.status-cont {
+  ion-badge {
+    padding: 10px;
+    border-radius: 10px;
+    white-space: normal;
+    word-wrap: break-word;
+    min-width: 95px;
+    max-width: 130px;
+
+    ion-text {
+      white-space: normal; /* Allow line breaks */
+      word-wrap: break-word; /* Ensure long words break */
+    }
+
+    &.stat-badge-yellow {
+      --background: #ffe600;
+
+      ion-text.status-text-hitam {
+        color: #000;
+      }
+      ion-text.status-text-putih {
+        color: #fff;
+      }
+    }
+    &.stat-badge-ijo {
+      --background: #23e712;
+
+      ion-text.status-text-hitam {
+        color: #000;
+      }
+      ion-text.status-text-putih {
+        color: #fff;
+      }
+    }
+    &.stat-badge-blue {
+      --background: #8791e5;
+
+      ion-text.status-text-hitam {
+        color: #000;
+      }
+      ion-text.status-text-putih {
+        color: #fff;
+      }
+    }
+    &.stat-badge-red {
+      --background: #ff0000;
+
+      ion-text.status-text-hitam {
+        color: #000;
+      }
+      ion-text.status-text-putih {
+        color: #fff;
+      }
+    }
+  }
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.spinner {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top: 2px solid rgba(0, 0, 0, 0.5);
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

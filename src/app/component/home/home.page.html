@@ -1,95 +1,79 @@
-<app-header-bar></app-header-bar>
 <ion-content class="white-space" [fullscreen]="true">
-  <h1>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. At facilis non
-    veniam similique voluptatum minus dicta iusto natus exercitationem possimus
-    explicabo, molestias architecto impedit totam delectus, odit sapiente sint
-    commodi!
-  </h1>
-  <!-- <h1>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. At facilis non
-    veniam similique voluptatum minus dicta iusto natus exercitationem possimus
-    explicabo, molestias architecto impedit totam delectus, odit sapiente sint
-    commodi!
-  </h1>
-  <h1>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. At facilis non
-    veniam similique voluptatum minus dicta iusto natus exercitationem possimus
-    explicabo, molestias architecto impedit totam delectus, odit sapiente sint
-    commodi!
-  </h1>
-  <h1>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. At facilis non
-    veniam similique voluptatum minus dicta iusto natus exercitationem possimus
-    explicabo, molestias architecto impedit totam delectus, odit sapiente sint
-    commodi!
-  </h1>
-  <h1>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. At facilis non
-    veniam similique voluptatum minus dicta iusto natus exercitationem possimus
-    explicabo, molestias architecto impedit totam delectus, odit sapiente sint
-    commodi!
-  </h1>
-  <h1>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. At facilis non
-    veniam similique voluptatum minus dicta iusto natus exercitationem possimus
-    explicabo, molestias architecto impedit totam delectus, odit sapiente sint
-    commodi!
-  </h1>
-  <h1>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. At facilis non
-    veniam similique voluptatum minus dicta iusto natus exercitationem possimus
-    explicabo, molestias architecto impedit totam delectus, odit sapiente sint
-    commodi!
-  </h1>
-  <h1>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. At facilis non
-    veniam similique voluptatum minus dicta iusto natus exercitationem possimus
-    explicabo, molestias architecto impedit totam delectus, odit sapiente sint
-    commodi!
-  </h1>
-  <h1>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. At facilis non
-    veniam similique voluptatum minus dicta iusto natus exercitationem possimus
-    explicabo, molestias architecto impedit totam delectus, odit sapiente sint
-    commodi!
-  </h1>
-  <h1>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. At facilis non
-    veniam similique voluptatum minus dicta iusto natus exercitationem possimus
-    explicabo, molestias architecto impedit totam delectus, odit sapiente sint
-    commodi!
-  </h1>
-  <h1>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. At facilis non
-    veniam similique voluptatum minus dicta iusto natus exercitationem possimus
-    explicabo, molestias architecto impedit totam delectus, odit sapiente sint
-    commodi!
-  </h1>
-  <h1>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. At facilis non
-    veniam similique voluptatum minus dicta iusto natus exercitationem possimus
-    explicabo, molestias architecto impedit totam delectus, odit sapiente sint
-    commodi!
-  </h1>
-  <h1>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. At facilis non
-    veniam similique voluptatum minus dicta iusto natus exercitationem possimus
-    explicabo, molestias architecto impedit totam delectus, odit sapiente sint
-    commodi!
-  </h1>
-  <h1>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. At facilis non
-    veniam similique voluptatum minus dicta iusto natus exercitationem possimus
-    explicabo, molestias architecto impedit totam delectus, odit sapiente sint
-    commodi!
-  </h1>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="contents">
+    <div class="search-container">
+      <ion-searchbar
+        placeholder="Cari Nama..."
+        (ionChange)="searchDoctor($event)"
+      ></ion-searchbar>
+    </div>
+    <ion-item>
+      <ion-select
+        value="3"
+        (ionChange)="filterDistance($event)"
+        placeholder="Pilih batas jarak yang diinginkan"
+      >
+        <ion-select-option value="3">3 Km</ion-select-option>
+        <ion-select-option value="5">5 Km</ion-select-option>
+        <ion-select-option value="10">10 Km</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ng-container *ngIf="!isLoading; else loading">
+      <div class="container">
+        <ng-container *ngIf="doctors?.length > 0; else noData">
+          <ng-container *ngFor="let data of doctors">
+            <ion-card>
+              <div
+                class="item-container"
+                (click)="toServiceSelect(data.doctorId)"
+              >
+                <div class="docter-img">
+                  <ng-container
+                    *ngIf="data.gender === 'Laki-laki'; else female"
+                  >
+                    <img src="assets/icon/dokter-male.png" />
+                  </ng-container>
+                  <ng-template #female>
+                    <img src="assets/icon/dokter-female.png" />
+                  </ng-template>
+                </div>
+                <div class="content-container">
+                  <div class="ingpo">
+                    <h1>{{data.name}}</h1>
+                    <p>Spesialis: {{data.specialization}}</p>
+                    <span
+                      >Pengalaman:<strong> {{data.experience}}</strong></span
+                    >
+                  </div>
+                  <div class="duration-distance">
+                    <div class="dist">
+                      <img
+                        class="loc-icon"
+                        src="../../../assets/icon/loc-red.png"
+                      />
+                      <h1 class="dist-text">{{data.distance || '...'}} km</h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ion-card>
+          </ng-container>
+        </ng-container>
+      </div>
+    </ng-container>
 
-  <h1>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. At facilis non
-    veniam similique voluptatum minus dicta iusto natus exercitationem possimus
-    explicabo, molestias architecto impedit totam delectus, odit sapiente sint
-    commodi!
-  </h1> -->
+    <ng-template #loading>
+      <div class="loading-overlay">
+        <div class="spinner"></div>
+      </div>
+    </ng-template>
+
+    <ng-template #noData>
+      <div class="content">
+        <div class="no-data-text">Tidak ada lokasi dokter terdekat</div>
+      </div>
+    </ng-template>
+  </div>
 </ion-content>
-<app-bottom-bar></app-bottom-bar>

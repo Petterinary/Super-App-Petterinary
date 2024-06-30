@@ -1,0 +1,194 @@
+@import "src/global.scss";
+
+ion-content.white-space {
+  --color: #000;
+}
+
+.contents {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .form-type {
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+
+    .form-title {
+      --background: #00ffff;
+      padding: 5px 10px 5px 10px;
+      ion-text {
+        color: #000;
+        font-size: 13px;
+      }
+    }
+  }
+
+  .form-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    border-radius: 20px;
+    border: solid #9c9c9c 1px;
+
+    .input-tile {
+      margin: 10px;
+
+      p {
+        color: #888;
+        margin-bottom: 5px;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        border: solid #9c9c9c 1px;
+        border-radius: 5px;
+
+        &::placeholder {
+          color: #888;
+          font-style: italic;
+          font-size: 1.8vh;
+        }
+      }
+
+      textarea {
+        max-width: 100%;
+        min-width: 100%;
+        max-height: 15vh;
+        min-height: 5vh;
+      }
+    }
+
+    .unpaid-total-price {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 10px;
+
+      .paid {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 10px;
+        .paid-by {
+          display: flex;
+          justify-content: start;
+          flex-direction: column;
+          align-items: end;
+          margin-right: 10px;
+          ion-text.text {
+            font-size: 15px;
+          }
+          ion-text.text-blm-bayar {
+            font-size: 15px;
+            color: red;
+            font-weight: bold;
+          }
+          ion-text.payment-method-text {
+            font-size: 15px;
+            font-weight: bolder;
+          }
+        }
+        .img-cont {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            width: 35px;
+          }
+        }
+      }
+
+      .text-container {
+        display: flex;
+        flex-direction: column;
+        ion-text.text-price {
+          margin-left: 10px;
+          margin-right: 10px;
+          text-align: right;
+        }
+        ion-text.text-prices {
+          margin-left: 10px;
+          margin-right: 10px;
+          text-align: right;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .total-price {
+      display: flex;
+      justify-content: end;
+      align-items: flex-end;
+      width: 100%;
+      margin-bottom: 10px;
+
+      .paid {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 10px;
+        .paid-by {
+          display: flex;
+          justify-content: start;
+          flex-direction: column;
+          align-items: end;
+          margin-right: 10px;
+          ion-text.text {
+            font-size: 15px;
+          }
+
+          ion-text.payment-method-text {
+            font-size: 15px;
+            font-weight: bolder;
+          }
+        }
+        .img-cont {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            width: 35px;
+          }
+        }
+      }
+
+      .text-container {
+        display: flex;
+        flex-direction: column;
+        ion-text.text-price {
+          margin-left: 10px;
+          margin-right: 10px;
+          text-align: right;
+        }
+        ion-text.text-prices {
+          margin-left: 10px;
+          margin-right: 10px;
+          text-align: right;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .bottom-gap {
+    padding: 54px 0px 54px 0;
+  }
+}
+
+.bca-icon {
+  width: 50px !important;
+}
+
+.payment {
+  padding: 0;
+  font-weight: 600;
+  font-size: 14px;
+}

@@ -1,0 +1,309 @@
+ion-content.white-space {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+ion-footer.footer-fixed {
+  position: fixed;
+  bottom: 0;
+  padding-bottom: 92px;
+  background-color: #ffffff;
+  width: 100%;
+}
+
+ion-footer {
+  .bank-header {
+    margin: 0px 10px 0px 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .left-bh {
+      align-items: start;
+      display: flex;
+      flex-direction: column;
+      h1.bank-title {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        text-align: left;
+        font-size: 15px;
+      }
+      h1.bank-title1 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        text-align: left;
+        font-size: 15px;
+        font-weight: bold;
+      }
+    }
+
+    .right-bh {
+      align-items: center;
+      display: flex;
+      .button-back {
+        padding: 15px 7vw 15px 7vw;
+        border-radius: 15px;
+        ion-text {
+          justify-content: center;
+          display: flex;
+          font-weight: bold;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+
+.overall-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding-bottom: 68px;
+
+  .wallet-header {
+    margin: 10px 10px 5px 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .left-wh {
+      align-items: center;
+      display: flex;
+      h1.wallet-title {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        text-align: left;
+        font-size: 20px;
+      }
+    }
+
+    .right-wh {
+      align-items: center;
+      display: flex;
+      h4.wallet-methods {
+        text-align: right;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-weight: bold;
+        font-size: 15px;
+      }
+    }
+  }
+
+  .wallet-panel {
+    margin: 5px 10px 10px 10px;
+    border: solid 1px #9c9c9c;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .left-wp {
+      align-items: center;
+      margin-left: 10px;
+      display: flex;
+
+      img.gopay-icon {
+        max-width: 100%;
+        width: 50px;
+        border-radius: 100%;
+        margin: 10px 10px 10px 0px;
+      }
+      h1.selected-wp {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        text-align: right;
+        font-size: 15px;
+      }
+    }
+
+    .right-wp {
+      align-items: center;
+      display: flex;
+      margin-right: 10px;
+      margin-right: 10px;
+      ion-icon.check-circle-not-selected {
+        font-size: 20px;
+        font-weight: bolder;
+        color: #9c9c9c;
+
+        padding: 6px;
+        border: solid #9c9c9c 1px;
+        border-radius: 100%;
+      }
+      ion-icon.check-circle-selected {
+        font-size: 20px;
+        font-weight: bolder;
+        color: #ffffff;
+        background: #ff9900;
+        padding: 6px;
+        border: solid #ff9900 1px;
+        border-radius: 100%;
+      }
+    }
+  }
+
+  .bank-header {
+    margin: 10px 10px 5px 10px;
+    display: flex;
+    /* flex: 1; */
+    flex-direction: row;
+    justify-content: space-between;
+
+    .left-bh {
+      align-items: center;
+      display: flex;
+      h1.bank-title {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        text-align: left;
+        font-size: 15px;
+      }
+    }
+
+    .right-bh {
+      align-items: center;
+      display: flex;
+      h4.bank-methods {
+        text-align: right;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-weight: bold;
+        font-size: 15px;
+      }
+    }
+  }
+
+  .bank-panel {
+    margin: 5px 10px 10px 10px;
+    border: solid 1px #9c9c9c;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .left-bp {
+      align-items: center;
+      margin-left: 10px;
+      display: flex;
+
+      img.bca-icon {
+        max-width: 100%;
+        width: 60px;
+        border-radius: 100%;
+        margin: 10px 10px 10px 0px;
+      }
+      h1.selected-bp {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        text-align: right;
+        font-size: 15px;
+      }
+    }
+
+    .right-bp {
+      align-items: center;
+      display: flex;
+      margin-right: 10px;
+      margin-right: 10px;
+      ion-icon.check-circle-not-selected {
+        font-size: 20px;
+        font-weight: bolder;
+        color: #9c9c9c;
+
+        padding: 6px;
+        border: solid #9c9c9c 1px;
+        border-radius: 100%;
+      }
+      ion-icon.check-circle-selected {
+        font-size: 20px;
+        font-weight: bolder;
+        color: #ffffff;
+        background: #ff9900;
+        padding: 6px;
+        border: solid #ff9900 1px;
+        border-radius: 100%;
+      }
+    }
+  }
+
+  .ringkasan-cont {
+    margin: 5px 10px 10px 10px;
+    border: solid 1px #9c9c9c;
+    border-radius: 5px;
+    h1.ringkasan-title-text {
+      margin: 10px 10px 5px 10px;
+      text-align: left;
+      font-size: 20px;
+    }
+
+    .ringkasan-byr {
+      margin: 0px 0px 10px 0px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .left-rb {
+        align-items: center;
+        margin-left: 10px;
+        display: flex;
+
+        img.bca-icon {
+          max-width: 100%;
+          width: 60px;
+          border-radius: 100%;
+          margin: 10px 10px 10px 0px;
+        }
+        h1.info-byr {
+          margin-top: 0px;
+          margin-bottom: 0px;
+          text-align: left;
+          font-size: 15px;
+          color: #9c9c9c;
+          font-weight: bold;
+        }
+      }
+
+      .right-rb {
+        align-items: center;
+        display: flex;
+        margin-right: 10px;
+        margin-right: 10px;
+        h1.harga-byr {
+          margin-top: 0px;
+          margin-bottom: 0px;
+          text-align: right;
+          font-size: 15px;
+          color: #9c9c9c;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .timer {
+    h1.timer-text {
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+
+  .button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    .button-back {
+      padding: 15px 5vw 15px 5vw;
+      border-radius: 15px;
+      ion-text {
+        justify-content: center;
+        display: flex;
+        font-weight: bold;
+        font-size: 20px;
+      }
+    }
+  }
+}

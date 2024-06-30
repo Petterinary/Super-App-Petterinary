@@ -1,0 +1,48 @@
+@import "src/global.scss";
+
+.container {
+  background-color: var(--ion-color-primary);
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+
+  .icon-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    img {
+      width: 250px;
+    }
+  }
+
+  .form-aksi {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    p {
+      flex: 1;
+      margin: 0;
+      font-size: 12px;
+
+      span {
+        color: #6c7bff;
+      }
+    }
+
+    .register {
+      background-color: #8791e5;
+    }
+
+    .login {
+      background-color: #0b8585;
+    }
+  }
+}
+
+ion-item {
+  --background: none;
+}

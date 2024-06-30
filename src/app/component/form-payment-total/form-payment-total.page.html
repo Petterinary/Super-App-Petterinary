@@ -1,0 +1,27 @@
+<div class="contents">
+  <div class="form-body">
+    <form [formGroup]="formGroup">
+      <div class="input-tile">
+        <ion-item>
+          <ion-label position="stacked">Biaya Konsultasi</ion-label>
+          <ion-input
+            formControlName="consulAmount"
+            placeholder="Silahkan masukan total biaya konsultasi..."
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Biaya Transportasi</ion-label>
+          <ion-input
+            formControlName="transportAmount"
+            placeholder="Silahkan masukan biaya transportasi..."
+          ></ion-input>
+        </ion-item>
+      </div>
+    </form>
+    <div class="send-button-cont">
+      <ion-badge (click)="save()" class="send-button">
+        <ion-text>Simpan Total Konsultasi</ion-text>
+      </ion-badge>
+    </div>
+  </div>
+</div>

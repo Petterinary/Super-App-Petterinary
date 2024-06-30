@@ -1,0 +1,44 @@
+<div class="contents">
+  <div class="form-type">
+    <ion-badge class="form-title">
+      <ion-text>Rincian User Visit</ion-text>
+    </ion-badge>
+  </div>
+  <div class="form-body">
+    <div class="input-tile">
+      <ng-container *ngIf="formData">
+        <ion-item>
+          <ion-label position="stacked">Nama Hewan</ion-label>
+          <ion-input disabled [(ngModel)]="formData.petName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Tipe Hewan</ion-label>
+          <ion-input disabled [(ngModel)]="formData.petType"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Tempat Praktik Dokter</ion-label>
+          <ion-input disabled [(ngModel)]="formData.doctorAddress"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Nomor yang dapat dihubungi</ion-label>
+          <ion-input
+            disabled
+            [(ngModel)]="formData.userPhoneNumber"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Deskripsi Keluhan</ion-label>
+          <ion-textarea
+            disabled
+            [(ngModel)]="formData.complaint"
+          ></ion-textarea>
+        </ion-item>
+      </ng-container>
+    </div>
+    <div class="send-button-cont">
+      <ion-badge (click)="close()" class="send-button">
+        <ion-text>Kembali</ion-text>
+      </ion-badge>
+    </div>
+  </div>
+</div>
