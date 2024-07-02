@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 export class DoctorDataService {
   constructor(private doctorApiSerive: DoctorService) {}
 
-  getAllDoctors(): Observable<any> {
-    return this.doctorApiSerive.getAllDoctors();
+  getAllDoctors(lat: number, lng: number): Observable<any> {
+    return this.doctorApiSerive.getAllDoctors(lat, lng);
   }
 
   getDoctorById(id: number): Observable<any> {

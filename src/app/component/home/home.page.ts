@@ -15,6 +15,7 @@ export class HomePage implements OnInit {
   private userData: any;
   public distance: number;
   public isLoading: boolean;
+  public maxDistance = 3;
 
   constructor(
     private router: Router,
@@ -25,11 +26,11 @@ export class HomePage implements OnInit {
   async getDoctor() {
     this.isLoading = true;
     this.doctorDataSerivice
-      .getAllDoctors()
+      .getAllDoctors(this.userData.lat, this.userData.lng)
       .pipe(finalize(() => (this.isLoading = false)))
       .subscribe((res) => {
         this.doctors = this.doctorsTemp = res;
-        this.filterDoctor(3);
+        this.filterDoctor(this.maxDistance);
       });
   }
 
@@ -45,8 +46,9 @@ export class HomePage implements OnInit {
   }
 
   public filterDoctor(maxDistance: number) {
+    this.maxDistance = maxDistance;
     this.doctors = this.doctorsTemp
-      .filter((doctor) => doctor.distance && doctor.distance < maxDistance)
+      .filter((doctor) => doctor.distance && doctor.distance < this.maxDistance)
       .sort((a, b) => a.distance - b.distance);
   }
 

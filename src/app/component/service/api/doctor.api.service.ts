@@ -11,8 +11,8 @@ export class DoctorService {
 
   constructor(private http: HttpClient) {}
 
-  getAllDoctors(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/doctors`);
+  getAllDoctors(lat: number, lng: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/doctors?lat=${lat}&lng=${lng}`);
   }
 
   getDoctorById(doctorID: number): Observable<any> {
