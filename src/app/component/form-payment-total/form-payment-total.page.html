@@ -3,6 +3,13 @@
     <form [formGroup]="formGroup">
       <div class="input-tile">
         <ion-item>
+          <ion-label position="stacked">Hasil Konsultasi</ion-label>
+          <ion-textarea
+            formControlName="consulResult"
+            placeholder="Silahkan masukan hasil konsultasi..."
+          ></ion-textarea>
+        </ion-item>
+        <ion-item>
           <ion-label position="stacked">Biaya Konsultasi</ion-label>
           <ion-input
             formControlName="consulAmount"

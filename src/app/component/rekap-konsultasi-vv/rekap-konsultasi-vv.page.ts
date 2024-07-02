@@ -47,6 +47,7 @@ export class RekapKonsultasiVvPage implements OnInit {
   private combineData() {
     this.data = {
       userName: this.data.consulData[0].userName,
+      consulResult: this.data.consulData[0].consultationResult,
       phoneNumber: this.data.formData.userPhoneNumber,
       complaint: this.data.formData.complaint,
       registrationDate: this.data.formData.registrationDate,
