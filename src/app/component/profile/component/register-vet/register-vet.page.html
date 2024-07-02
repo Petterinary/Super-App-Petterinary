@@ -85,7 +85,17 @@
         <div
           *ngIf="registerForm.get('jadwalPraktik')?.invalid && (registerForm.get('jadwalPraktik')?.dirty || registerForm.get('jadwalPraktik')?.touched)"
         >
-          <small class="danger">Jadwal praktik tidak boleh kosong.</small>
+          <small
+            class="danger"
+            *ngIf="registerForm.get('jadwalPraktik')?.errors?.['required']"
+            >Jadwal tidak boleh kosong.</small
+          >
+          <small
+            class="danger"
+            *ngIf="registerForm.get('jadwalPraktik')?.errors?.['invalidJadwal']"
+            >Format jadwal tidak valid. Contoh: 'Senin - Jumat: 09:00 -
+            17:00'</small
+          >
         </div>
 
         <ion-item>

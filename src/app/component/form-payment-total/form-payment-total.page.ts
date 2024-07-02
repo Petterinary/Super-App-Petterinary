@@ -29,6 +29,7 @@ export class FormPaymentTotalPage implements OnInit {
   private initForm() {
     this.formGroup = this.formBuilder.group({
       consulAmount: ['', Validators.required],
+      consulResult: ['', Validators.required],
       transportAmount: [0],
     });
   }
@@ -39,6 +40,7 @@ export class FormPaymentTotalPage implements OnInit {
     const data = {
       consultationAmount: formData.consulAmount,
       transportAmount: formData.transportAmount,
+      consultationResult: formData.consulResult,
       serviceAmount: 25000,
       paymentStatus: 1,
     };

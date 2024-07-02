@@ -4,10 +4,20 @@
       <div class="profile-card">
         <div class="profile-img">
           <ng-container *ngIf="!isDokter; else dokter">
-            <img src="assets/icon/user.png" />
+            <ng-container *ngIf="userData.gender === 'Laki-laki'; else notMale">
+              <img src="assets/icon/user-male.png" />
+            </ng-container>
+            <ng-template #notMale>
+              <img src="assets/icon/user.png" />
+            </ng-template>
           </ng-container>
           <ng-template #dokter>
-            <img src="assets/icon/dokter-female.png" />
+            <ng-container *ngIf="userData.gender === 'Laki-laki'; else notMale">
+              <img src="assets/icon/dokter-male.png" />
+            </ng-container>
+            <ng-template #notMale>
+              <img src="assets/icon/dokter-female.png" />
+            </ng-template>
           </ng-template>
         </div>
         <div class="item-container">

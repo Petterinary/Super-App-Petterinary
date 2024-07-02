@@ -59,7 +59,7 @@ export class RegisterVetPage implements OnInit {
         ],
         jenisKelamin: ['', Validators.required],
         tempatPraktik: ['', Validators.required],
-        jadwalPraktik: ['', Validators.required],
+        jadwalPraktik: ['', [Validators.required, this.formatJadwal]],
         lamaPengalaman: ['', [Validators.required]],
         specialisasiHewan: ['', Validators.required],
         password: ['', [Validators.required]],
@@ -71,6 +71,15 @@ export class RegisterVetPage implements OnInit {
         validator: this.mustMatch('password', 'confirmPassword'),
       }
     );
+  }
+
+  formatJadwal(control: any): { [key: string]: boolean } | null {
+    const formatJadwal =
+      /^([A-Za-z]+) - ([A-Za-z]+): (\d{2}:\d{2}) - (\d{2}:\d{2})$/;
+    if (!control.value.match(formatJadwal)) {
+      return { invalidJadwal: true };
+    }
+    return null;
   }
 
   mustMatch(controlName: string, matchingControlName: string) {
