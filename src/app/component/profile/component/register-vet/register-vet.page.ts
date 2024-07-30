@@ -75,7 +75,7 @@ export class RegisterVetPage implements OnInit {
 
   formatJadwal(control: any): { [key: string]: boolean } | null {
     const formatJadwal =
-      /^([A-Za-z]+) - ([A-Za-z]+): (\d{2}:\d{2}) - (\d{2}:\d{2})$/;
+      /^((Senin|Selasa|Rabu|Kamis|Jumat|Sabtu|Minggu)( - (Senin|Selasa|Rabu|Kamis|Jumat|Sabtu|Minggu))?): (\d{2}:\d{2}) - (\d{2}:\d{2})(, (Senin|Selasa|Rabu|Kamis|Jumat|Sabtu|Minggu): (\d{2}:\d{2}) - (\d{2}:\d{2}))?(, (Senin|Selasa|Rabu|Kamis|Jumat|Sabtu|Minggu): (\d{2}:\d{2}) - (\d{2}:\d{2}))?$/;
     if (!control.value.match(formatJadwal)) {
       return { invalidJadwal: true };
     }
