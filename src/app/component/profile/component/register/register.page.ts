@@ -165,7 +165,7 @@ export class RegisterPage implements OnInit {
       } else {
         await this.loadingService.dismiss();
         await this.alertService.alertSetting(
-          'Tidak dapat menemukan lokasi, silakan aktifkan lokai pada perangkat',
+          'Tidak dapat menemukan lokasi, silakan aktifkan lokasi pada perangkat',
           'Gagal',
           () =>
             NativeSettings.open({
